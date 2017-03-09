@@ -1,0 +1,56 @@
+// App
+@import "imports/app/app";
+
+//colors
+$color_royal_purple_approx: rebeccapurple;
+$color_azure_approx: #369;
+$color_tundora_approx: #444;
+$color_suva_gray_approx: #888;
+
+//fonts
+$font_0: Arial;
+$font_1: Helvetica;
+$font_2: sans-serif;
+$font_3: Cambria;
+$font_4: Georgia;
+
+//@extend-elements
+//original selectors
+//h2, h3
+%extend_1 {
+	color: $color_tundora_approx;
+	font-family: $font_0, $font_1, $font_2;
+	font-weight: lighter;
+}
+
+
+.test {
+	color: $color_royal_purple_approx;
+}
+h1 {
+	color: $color_azure_approx;
+	font-family: $font_0, $font_1, $font_2;
+	font-size: 250%;
+}
+h2 {
+	@extend %extend_1;
+}
+h3 {
+	@extend %extend_1;
+}
+body {
+	margin: 2em;
+	color: $color_suva_gray_approx;
+	font-family: $font_3, $font_4;
+}
+input[text] {
+	color: $color_suva_gray_approx;
+	font-family: $font_3, $font_4;
+}
+button {
+	color: $color_suva_gray_approx;
+	font-family: $font_3, $font_4;
+}
+* {
+	font-family: $font_0, $font_1, $font_2;
+}
