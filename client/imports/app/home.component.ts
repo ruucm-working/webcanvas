@@ -10,6 +10,9 @@ import { routerTransition } from './router.animations';
 			<h2>Hello!</h2>
 			<a routerLink="/slider-dashboard"><button>go!</button></a>
 		</div>
+		<div class="myhome-descriptions">
+			<h3>You can use Right, Left, Up, Down key to Navigate 😀</h3>
+		</div>
 	</div>
 	`,
 	homecss,

@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent }         from './dashboard.component';
 import { HeroesComponent }     from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
-import { CanvasComponent } from './canvas.component';
+import { CanvasesComponent } from './canvases.component';
 import { ProjectsComponent } from './projects.component';
 import { WordsComponent } from './words.component';
 import { HomeComponent } from './home.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'canvas',
-		component: CanvasComponent
+		component: CanvasesComponent
 	},
 	{
 		path: 'projects',

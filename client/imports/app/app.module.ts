@@ -7,7 +7,7 @@ import { HeroesComponent }     from './heroes.component';
 import { HeroService }         from './hero.service';
 import { DashboardComponent }         from './dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CanvasComponent } from './canvas.component';
+import { CanvasesComponent } from './canvases.component';
 import { ProjectsComponent } from './projects.component';
 import { WordsComponent } from './words.component';
 import { HomeComponent } from './home.component';
@@ -20,7 +20,7 @@ import { SliderDashboardComponent } from './slider-dashboard.component';
 		HeroDetailComponent,
 		HeroesComponent,
 		DashboardComponent,
-		CanvasComponent,
+		CanvasesComponent,
 		ProjectsComponent,
 		WordsComponent,
 		HomeComponent,

@@ -16,23 +16,25 @@ import { routerTransition } from './router.animations';
 })
 export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	ngOnInit() {
-		console.log('init');
-		if($('html').hasClass('fp-enabled')){
-		    $.fn.fullpage.destroy('all');
-		}
-		$('#fullpage').fullpage({
-		 	//Navigation
-	        menu: '#menu',
-	        lockAnchors: false,
-	        anchors:['firstPage', 'secondPage'],
-	        navigation: true,
-	        navigationPosition: 'right',
-	        navigationTooltips: ['firstSlide', 'secondSlide'],
-	        showActiveTooltip: true,
-	        slidesNavigation: true,
-	        slidesNavPosition: 'bottom',
+		$( document ).ready(function() {
+			console.log('init');
+			if($('html').hasClass('fp-enabled')){
+			    $.fn.fullpage.destroy('all');
+			}
+			$('#fullpage').fullpage({
+			 	//Navigation
+		        menu: '#menu',
+		        lockAnchors: false,
+		        anchors:['firstPage', 'secondPage'],
+		        navigation: true,
+		        navigationPosition: 'right',
+		        navigationTooltips: ['firstSlide', 'secondSlide'],
+		        showActiveTooltip: true,
+		        slidesNavigation: true,
+		        slidesNavPosition: 'bottom',
 
-	        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+		        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+			});
 		});
 	}
 }
