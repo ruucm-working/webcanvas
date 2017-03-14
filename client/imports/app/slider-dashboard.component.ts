@@ -6,6 +6,10 @@ import { routerTransition } from './router.animations';
 @Component({
   selector: 'my-slider-dashboard',
   template: template,
+  styles: [ `
+	.section {
+		padding-left: 80px;
+	}` ],
   fullpagecss,
   animations: [routerTransition()],
   host: {'[@routerTransition]': ''}

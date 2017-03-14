@@ -30,8 +30,8 @@ function slideToRight() {
 function slideToLeft() {
   console.log('slideToLeft()');
   return trigger('routerTransition', [
-    state('void', style({position:'fixed', width:'100%', height:'100%', background: 'blue'}) ),
-    state('*', style({position:'fixed', width:'100%', height:'100%', background: 'red'}) ),
+    state('void', style({position:'fixed', width:'100%', height:'100%'}) ),
+    state('*', style({position:'fixed', width:'100%', height:'100%'}) ),
     transition(':enter', [
       style({transform: 'translateX(100%)'}),
       animate('0.5s ease-in-out', style({transform: 'translateX(0%)'}))

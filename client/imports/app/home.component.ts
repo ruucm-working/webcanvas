@@ -1,3 +1,4 @@
+import homecss from './home.css';
 import { Component } from '@angular/core';
 import { routerTransition } from './router.animations';
 
@@ -5,18 +6,15 @@ import { routerTransition } from './router.animations';
 	selector: 'my-home',
 	template: `
 	<div class="myhome">
-		<h2>Hello!</h2>
+		<div class="myhome-contents">
+			<h2>Hello!</h2>
+			<a routerLink="/slider-dashboard"><button>go!</button></a>
+		</div>
 	</div>
 	`,
-	styles: [ `
-	.myhome {
-		height: 100%;
-		position: absolute;
-		width: 100%;
-		background: lightblue;
-	}` ],
+	homecss,
 	animations: [routerTransition()],
-	host: {'[@routerTransition]': ''}
+	host: {'[@routerTransition]': ''},
 })
 export class HomeComponent {
 
