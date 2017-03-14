@@ -1,0 +1,18 @@
+.myhome {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+	background: lightblue;
+}
+.myhome-contents {
+	display: flex;
+	justify-content: center;
+	top: 50%;
+	position: relative;
+	h2, a {
+		display: inline-block;
+	}
+	a {
+		margin-left: 20px;
+	}
+}

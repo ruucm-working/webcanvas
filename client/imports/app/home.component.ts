@@ -1,4 +1,4 @@
-import homecss from './home.css';
+import homecss from './css/home.css';
 import { Component } from '@angular/core';
 import { routerTransition } from './router.animations';
 
