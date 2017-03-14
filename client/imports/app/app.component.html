@@ -1,9 +1,7 @@
-<h1>{{title}}</h1>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
-  	<span class="badge">{{hero.id}}</span> {{hero.name}}
-  </li>
-</ul>
-<div *ngIf="selectedHero">
-  <h2>{{selectedHero.name}} details!</h2>
-</div>
+<nav>
+  <a routerLink="/slider-dashboard">Slider DashBoard</a>
+  <a routerLink="/canvas">Canvas</a>
+  <a routerLink="/projects">Projects</a>
+  <a routerLink="/words">Words</a>
+</nav>
+<router-outlet></router-outlet>
