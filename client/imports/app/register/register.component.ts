@@ -31,4 +31,8 @@ export class RegisterComponent {
                     this.loading = false;
                 });
     }
+    ngOnInit() {
+        this.model.firstName = 'Jenny';
+        this.model.lastName = 'Kim';
+    }
 }

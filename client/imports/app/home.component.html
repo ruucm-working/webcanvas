@@ -1,10 +1,14 @@
 <div class="myhome">
-	<div class="myhome-contents">
-		<div class="title">
-			<h2>Hello!</h2>
-			<a routerLink="/slider-dashboard"><button>go!</button></a>
+	<div class="myhome-contents" fxLayout="column" fxLayoutAlign="space-around center" >
+    <div class="myhome-descriptions" fxFlex fxLayoutAlign="space-around center">
+			<h3>You can use Right, Left, Up, Down key to Navigate 😀</h3>
 		</div>
-		<div class="user col-md-6 col-md-offset-3">
+		<div class="title" fxFlex fxFlex.xs="50%" fxLayoutAlign="space-around center">
+			<h2>Hello!
+			<a routerLink="/slider-dashboard"><button md-button>go!</button></a>
+			</h2>
+		</div>
+		<div class="user" fxFlex fxLayout="column">
 			<h1>Hi {{currentUser.firstName}}</h1>
 			<p>You're logged in with Angular 2!!</p>
 			<h3>All registered users:</h3>
@@ -13,10 +17,7 @@
 					{{user.username}} {{user.firstName}} {{user.lastName}} - <a (click)="deleteUser(user.id)">Delete</a>
 				</li>
 			</ul>
-			<p><a [routerLink]="['/login']">Logout</a></p>
+			<p class="logout-button"><a md-button [routerLink]="['/login']">Logout</a></p>
 		</div>
-	</div>
-	<div class="myhome-descriptions">
-		<h3>You can use Right, Left, Up, Down key to Navigate 😀</h3>
 	</div>
 </div>

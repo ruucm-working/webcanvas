@@ -21,6 +21,8 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 
+import { MaterialModule } from '@angular/material';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
 	declarations: [
@@ -38,7 +40,9 @@ import { RegisterComponent } from './register/index';
 		BrowserModule,
 		FormsModule,
 		AppRoutingModule,
-		HttpModule
+		HttpModule,
+		MaterialModule,
+		FlexLayoutModule.forRoot()
 	],
 	providers: [
 		MnFullpageService,

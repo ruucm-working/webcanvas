@@ -1,27 +1,17 @@
 .myhome {
-	height: 100%;
-	position: absolute;
-	width: 100%;
-	background: lightblue;
-}
-.myhome-descriptions {
+	border: solid 1px #b6b6b6;
+	box-sizing: content-box !important;
 	text-align: center;
+	background: lightblue;
+	height: 100vh;
+	div.title {
+		max-height: 25% !important;
+	}
 }
 .myhome-contents {
-	display: flex;
-	justify-content: center;
-	top: 36%;
-	position: relative;
-	.title {
-		h2, a {
-			display: inline-block;
-		}
-	}
-	.user {
-		position: absolute;
-		top: 100%;
-	}
-	a {
-		margin-left: 20px;
-	}
+	height: 100vh;
+	padding: 0 30px;
+}
+ul {
+	list-style-type: none;
 }
