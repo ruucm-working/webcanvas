@@ -4,13 +4,22 @@
 	width: 100%;
 	background: lightblue;
 }
+.myhome-descriptions {
+	text-align: center;
+}
 .myhome-contents {
 	display: flex;
 	justify-content: center;
-	top: 50%;
+	top: 36%;
 	position: relative;
-	h2, a {
-		display: inline-block;
+	.title {
+		h2, a {
+			display: inline-block;
+		}
+	}
+	.user {
+		position: absolute;
+		top: 100%;
 	}
 	a {
 		margin-left: 20px;
