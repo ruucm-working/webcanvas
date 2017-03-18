@@ -80,28 +80,6 @@ export class CanvasesComponent {
 		});
 	}
 	constructor() {
-		// CANVASES.push({
-		// 	id: 'New Slide from constructor',
-		// 	text: 'push on constructor',
-		// });
-		// if($('html').hasClass('fp-enabled')){
-		//     $.fn.fullpage.destroy('all');
-		//     console.log('destory02!');
-		// }
-		// $('#fullpage').fullpage({
-		//  	//Navigation
-	 //        menu: '#menu',
-	 //        lockAnchors: false,
-	 //        anchors:['firstPage', 'secondPage'],
-	 //        navigation: true,
-	 //        navigationPosition: 'right',
-	 //        navigationTooltips: ['firstSlide02', 'secondSlide', 'thirdPage'],
-	 //        showActiveTooltip: true,
-	 //        slidesNavigation: true,
-	 //        slidesNavPosition: 'bottom',
-
-	 //        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-		// });
 	}
 	ngOnInit() {
 	}
