@@ -12,18 +12,6 @@ import { SliderDashboardComponent } from './slider-dashboard.component';
 
 import { AlertComponent } from './_directives/index';
 import { AlertService } from './_services/index';
-/*
-// used to create fake backend
-import { fakeBackendProvider } from './_helpers/index';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
-import { HttpModule } from '@angular/http';
-import { AlertComponent } from './_directives/index';
-import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
-import { LoginComponent } from './login/index';
-import { RegisterComponent } from './register/index';
-*/
 
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -31,6 +19,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LoginComponent } from './_simple_login/login.component';
 import { PrivateComponent } from './_simple_login/private.component';
 import { RegisterComponent } from './_simple_login/register.component';
+import { AdminComponent } from './_admin/admin.component';
 
 @NgModule({
 	declarations: [
@@ -43,29 +32,19 @@ import { RegisterComponent } from './_simple_login/register.component';
 		AlertComponent,
 		LoginComponent,
 		PrivateComponent,
-		RegisterComponent
-		// LoginComponent,
-		// RegisterComponent
+		RegisterComponent,
+		AdminComponent
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		AppRoutingModule,
-		// HttpModule,
 		MaterialModule,
 		FlexLayoutModule.forRoot()
 	],
 	providers: [
 		MnFullpageService,
-		// AuthGuard,
 		AlertService,
-		// AuthenticationService,
-		// UserService,
-
-		// providers used to create fake backend
-		// fakeBackendProvider,
-		// MockBackend,
-		// BaseRequestOptions
 		],
 	bootstrap: [ MyCanvas ]
 })
