@@ -24,33 +24,18 @@ export class CanvasesComponent {
 	trackByHeroes(index: number, canvas: Canvas): number { return canvas.text; }
 	newText = '';
 	firstornot = true;
-	// canvases = CANVASES;
-
 	first_canvases = this.get_canvases();
 
 	get_canvases(): Canvas[] {
 		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
 	}
-	get_canvases2(): Canvas[] {
-		console.log('get_canvas2 : CANVASES - ');
-		console.log(CANVASES);
-		// this.updatefullpage();
-		return CANVASES;
-	}
 	addCanvas(newText): void {
 		console.log('in addCanvas func');
-		// this.canvases = CANVASES;
 		CanvasContents.insert({
 			text: newText,
 			createdAt: new Date
 		});
-
 		this.newText = '';
-		// CANVASES.push({
-		// 	id: 7,
-		// 	text: newText,
-		// });
-
 		this.updatefullpage();
 	}
 	updatefullpage(): void {
@@ -59,22 +44,16 @@ export class CanvasesComponent {
 		    console.log('destory02!');
 		}
 		$('#fullpage').fullpage({
-		 	//Navigation
-	        menu: '#menu',
-	        lockAnchors: false,
-	        anchors:['firstPage', 'secondPage'],
-	        navigation: true,
-	        navigationPosition: 'right',
-	        navigationTooltips: ['firstSlide02', 'secondSlide', 'thirdPage'],
-	        showActiveTooltip: true,
-	        slidesNavigation: true,
-	        slidesNavPosition: 'bottom',
-
-	        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+			menu: '#menu',
+			lockAnchors: false,
+			anchors:['firstPage', 'secondPage'],
+			navigation: true,
+			navigationPosition: 'right',
+			navigationTooltips: ['firstSlide02', 'secondSlide', 'thirdPage'],
+			showActiveTooltip: true,
+			slidesNavigation: true,
+			slidesNavPosition: 'bottom',
+			sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 		});
-	}
-	constructor() {
-	}
-	ngOnInit() {
 	}
 }
