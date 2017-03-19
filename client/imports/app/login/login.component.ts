@@ -7,7 +7,7 @@ import { AlertService, AuthenticationService } from '../_services/index';
 @Component({
     template: template
 })
-
+ 
 export class LoginComponent implements OnInit {
     model: any = {};
     loading = false;

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { CanvasContents } from '../../../imports/api/canvas-contents.js';
-import { Canvas } from './canvas.ts';
 
+export class Canvas {
+	id: number;
+	name: string;
+}
 const CANVASES: Canvas[] = [
 	{ id: 11, text: 'hey' },
 	{ id: 13, text: 'yap' },
@@ -10,6 +13,9 @@ const CANVASES: Canvas[] = [
 @Component({
 	selector: 'my-canvases',
 	template: `
+	<form (ngSubmit)="addCanvas(newText)">
+		<input [(ngModel)]="newText" type="text" name="text" placeholder="Type to add text"/>
+	</form>
 	<div *ngFor="let canvas of first_canvases; let i=index" class="slide">index : {{i+1}} {{canvas.text}}</div>
 	`,
 	styles: [ `
