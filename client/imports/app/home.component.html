@@ -8,16 +8,10 @@
 			<a routerLink="/slider-dashboard"><button md-button>go!</button></a>
 			</h2>
 		</div>
-<!-- 		<div class="user" fxFlex fxLayout="column">
-			<h1>Hi {{currentUser.firstName}}</h1>
-			<p>You're logged in with Angular 2!!</p>
-			<h3>All registered users:</h3>
-			<ul>
-				<li *ngFor="let user of users">
-					{{user.username}} {{user.firstName}} {{user.lastName}} - <a (click)="deleteUser(user.id)">Delete</a>
-				</li>
-			</ul>
-			<p class="logout-button"><a md-button [routerLink]="['/login']">Logout</a></p>
-		</div> -->
+		<div *ngIf="this._service.hideToPublic()" class="user" fxFlex fxLayout="column">
+			<h3>Hello Ruucm</h3>
+			<a routerLink="/admin">go to admin</a>
+			<button (click)="logout()">Click Here to logout</button>
+		</div>
 	</div>
 </div>

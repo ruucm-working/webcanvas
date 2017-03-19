@@ -2,9 +2,11 @@ import template from './slider-dashboard.component.html';
 import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from './router.animations';
+import { AuthenticationService } from './_simple_login/authentication.service'
 
 @Component({
   selector: 'my-slider-dashboard',
+  providers: [AuthenticationService],
   template: template,
   styles: [ `
 	.section {
@@ -15,6 +17,8 @@ import { routerTransition } from './router.animations';
   host: {'[@routerTransition]': ''}
 })
 export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
+	constructor(
+		private _service:AuthenticationService){}
 	ngOnInit() {
 		$( document ).ready(function() {
 			console.log('init');
@@ -36,5 +40,10 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
 			});
 		});
+	}
+	logout() {
+		this._service.logout();
+	}
+	ngOnDestroy() {
 	}
 }
