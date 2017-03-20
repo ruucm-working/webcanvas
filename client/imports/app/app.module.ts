@@ -21,11 +21,7 @@ import { PrivateComponent } from './_simple_login/private.component';
 import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
 
-import { QuillEditorModule } from "./_quill_editor/quillEditor.module";
-// import { QuillEditorComponentExample01 } from './01-example.component';
-// import { PlaygModule } from "playg"
-// import { Autosize } from 'angular2-autosize/angular2-autosize';
-// import { Autosize } from 'angular2-autosize';
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
 @NgModule({
 	declarations: [
@@ -40,8 +36,6 @@ import { QuillEditorModule } from "./_quill_editor/quillEditor.module";
 		PrivateComponent,
 		RegisterComponent,
 		AdminComponent,
-		// Autosize
-		// QuillEditorComponentExample01
 	],
 	imports: [
 		BrowserModule,
@@ -49,8 +43,7 @@ import { QuillEditorModule } from "./_quill_editor/quillEditor.module";
 		AppRoutingModule,
 		MaterialModule,
 		FlexLayoutModule.forRoot(),
-		QuillEditorModule
-		// PlaygModule
+		FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
 	],
 	providers: [
 		MnFullpageService,
