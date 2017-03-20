@@ -10,7 +10,7 @@ const CANVASES: Canvas[] = [
 @Component({
 	selector: 'my-canvases',
 	template: `
-	<div *ngFor="let canvas of first_canvases; let i=index" class="slide">index : {{i+1}} {{canvas.text}}</div>
+	<div *ngFor="let canvas of first_canvases; let i=index" class="slide" [innerHTML]="canvas.text"></div>
 	`,
 	styles: [ `
 	.mycanvases {
@@ -25,6 +25,7 @@ export class CanvasesComponent {
 	newText = '';
 	firstornot = true;
 	first_canvases = this.get_canvases();
+	test_html = '<p>Hey!</p>';
 
 	get_canvases(): Canvas[] {
 		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
