@@ -10,6 +10,4 @@ import { Component } from '@angular/core';
 	template: template,
 	style, material_indigo_theme, froala_editor_css,
 })
-export class MyCanvas {
-	title = 'Tour of Heroes';
-}
+export class MyCanvas { }
