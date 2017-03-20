@@ -21,6 +21,12 @@ import { PrivateComponent } from './_simple_login/private.component';
 import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
 
+import { QuillEditorModule } from "./_quill_editor/quillEditor.module";
+// import { QuillEditorComponentExample01 } from './01-example.component';
+// import { PlaygModule } from "playg"
+// import { Autosize } from 'angular2-autosize/angular2-autosize';
+// import { Autosize } from 'angular2-autosize';
+
 @NgModule({
 	declarations: [
 		MyCanvas,
@@ -33,14 +39,18 @@ import { AdminComponent } from './_admin/admin.component';
 		LoginComponent,
 		PrivateComponent,
 		RegisterComponent,
-		AdminComponent
+		AdminComponent,
+		// Autosize
+		// QuillEditorComponentExample01
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		AppRoutingModule,
 		MaterialModule,
-		FlexLayoutModule.forRoot()
+		FlexLayoutModule.forRoot(),
+		QuillEditorModule
+		// PlaygModule
 	],
 	providers: [
 		MnFullpageService,

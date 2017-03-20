@@ -8,6 +8,13 @@ import { Canvas } from '../canvas.ts';
   providers: [AuthenticationService],
 	template: `
 		<div>Hello Admin</div>
+		<quill-editor [(ngModel)]="editorContent"
+                           [config]="editorConfig"
+                           (ready)="onEditorCreated($event)">
+                           (change)="onContentChanged($event)">
+        </quill-editor>
+        <br>
+        <div class="ql-editor" [innerHTML]="editorContent"></div>
 		<a routerLink="/home">go back to home</a>
 		<a routerLink="/slider-dashboard">Slider Dashboard</a>
 		<button (click)="logout()">Click Here to logout</button>
@@ -20,9 +27,20 @@ import { Canvas } from '../canvas.ts';
 export class AdminComponent {
 	newText = '';
 	my_canvases = this.get_canvases();
+	public editorContent = `<p>I am Example 01</p>`;
+	public editorConfig = {
+		placeholder: "输入公告内容，支持html"
+	};
 
 	constructor(
 		private _service:AuthenticationService){}
+	onEditorCreated(quill) {
+		console.log('this is quill object', quill);
+	}
+
+	onContentChanged({ quill, html, text }) {
+		console.log(quill, html, text);
+	}
 	ngOnInit(){
 		this._service.checkCredentials();
 	}

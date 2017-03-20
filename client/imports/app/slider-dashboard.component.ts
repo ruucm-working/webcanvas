@@ -20,6 +20,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	constructor(
 		private _service:AuthenticationService){}
 	ngOnInit() {
+		console.log('On Init Slider Dashboard');
 		$( document ).ready(function() {
 			console.log('init');
 			if($('html').hasClass('fp-enabled')){
@@ -45,5 +46,9 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		this._service.logout();
 	}
 	ngOnDestroy() {
+		console.log('On Destory Slider Dashboard');
+		if($('html').hasClass('fp-enabled')){
+			$.fn.fullpage.destroy('all');
+		}
 	}
 }

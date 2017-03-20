@@ -1,0 +1,10 @@
+.myhome h3 {
+	color: red;
+}
+body > #standalone-container {
+    margin: 50px auto;
+    width: 720px;
+  }
+  #editor-container {
+    height: 350px;
+  }
