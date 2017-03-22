@@ -22,6 +22,7 @@ import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+import './mo.js';
 
 @NgModule({
 	declarations: [

@@ -11,6 +11,7 @@ import { AuthenticationService } from './_simple_login/authentication.service'
 	host: {'[@routerTransition]': ''},
 })
 export class HomeComponent {
+	newText = '';
 	constructor(
 		private _service:AuthenticationService){}
 	logout() {
@@ -18,5 +19,8 @@ export class HomeComponent {
 	}
 	route_test() {
 		this._service.route_test();
+	}
+	addCanvas(newText): void {
+		this.newText = '';
 	}
 }

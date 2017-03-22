@@ -2,6 +2,10 @@
 	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" >
 		<div class="hello" fxFlex fxLayoutAlign="space-around center">
 			<h2>Hello, I'm ruucm.</h2>
+			<form (ngSubmit)="addCanvas(newText)">
+				<input [(ngModel)]="newText" type="text" name="text" placeholder="Make new Canvas"/>
+			</form>
+			{{newText}}
 		</div>
 		<div class="myhome-descriptions" fxFlex fxLayoutAlign="space-around center">
 			<h3>You can use Right, Left, Up, Down key to Navigate 😀</h3>

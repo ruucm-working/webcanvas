@@ -16,6 +16,9 @@ import { Canvas } from '../canvas.ts';
 		<a routerLink="/home">go back to home</a>
 		<a routerLink="/slider-dashboard">Slider Dashboard</a>
 		<button (click)="logout()">Click Here to logout</button>
+		<form (ngSubmit)="addCanvas(newText)">
+			<input [(ngModel)]="newText" type="text" name="text" placeholder="Make new Canvas"/>
+		</form>
 		<div *ngFor="let canvas of get_canvases(); let i=index">canvas : {{i+1}} {{canvas.text}}</div>
 	`,
 })
