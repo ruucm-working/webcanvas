@@ -1,14 +1,16 @@
 <div class="myhome">
-	<div class="myhome-contents" fxLayout="column" fxLayoutAlign="space-around center" >
-    <div class="myhome-descriptions" fxFlex fxLayoutAlign="space-around center">
+	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" >
+		<div class="hello" fxFlex fxLayoutAlign="space-around center">
+			<h2>Hello, I'm ruucm.</h2>
+		</div>
+		<div class="myhome-descriptions" fxFlex fxLayoutAlign="space-around center">
 			<h3>You can use Right, Left, Up, Down key to Navigate 😀</h3>
 		</div>
 		<div class="title" fxFlex fxFlex.xs="50%" fxLayoutAlign="space-around center">
-			<h2>Hello!
-			<a routerLink="/slider-dashboard"><button md-button>go!</button></a>
+			<a routerLink="/slider-dashboard"><button md-button>Go!</button></a>
 			</h2>
 		</div>
-		<div *ngIf="this._service.hideToPublic()" class="user" fxFlex fxLayout="column">
+		<div *ngIf="this._service.hideToPublic()" class="user" fxFlex>
 			<h3>Hello Ruucm</h3>
 			<a routerLink="/admin">go to admin</a>
 			<button (click)="logout()">Click Here to logout</button>

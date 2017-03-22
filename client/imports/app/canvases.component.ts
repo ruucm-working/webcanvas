@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { Canvas } from './canvas.ts';
+import { Page01Service } from './_mojs_services/page01.service';
 
 const CANVASES: Canvas[] = [
 	{ id: 11, text: 'hey' },
@@ -19,14 +20,14 @@ const CANVASES: Canvas[] = [
 		width: 100%;
 		background: pink;
 	}` ],
+	providers: [ Page01Service ]
 })
-export class CanvasesComponent {
-	trackByHeroes(index: number, canvas: Canvas): number { return canvas.text; }
+export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
 	firstornot = true;
 	first_canvases = this.get_canvases();
-	test_html = '<p>Hey!</p>';
 
+	constructor( private _service:Page01Service ) { }
 	get_canvases(): Canvas[] {
 		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
 	}
@@ -46,15 +47,35 @@ export class CanvasesComponent {
 		}
 		$('#fullpage').fullpage({
 			menu: '#menu',
-			lockAnchors: false,
-			anchors:['firstPage', 'secondPage'],
-			navigation: true,
-			navigationPosition: 'right',
-			navigationTooltips: ['firstSlide02', 'secondSlide', 'thirdPage'],
+			anchors:['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
 			showActiveTooltip: true,
-			slidesNavigation: true,
-			slidesNavPosition: 'bottom',
-			sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+			sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', 'red'],
+			afterLoad: function(anchorLink, index){
+				var loadedSection = $(this);
+				console.log('index : ' + index);
+				console.log('loadedSection : ' + loadedSection);
+				//using index
+				if(index == 2){
+					alert("Section 2 ended loading");
+				}
+
+				//using anchorLink
+				if(anchorLink == 'secondSlide'){
+					alert("Section 2 ended loading");
+				}
+			}
 		});
+	}
+	ngOnChanges() {
+		console.log('ngOnChange canvas.component');
+	}
+	ngOnInit() {
+		console.log('ngOnInit canvas.component');
+		$( document ).ready(function() {
+		
+		});
+	}
+	ngOnDestory() {
+		console.log('ngOnDestory at canvas.component');
 	}
 }

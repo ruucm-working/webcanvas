@@ -1,5 +1,4 @@
 import template from './home.component.html';
-import homecss from './css/home.css';
 import { Component } from '@angular/core';
 import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
@@ -8,7 +7,6 @@ import { AuthenticationService } from './_simple_login/authentication.service'
 	selector: 'my-home',
     providers: [AuthenticationService],
 	template: template,
-	homecss,
 	animations: [routerTransition('left')],
 	host: {'[@routerTransition]': ''},
 })

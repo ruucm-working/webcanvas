@@ -1,4 +1,4 @@
-<div *ngIf="this._service.hideToPublic()">
+<div class="admin-bar" *ngIf="this._service.hideToPublic()">
 	<a routerLink="/home">go back to home</a>
 	<a routerLink="/admin">admin</a>
 	<button (click)="logout()">Click Here to logout</button>
@@ -12,5 +12,7 @@
 	</div>
 	<div class="section">
 		<my-words></my-words>
+	</div>
+	<div class="section">
 	</div>
 </div>

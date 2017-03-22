@@ -4,13 +4,13 @@ import { Component } from '@angular/core';
 	selector: 'my-words',
 	template: `
 	<div class="mywords">
-		<h2>Hello Words!</h2>
+		<h2>Words</h2>
+		<h3>🚦Construction Mode🚦</h3>
 	</div>
 	`,
 	styles: [ `
 	.mywords {
 		height: 100%;
-		position: absolute;
 		width: 100%;
 		background: green;
 	}` ],

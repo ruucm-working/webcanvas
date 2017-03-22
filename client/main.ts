@@ -8,3 +8,6 @@ import { AppModule } from './imports/app/app.module';
 Meteor.startup(() => {
   platformBrowserDynamic().bootstrapModule(AppModule);
 });
+Meteor._reload.onMigrate(function() {
+  return [false];
+});

@@ -4,17 +4,19 @@ import { Component } from '@angular/core';
 	selector: 'my-projects',
 	template: `
 	<div class="myprojects">
-		<h2>Hello Projects!</h2>
+		<h2>Projects</h2>
+		<h3>🚦Construction Mode🚦</h3>
 	</div>
 	`,
 	styles: [ `
 	.myprojects {
 		height: 100%;
-		position: absolute;
 		width: 100%;
 		background: yellow;
 	}` ],
 })
 export class ProjectsComponent {
-
+	ngOnInit() {
+		console.log('ngOnInit project.component');
+	}
 }

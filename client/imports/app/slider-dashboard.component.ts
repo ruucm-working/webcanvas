@@ -3,24 +3,28 @@ import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
+import { Page01Service } from './_mojs_services/page01.service';
+import myGlobals = require('./globals');
 
 @Component({
-  selector: 'my-slider-dashboard',
-  providers: [AuthenticationService],
-  template: template,
-  styles: [ `
-	.section {
-		padding-left: 80px;
-	}` ],
-  fullpagecss,
-  animations: [routerTransition()],
-  host: {'[@routerTransition]': ''}
+	selector: 'my-slider-dashboard',
+	template: template,
+	styles: [ `` ],
+	fullpagecss,
+	animations: [routerTransition()],
+	host: {'[@routerTransition]': ''},
+	providers: [ AuthenticationService, Page01Service ]
 })
 export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	constructor(
-		private _service:AuthenticationService){}
+		private _service:AuthenticationService,
+		private _service2:Page01Service ) { }
 	ngOnInit() {
 		console.log('On Init Slider Dashboard');
+		this._service2.anim_init();
+		this._service2.play_page01_anim();
+		console.log('this : ');
+		console.log(this);
 		$( document ).ready(function() {
 			console.log('init');
 			if($('html').hasClass('fp-enabled')){
@@ -37,8 +41,13 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		        showActiveTooltip: true,
 		        slidesNavigation: true,
 		        slidesNavPosition: 'bottom',
-
-		        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+		        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'red', '#000'],
+				onLeave: function(index, nextIndex, direction){
+					var leavingSection = $(this);
+					if(index == 1){
+						myGlobals.polygon.stop();
+					}
+				}
 			});
 		});
 	}

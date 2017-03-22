@@ -1,9 +1,9 @@
-import {Component, ElementRef} from '@angular/core';
-import {AuthenticationService, User} from './authentication.service'
+import { Component, ElementRef } from '@angular/core';
+import { AuthenticationService, User } from './authentication.service'
  
 @Component({
     selector: 'login-form',
-    providers: [AuthenticationService],
+    providers: [ AuthenticationService ],
     template: `
         <div class="container" >
             <div class="title">

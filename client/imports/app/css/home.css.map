@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,OAAQ;EACP,MAAM,EAAE,iBAAiB;EACzB,UAAU,EAAE,sBAAsB;EAClC,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,SAAS;EACrB,MAAM,EAAE,KAAK;EACb,iBAAU;IACT,UAAU,EAAE,cAAc;;AAG5B,gBAAiB;EAChB,MAAM,EAAE,KAAK;EACb,OAAO,EAAE,MAAM;;AAEhB,EAAG;EACF,eAAe,EAAE,IAAI",
-"sources": ["../sass/home.scss"],
-"names": [],
-"file": "home.css"
-}

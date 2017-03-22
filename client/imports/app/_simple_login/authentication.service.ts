@@ -14,11 +14,9 @@ export class AuthenticationService {
 	constructor(
 		private _router: Router){}
 	route_test() {
-		console.log('test navigate');
 		this._router.navigate(['login']);
 	}
 	logout(navigateTo) {
-		console.log('navigateTo : ' + navigateTo);
 		localStorage.removeItem("user");
 		if (navigateTo == 'home')
 			this._router.navigate(['home']);
@@ -46,7 +44,6 @@ export class AuthenticationService {
 
 	checkCredentials(){
 		if (localStorage.getItem("user") === null){
-			console.log('not logged in & navigate');
 		  this._router.navigate(['login']);
 		  return false;
 		}
@@ -54,7 +51,6 @@ export class AuthenticationService {
 	}
 
 	get_users(): User[] {
-		console.log('get_users()');
 		return UsersDatabase.find().map((messages: User[]) => { return messages; });
 	}
 }
