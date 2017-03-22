@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { Canvas } from './canvas.ts';
-import { Page01Service } from './_mojs_services/page01.service';
 import feb01_css from './css/0218.css';
 
-const CANVASES: Canvas[] = [
-	{ id: 11, text: 'hey' },
-	{ id: 13, text: 'yap' },
-	{ id: 15, text: 'hoho' }
-];
 @Component({
 	selector: 'my-canvases',
 	template: `
@@ -22,16 +16,19 @@ const CANVASES: Canvas[] = [
 		background: pink;
 	}` ],
 	feb01_css,
-	providers: [ Page01Service ]
 })
 export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
 	firstornot = true;
 	first_canvases = this.get_canvases();
 
-	constructor( private _service:Page01Service ) { }
+	constructor() { }
 	get_canvases(): Canvas[] {
-		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+		return CanvasContents.find({}, {
+			sort: {
+				createdAt: -1
+			}
+		}).map((messages: Canvas[]) => { return messages; });
 	}
 	addCanvas(newText): void {
 		console.log('in addCanvas func');
@@ -74,6 +71,45 @@ export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
 	ngOnInit() {
 		console.log('ngOnInit canvas.component');
 		$( document ).ready(function() {
+			// var shape = new mojs.Shape({
+		 //       radius:   { 15: 50 },
+			//     children: {
+			//       fill:   [ 'deeppink', 'cyan', 'orange' ],
+			//   }
+		 //    });
+		 //    var burst = new Burst({
+			//     radius:   { 15: 50 },
+			//     children: {
+			//       fill:   [ 'deeppink', 'cyan', 'orange' ],
+			//   }
+			// });
+			const burst = new mojs.Burst({
+				left: 0, top: 0,
+				radius: { 0: 300 },
+				count: 3,
+				degree: 30,
+				angle: { 0: 60 },
+				opacity: { 1: 0 },
+			});
+			const burst2 = new mojs.Burst({
+				left: 0, top: 0,
+				radius: { 0: 300 },
+				count: 3,
+				degree: 30,
+				angle: { 0: 60 },
+				opacity: { 1: 0 },
+				children: {
+					fill: { 'cyan' : 'yellow' },
+					radius:       20,
+					duration: 5000
+				},
+			});
+			document.addEventListener( 'click', function (e) {
+				burst2
+				  .tune({ x: e.pageX, y: e.pageY })
+				  .setSpeed(3)
+				  .replay();
+				});
 			const leg_left = new mojs.Html({
 				repeat:   999,
 				duration: 1000,
@@ -142,17 +178,17 @@ export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
 				strokeDasharray:  '100',
 				strokeDashoffset: { '100': 0 }
 			});
-
 			const wordTimeline = new mojs.Timeline({ delay: 1600 });
-				wordTimeline
-				  .add(
+			wordTimeline
+				.add(
 				    word_char3,
-				    undeline
+				    // undeline
 			);
+
 			const timeline = new mojs.Timeline();
 			timeline.add( wordTimeline, leg_left );
-			new MojsPlayer({ add: timeline });
-			// timeline.play();
+			// new MojsPlayer({ add: timeline });
+			timeline.play();
 		});
 	}
 	ngOnDestory() {

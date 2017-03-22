@@ -20,7 +20,4 @@ export class HomeComponent {
 	route_test() {
 		this._service.route_test();
 	}
-	addCanvas(newText): void {
-		this.newText = '';
-	}
 }

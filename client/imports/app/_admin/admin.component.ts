@@ -19,7 +19,7 @@ import { Canvas } from '../canvas.ts';
 		<form (ngSubmit)="addCanvas(newText)">
 			<input [(ngModel)]="newText" type="text" name="text" placeholder="Make new Canvas"/>
 		</form>
-		<div *ngFor="let canvas of get_canvases(); let i=index">canvas : {{i+1}} {{canvas.text}}</div>
+		<div *ngFor="let canvas of get_canvases(); let i=index">canvas {{i+1}} : {{canvas.text}}</div>
 	`,
 })
 export class AdminComponent {
