@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CanvasContents } from '../../../imports/api/canvas-contents.js';
+import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
 import { Canvas } from './canvas.ts';
-import feb01_css from './css/0218.css';
+import template from './canvas.component.html';
+import feb01_css from '../css/0218.css';
 
 @Component({
 	selector: 'my-canvases',
-	template: `
-	<div *ngFor="let canvas of first_canvases; let i=index" class="slide" [innerHTML]="canvas.text"></div>
-	`,
+	template: template,
 	styles: [ `
 	.mycanvases {
 		height: 100%;
@@ -17,7 +16,7 @@ import feb01_css from './css/0218.css';
 	}` ],
 	feb01_css,
 })
-export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
+export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
 	firstornot = true;
 	first_canvases = this.get_canvases();
@@ -48,7 +47,7 @@ export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
 			menu: '#menu',
 			anchors:['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
 			showActiveTooltip: true,
-			sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', 'red'],
+			sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0'],
 			afterLoad: function(anchorLink, index){
 				var loadedSection = $(this);
 				console.log('index : ' + index);

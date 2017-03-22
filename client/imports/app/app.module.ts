@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MyCanvas } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CanvasesComponent } from './canvases.component';
+import { CanvasComponent } from './_canvas/canvas.component';
 import { ProjectsComponent } from './projects.component';
 import { WordsComponent } from './words.component';
 import { HomeComponent } from './home.component';
@@ -28,7 +28,7 @@ import './__external_lib/mojs-player.min.js';
 @NgModule({
 	declarations: [
 		MyCanvas,
-		CanvasesComponent,
+		CanvasComponent,
 		ProjectsComponent,
 		WordsComponent,
 		HomeComponent,

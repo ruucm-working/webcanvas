@@ -1,0 +1,7 @@
+<div class="canvases_navigate">
+	<div class="canvases_navigate_buttons">
+		<a routerLink="/home">Prev</a>
+		<a routerLink="/admin">Next</a>
+	</div>
+</div>
+<div *ngFor="let canvas of first_canvases; let i=index" class="slide" [innerHTML]="canvas.text"></div>

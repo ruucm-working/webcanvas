@@ -84,7 +84,7 @@ export class Canvas0218Service {
 		});
 		const busrttimeline01 = new mojs.Timeline({ repeat: 999, delay: 1600 });
 		busrttimeline01.add( burst3 );
-		const busrttimeline02 = new mojs.Timeline({ speed: 0.3, repeat: 999, delay: 1000 });
+		const busrttimeline02 = new mojs.Timeline({ speed: 0.8, repeat: 999, delay: 1000 });
 		busrttimeline02.add( burst4 );
 		const busrttimeline03 = new mojs.Timeline({ repeat: 999, delay: 800 });
 		busrttimeline03.add( burst5 );
@@ -94,7 +94,7 @@ export class Canvas0218Service {
 		this.add_to_global_timeline();
 	}
 	add_to_global_timeline() {
-		myGlobals.global_timeline.add( myGlobals.polygon, myGlobals.burst_0218_page02 );
+		myGlobals.global_timeline.add( myGlobals.burst_0218_page02 );
 	}
 	// play_page01_anim() {
 	// 	console.log('start_page01_anim');

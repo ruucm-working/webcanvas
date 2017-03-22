@@ -60,8 +60,8 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		        navigationTooltips: ['firstSlide', 'secondSlide'],
 		        showActiveTooltip: true,
 		        slidesNavigation: true,
-		        slidesNavPosition: 'bottom',
-		        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'red', '#000'],
+		        slidesNavPosition: 'top',
+		        sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
 		        afterLoad: function(anchorLink, index){
 		        	console.log('index : ' + index);
 		        	//first slide of the second section

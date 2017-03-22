@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CanvasesComponent } from './canvases.component';
+import { CanvasComponent } from './_canvas/canvas.component';
 import { ProjectsComponent } from './projects.component';
 import { WordsComponent } from './words.component';
 import { HomeComponent } from './home.component';
@@ -15,7 +15,7 @@ import { AdminComponent } from './_admin/admin.component';
 const routes: Routes = [
 	{ path: 'home', name: 'Home', component: HomeComponent, useAsDefault:true },
 	{ path: 'slider-dashboard', component: SliderDashboardComponent },
-	{ path: 'canvas', component: CanvasesComponent },
+	{ path: 'canvas', component: CanvasComponent },
 	{ path: 'projects', component: ProjectsComponent },
 	{ path: 'words', component: WordsComponent },
 	{	path: '', /*canActivate: [AuthGuard],*/
