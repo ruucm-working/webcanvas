@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { Canvas } from './canvas.ts';
 import { Page01Service } from './_mojs_services/page01.service';
+import feb01_css from './css/0218.css';
 
 const CANVASES: Canvas[] = [
 	{ id: 11, text: 'hey' },
@@ -20,6 +21,7 @@ const CANVASES: Canvas[] = [
 		width: 100%;
 		background: pink;
 	}` ],
+	feb01_css,
 	providers: [ Page01Service ]
 })
 export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
@@ -148,7 +150,7 @@ export class CanvasesComponent implements OnInit, OnDestory, OnChanges {
 				    undeline
 			);
 			const timeline = new mojs.Timeline();
-			timeline.add( wordTimeline );
+			timeline.add( wordTimeline, leg_left );
 			new MojsPlayer({ add: timeline });
 			// timeline.play();
 		});
