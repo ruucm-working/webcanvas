@@ -27,11 +27,11 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				console.log('event : ');
 				console.log(event);
 				console.log(event.url);
-				if (event.url == "/slider-dashboard#firstPage") {
-					console.log('I am in');
-					myGlobals.global_timeline.play();
-				} else
-					myGlobals.global_timeline.stop();
+				// if (event.url == "/slider-dashboard#firstPage") {
+					// console.log('I am in');
+					// myGlobals.global_timeline.play();
+				// } else
+					// myGlobals.global_timeline.stop();
 			}
 			// NavigationEnd
 			// NavigationCancel
@@ -41,8 +41,8 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	}
 	ngOnInit() {
 		console.log('On Init Slider Dashboard');
-		this._service2.anim_init();
-		myGlobals.global_timeline.play();
+		// this._service2.anim_init();
+		// myGlobals.global_timeline.play();
 		console.log('this : ');
 		console.log(this);
 		$( document ).ready(function() {
@@ -72,7 +72,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				onLeave: function(index, nextIndex, direction){
 					var leavingSection = $(this);
 					if(index == 1){
-						myGlobals.global_timeline.stop();
+						// myGlobals.global_timeline.stop();
 					}
 				}
 			});

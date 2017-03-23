@@ -1,7 +1,22 @@
 <div class="canvases_navigate">
 	<div class="canvases_navigate_buttons">
-		<a routerLink="/home">Prev</a>
-		<a routerLink="/admin">Next</a>
+		<button (click)="prev_from_current_canvase()">Prev</button>
+		<button (click)="next_from_current_canvase()">Next</button>
+		<!-- <button (click)="addCanvasContents(editorContent)">Add!</button> -->
 	</div>
 </div>
-<div *ngFor="let canvas of first_canvases; let i=index" class="slide" [innerHTML]="canvas.text"></div>
+<!-- <div *ngFor="let canvas of current_canvas; let i=index">
+	canvas {{i+1}} : {{canvas.contentid}}
+</div>
+<br>
+<div *ngFor="let canvas of current_canvas; let i=index">
+	canvas {{i+1}} : {{canvas.content}}
+</div>
+<br>
+<div *ngFor="let canvas of current_canvas; let i=index">
+	canvas {{i+1}} : {{canvas.content}}.text
+</div>
+<br>
+<div *ngFor="let hero of heroes; let i=index">hero {{i+1}} : {{hero.name}}</div>
+ -->
+<div *ngFor="let slide of current_canvas; let i=index" class="slide" [innerHTML]="slide.text"></div>
