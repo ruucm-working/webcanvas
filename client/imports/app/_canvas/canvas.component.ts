@@ -40,47 +40,59 @@ const TEST_CANVASES: TotalCanvas[] = [
 })
 export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
-	firstornot = true;
-	// total_canvases = this.get_canvases('current');
-	total_canvases = TEST_CANVASES;
-	current_canvas = Canvas;
+	current_canvas = this.get_canvases(1);
+	current_canvas_id: number;
 
 	heroes = HEROES;
-	constructor() {
-		if (this.current_canvas.length == 0)
-			this.current_canvas = this.total_canvases[0].content;
-	}
-	get_canvases(w): Canvas[] {
-		if (w == 'current') {
-			return 'v';
-		} else if(w == 'prev') {
-
-		} else if(w == 'next') {
-
+	constructor() {	}
+	get_canvases(which_canvas): Canvas[] {
+		if (!isNaN(which_canvas)) {
+			this.current_canvas_id = which_canvas;
+			return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
+		} else if(which_canvas == 'prev') {
+			this.current_canvas_id -= 1;
+			if (this.current_canvas_id - 1 < 0) {
+				alert('It is the First Canvas!');
+				this.current_canvas_id += 1;
+			} else
+				this.current_canvas = this.get_canvases(this.current_canvas_id);
+		} else if(which_canvas == 'next') {
+			console.log('Get Next');
+			console.log('this.current_canvas_id');
+			console.log(this.current_canvas_id);
+			this.current_canvas_id += 1;
+			if (this.current_canvas_id - 1 >= CanvasContents.find().map((messages: Canvas[]) => { return messages; }).length) {
+				alert('It is the Last Canvas!');
+				this.current_canvas_id -= 1;
+			} else
+				this.current_canvas = this.get_canvases(this.current_canvas_id);
 		}
 		return '';
 	}
+	get_current_canvas_id() {
+		return 0;
+	}
 	prev_from_current_canvase() {
-
+		this.get_canvases('prev');
+		this.updatefullpage();
 	}
 	next_from_current_canvase() {
-		console.log('next_from_total_canvasese : ');
-		this.current_canvas = this.total_canvases[1].content;
+		this.get_canvases('next');
 		this.updatefullpage();
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
 			$('#fullpage').fullpage({
 				menu: '#menu',
-		        lockAnchors: false,
-		        anchors:['firstPage', 'secondPage'],
-		        navigation: true,
-		        navigationPosition: 'right',
-		        navigationTooltips: ['firstSlide', 'secondSlide'],
-		        showActiveTooltip: true,
-		        slidesNavigation: true,
-		        slidesNavPosition: 'top',
-		        sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
+				lockAnchors: false,
+				anchors:['firstPage', 'secondPage'],
+				navigation: true,
+				navigationPosition: 'right',
+				navigationTooltips: ['firstSlide', 'secondSlide'],
+				showActiveTooltip: true,
+				slidesNavigation: true,
+				slidesNavPosition: 'top',
+				sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
 			});
 		}
 		//Promise 선언
