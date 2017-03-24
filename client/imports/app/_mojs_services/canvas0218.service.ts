@@ -9,48 +9,43 @@ export class Canvas0218Service {
 		console.log('ngOnInit at page01 service');
 	}
 	first_page_anim_init() {
-		myGlobals.scene03_timeline = new mojs.Timeline();
-			class Underline extends mojs.CustomShape {
-			  getShape () { return '<path d="M2.5,50.3296666 C3.31230785,50.3563224 4.33314197,51.7391553 5.26159075,51.244112 C6.0077473,50.8462659 7.06209448,50.3203773 7.71562592,50.3296666 C8.76504493,50.344583 10.5026522,50.7289147 10.5026522,50.7289147 C10.5026522,50.7289147 12.2264054,51.3540485 14.3045941,51.244112 C15.3644039,51.1880478 16.0579859,49.0942327 17.5373074,49.0205791 C18.3943409,48.9779084 19.7113596,50.7755195 20.6875422,50.7289147 C21.6556682,50.6826945 22.3001602,49.0692534 23.3699153,49.0205791 C24.1641633,48.9844405 26.4617126,51.2809265 27.3045404,51.244112 C28.6211722,51.1866018 29.868997,49.0779353 31.2843519,49.0205791 C32.5621635,48.9687968 34.5177647,50.7788661 35.8572938,50.7289147 C36.7433562,50.6958732 38.2335712,49.0522313 39.1401705,49.0205791 C39.9800278,48.9912571 40.561996,49.9055655 41.4152209,49.877823 C42.1696178,49.8532938 42.2680621,50.7519349 43.0298941,50.7289147 C43.9790327,50.7002347 44.036439,49.4065744 44.9921859,49.3806853 C45.4945214,49.3670781 46.5973018,48.5718404 47.1003097,48.559109 C48.1308079,48.5330267 48.971762,50.3516106 49.9999991,50.3296666 C50.8452183,50.3116285 50.5604619,49.1586632 51.3999478,49.1438038 C51.9113862,49.134751 53.4831103,48.5668789 53.9912876,48.559109 C54.882369,48.5454847 55.8282738,48.5684585 56.7056958,48.559109 C57.5279585,48.5503473 57.7153436,49.0252286 58.5216754,49.0205791 C59.2920272,49.016137 59.891015,48.0863678 60.6434283,48.0859881 C61.5658387,48.0855227 62.142412,49.0587083 63.0323087,49.0648534 C63.7314385,49.0696813 66.0372641,48.0767735 66.712955,48.0859881 C68.0228785,48.1038519 67.6682957,49.130074 68.8737479,49.1659145 C69.5874211,49.1871333 71.5986501,48.5310407 72.2696752,48.559109 C73.0379259,48.5912442 75.275178,49.892825 76.2284459,49.877823 C77.75882,49.8537388 76.8128295,49.1641707 78.6451998,49.0836451 C79.7893236,49.0333653 80.4770207,49.924725 81.6706526,49.877823 C83.0151778,49.8249918 82.7003946,49.0428007 84.0369748,49.0205791 C84.9618645,49.0052021 86.6077598,49.8672453 87.4984761,49.877823 C88.1326772,49.8853544 90.8057301,49.8531233 91.4118266,49.877823 C92.2804437,49.9132209 93.4120929,49.7988292 94.2005825,49.877823 C95.0771269,49.9656384 95.2679881,49.7233196 96.0110715,49.877823 C96.6642711,50.0136376 96.9762504,49.6806854 97.5,49.877823"></path>'; }
-			  getLength () { return 100; }
-			}
-			mojs.addShape( 'underline', Underline );
-			myGlobals._0218_page03_cloud = new mojs.Shape({
-				shape: 'underline',
-				fill: 'none',
-				radius:   75,
-				y: 20,
-				duration: 1600,
-				scaleX: { 2: 1 },
-				opacity: { 1: 0 },
-				repeat: 999,
-				origin: '0 50%',
-				easing: 'cubic.out',
-				delay:  675,
-				stroke: 'yellow',
-				strokeWidth: 4,
-				strokeLinecap: 'round',
-				strokeDasharray:  '100',
-				strokeDashoffset: { '100': 0 }
-			});
-			myGlobals.scene03_timeline.add( myGlobals._0218_page03_cloud );
+		myGlobals.title_timeline = new mojs.Timeline();
+		class TitleAnim extends mojs.CustomShape {
+		  getShape () { return '<path id="XMLID_142_" fill="#F2F2F2" d="M12.2,18.2c-0.6-1.5-0.9-3.2-0.9-4.9C11.2,6,16.9,0,23.9,0c7,0,12.7,6,12.7,13.3 c0,3.8-1.5,7.2-3.9,9.6c1.8-0.3,3.6-0.5,5.5-0.5c6.9,0,13,2.1,17.1,5.4H32.1h-11H0C2.6,23,7,19.5,12.2,18.2z"/>'; }
+		  getLength () { return 100; }
+		}
+		mojs.addShape( 'titleanim', TitleAnim );
+		myGlobals._0218_title = new mojs.Shape({
+			shape: 'titleanim',
+			fill: 'none',
+			radius:   75,
+			y: 20,
+			duration: 1600,
+			opacity: { 1: 0 },
+			repeat: 999,
+			origin: '0 50%',
+			easing: 'cubic.out',
+			delay:  675,
+			stroke: 'blue',
+			strokeWidth: 4,
+			strokeLinecap: 'round',
+			strokeDasharray:  '100',
+			strokeDashoffset: { '100': 0 }
+		});
+		myGlobals.title_timeline.add( myGlobals._0218_title );
+		$( document ).ready(function() {
+		
+		});
 	}
 	anim_init() {
 		console.log('anim_init');
 		myGlobals.global_timeline = new mojs.Timeline();
 		myGlobals.burst_timeline = new mojs.Timeline();
-		myGlobals.polygon = new mojs.Shape({
-			shape:        'polygon',
-			points:       5,
-			left:         '75%',
-			fill:         { 'deeppink' : '#00F87F' },
-			x:            { 'rand(-100%, -200%)' : 0  },
-			angle:        { 0: 'rand(0, 360)' },
-			radius:       25,
+		myGlobals.scene03_timeline = new mojs.Timeline();
+		myGlobals.scene04_timeline = new mojs.Timeline();
+		// const curveE01 = new MojsCurveEditor({ name: 'curveE01' });
+		// const curveE02 = new MojsCurveEditor({ name: 'curveE02' });
 
-			duration:     2000,
-			repeat:       999,
-		});
 		const COLORS = {
 			RED:		'#FD5061',
 			YELLOW:	'#FFCEA5',
@@ -119,6 +114,9 @@ export class Canvas0218Service {
 		myGlobals._0218_page02_burst = new mojs.Timeline();
 		myGlobals._0218_page02_burst.add( busrttimeline01, busrttimeline02, busrttimeline03 );
 		$( document ).ready(function() {
+			/**
+			 *	Scene 01
+			 */
 			myGlobals._0218_page01_left_leg = new mojs.Html({
 				repeat:   999,
 				duration: 1000,
@@ -126,21 +124,108 @@ export class Canvas0218Service {
 				y: { 0: -2, curve: 'M0, 100 C0, 100 1.9274601017238027, -100.72671479853175 50, -100 C50.072539898276204, 15.583857655674608 100, 100 100, 100' },
 				angleZ: { 0: 21, curve: 'M0, 100 C0, 100 1.9274601017238027, -100.72671479853175 50, -100 C50.072539898276204, 15.583857655674608 100, 100 100, 100' }
 			});
+
+			/**
+			 *	Scene 03
+			 */
+			myGlobals._0218_page03_gem_whole = new mojs.Html({
+				duration: 1500,
+				el: '.gem_scene_03',
+				x: { 0: -92, curve: 'M0, 100 C0, 100 1.184188840192192, 83.53009687409352 15, 50 C28.81581115980781, 16.46990312590648 100, 0 100, 0' },
+				y: { 0: 213, curve: 'M0, 100 C0, 100 1.184188840192192, 83.53009687409352 15, 50 C28.81581115980781, 16.46990312590648 100, 0 100, 0' },
+			});
+			myGlobals._0218_page03_gem_whole_jump = new mojs.Html({
+				delay: 2000,
+				duration: 2000,
+				el: '.gem_scene_03',
+				x: { [-92]: -92, curve: 'M0, 0 C0, 0 100, 0 100, 0' },
+				y: { 213: 213, curve: 'M0, 0 C0, 0 10.714527151416107, 32.774087782441775 25, 32.857142857142854 C39.28547284858389, 32.94019793184394 34.07652636647665, 2.0608881095288702 50, 0 C65.92347363352336, -2.060888109528872 60.714285714285715, 34.99999999999999 75, 35 C89.28571428571429, 35.00000000000001 100, 0 100, 0' },
+			});
+			myGlobals._0218_page03_gem_cloud = new mojs.Html({
+				delay: 800,
+				duration: 2000,
+				el: '.cloud_from_dash01',
+				opacity: { 1: 0 },
+				x: { 100: 100, curve: 'M0, 100 C0, 100 1.184188840192192, 83.53009687409352 15, 50 C28.81581115980781, 16.46990312590648 100, 0 100, 0' },
+			});
+			myGlobals._0218_page03_gem_cloud02 = new mojs.Html({
+				delay: 400,
+				duration: 2000,
+				el: '.cloud_from_dash02',
+				opacity: { 1: 0 },
+				x: { 100: 100, curve: 'M0, 100 C0, 100 1.184188840192192, 83.53009687409352 15, 50 C28.81581115980781, 16.46990312590648 100, 0 100, 0' },
+			});
+			myGlobals._0218_page03_gem_cloud03 = new mojs.Html({
+				duration: 2000,
+				el: '.cloud_from_dash03',
+				opacity: { 1: 0 },
+				x: { 100: 100, curve: 'M0, 100 C0, 100 1.184188840192192, 83.53009687409352 15, 50 C28.81581115980781, 16.46990312590648 100, 0 100, 0' },
+			});
+
+			/**
+			 *	Scene 04
+			 */
+			myGlobals._0218_page04_character01_expression = new mojs.Html({
+				duration: 2000,
+				repeat: 999,
+				el: '.character01_scene_04_expression',
+				x: { 100: 100, curve: 'M0, 135 C0, 135 22.75561741162073, 21.672954016950637 50, 35 C77.24438258837927, 48.32704598304935 100, 100 100, 100' },
+				scaleY: { 1: 1, curve: 'M0, 135 C0, 135 22.75561741162073, 21.672954016950637 50, 35 C77.24438258837927, 48.32704598304935 100, 100 100, 100' },
+				scaleX: { 1: 1, curve: 'M0, 135 C0, 135 22.75561741162073, 21.672954016950637 50, 35 C77.24438258837927, 48.32704598304935 100, 100 100, 100' },
+			});
+			myGlobals._0218_page04_character02_expression = new mojs.Html({
+				duration: 2000,
+				repeat: 999,
+				el: '.character02_scene_04_expression',
+				x: { 100: 100, curve: 'M0, 70 C0, 70 5.079384591746942, 86.2337925480373 13, 90 C20.92061540825306, 93.7662074519627 24.94849636014687, 37.24414731365302 50, 40 C75.05150363985314, 42.75585268634695 100, 75 100, 75' },
+			});
+			myGlobals._0218_page04_gem_expression = new mojs.Html({
+				duration: 1500,
+				el: '.gem_scene_04_expression',
+				scaleY: { 0: 1 },
+				scaleX: { 0: 1 },
+				opacity: { 0: 1 }
+			});
+
+			/**
+			 *	Words
+			 */
 			let CHAR_STEP  = 50;
 			const bounceCurve = mojs.easing.path('M0,-100 C0,-100 15.6877613,115.487686 32.0269814,74.203186 C62.0118605,-1.559962 100.057489,-0.0941416292 100.057489,-0.0941416292');
 			const nBounceCurve = (p) => { return 2 - bounceCurve(p) };
 			Y_SHIFT    = -20;
 			X_SHIFT    = CHAR_STEP/2;
 			myGlobals._0218_page01_word = new mojs.Html({
+				el: '.bottom__text03',
+				opacity: { 0: 1 },
+				scaleY: { 1: 1, curve: bounceCurve },
+				scaleX: { 1: 1, curve: nBounceCurve },
+				easing: 'quad.out',
+				delay: 500,
+				duration: 650,
+			})
+			.then({
+				y: Y_SHIFT,
+				angle: { to: -360, easing: 'expo.out' },
+				easing: 'bounce.out',
+				duration: 1000,
+				origin: '50% 100%',
+			})
+			const character3 = document.createElement('div');
+			character3.classList.add( 'character' );
+			myGlobals._0218_page01_word.el.appendChild( character3 );
+			character3.innerHTML = '카페에 와있다';
+
+			myGlobals._0218_page02_word_1 = new mojs.Html({
 				left: '30%', top: '70%',
 				fill:         'none',
 				radius:       23,
 				isShowEnd:    true,
 				isForce3d:    true,
-				el: '.bottom__text03',
+				el: '.scene_02_bottom__text01',
 				y: { [Y_SHIFT]: -200 + Y_SHIFT },
 				angle: { 0 : -180, easing: 'cubic.in' },
-				x: -4*CHAR_STEP + X_SHIFT,
+				x: 315,
 				scaleY: { 1: 1, curve: bounceCurve },
 				scaleX: { 1: 1, curve: nBounceCurve },
 				easing: 'quad.out',
@@ -148,24 +233,61 @@ export class Canvas0218Service {
 				duration: 350,
 			})
 			.then({
-			  y: Y_SHIFT,
+			  y: 50,
 			  angle: { to: -360, easing: 'expo.out' },
 			  easing: 'bounce.out',
 			  duration: 1000,
 			  origin: '50% 100%',
 			})
-			const character3 = document.createElement('div');
-				character3.classList.add( 'character' );
-				myGlobals._0218_page01_word.el.appendChild( character3 );
-			character3.innerHTML = '카페에 와있다';
+			const character_scene_2 = document.createElement('div');
+			character_scene_2.classList.add( 'character' );
+			myGlobals._0218_page02_word_1.el.appendChild( character_scene_2 );
+			character_scene_2.innerHTML = '컴퓨터만 있으면 모든걸 할 수있는 엄청난 놀이터..';
 
+			myGlobals._0218_page03_word_1 = new mojs.Html({
+				left: '30%', top: '70%',
+				fill:         'none',
+				radius:       23,
+				isShowEnd:    true,
+				isForce3d:    true,
+				el: '.scene_03_bottom__text01',
+				y: { [Y_SHIFT]: -200 + Y_SHIFT },
+				angle: { 0 : -180, easing: 'cubic.in' },
+				x: 315,
+				scaleY: { 1: 1, curve: bounceCurve },
+				scaleX: { 1: 1, curve: nBounceCurve },
+				easing: 'quad.out',
+				delay: 250,
+				duration: 350,
+			})
+			.then({
+			  y: 50,
+			  angle: { to: -360, easing: 'expo.out' },
+			  easing: 'bounce.out',
+			  duration: 1000,
+			  origin: '50% 100%',
+			})
+			const character_scene_3 = document.createElement('div');
+			character_scene_3.classList.add( 'character' );
+			myGlobals._0218_page03_word_1.el.appendChild( character_scene_3 );
+			character_scene_3.innerHTML = '엄청난 포켓몬 명당자리도 있고.. 일도하고 <br>아주 천국';
+			myGlobals._0218_page04_word_1 = new mojs.Html({
+				el: '.scene_04_bottom__text01',
+				delay: 1250,
+				duration: 2500,
+				opacity: { 0: 1 }
+			});
+			const character_scene_4 = document.createElement('div');
+			character_scene_4.classList.add( 'character' );
+			myGlobals._0218_page04_word_1.el.appendChild( character_scene_4 );
+			character_scene_4.innerHTML = '근데 약간은 허전하다';
 			var add_to_global_timeline = function(){
 				console.log('add_to_global_timeline');
-				myGlobals.burst_timeline.add( myGlobals._0218_page02_burst );
 				myGlobals.global_timeline.add( myGlobals._0218_page01_left_leg, myGlobals._0218_page01_word );
-				// myGlobals.scene03_timeline.add( myGlobals._0218_page03_cloud );
-				// myGlobals._0218_page03_cloud.play();
-				// myGlobals.scene03_timeline.play();
+				myGlobals.burst_timeline.add( myGlobals._0218_page02_burst, myGlobals._0218_page02_word_1 );
+				myGlobals.scene03_timeline.add( myGlobals._0218_page03_gem_whole, myGlobals._0218_page03_gem_whole_jump, myGlobals._0218_page03_gem_cloud, myGlobals._0218_page03_gem_cloud02, myGlobals._0218_page03_gem_cloud03, myGlobals._0218_page03_word_1 );
+				myGlobals.scene04_timeline.add( myGlobals._0218_page04_character01_expression, myGlobals._0218_page04_character02_expression, myGlobals._0218_page04_gem_expression, myGlobals._0218_page04_word_1 );
+				// myGlobals.mojsplayer = new MojsPlayer({ add: myGlobals.scene04_timeline });
 			}
 			add_to_global_timeline();
 		});

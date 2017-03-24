@@ -24,6 +24,7 @@ import { AdminComponent } from './_admin/admin.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import './__external_lib/mo.min.js';
 import './__external_lib/mojs-player.min.js';
+import './__external_lib/mojs-curve-editor.min.js';
 
 @NgModule({
 	declarations: [

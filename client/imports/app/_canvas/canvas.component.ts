@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
 import { Canvas } from './canvas.ts';
+import { Canvas0218Service } from '../_mojs_services/canvas0218.service';
+import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import template from './canvas.component.html';
 import feb01_css from '../css/0218.css';
+import myGlobals = require('../globals');
 
 export class TotalCanvas {
 	contentid: number;
@@ -24,14 +27,49 @@ const TEST_CANVASES: TotalCanvas[] = [
 		background: pink;
 	}` ],
 	feb01_css,
+	providers: [ Canvas0218Service ]
 })
 export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
-	current_canvas = this.get_canvases(1).reverse();
+	current_canvas = this.get_canvases(1);
 	current_canvas_id: number;
 
-	constructor() {	}
+	constructor(
+		private _service2:Canvas0218Service,
+		private router: Router ) {
+		router.events.forEach((event) => {
+			console.log('router event!');
+			console.log('event : ' + event);
+			console.log('event.url : ' + event.url);
+			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#firstPage") {
+				this.stop_other_anims();
+				console.log('I am in but,');
+				myGlobals.title_timeline.play();
+			}
+			if (event instanceof NavigationStart) {
+				this.stop_other_anims();
+				if (event.url == "/slider-dashboard#firstPage/1")
+					myGlobals.global_timeline.play();
+				if (event.url == "/slider-dashboard#firstPage/2")
+					myGlobals.burst_timeline.play();
+				if (event.url == "/slider-dashboard#firstPage/3")
+					myGlobals.scene03_timeline.play();
+				if (event.url == "/slider-dashboard#firstPage/4")
+					myGlobals.scene04_timeline.play();
+
+			}
+		});
+	}
+	stop_other_anims() {
+		myGlobals.title_timeline.stop();
+		myGlobals.global_timeline.stop();
+		myGlobals.burst_timeline.stop();
+		myGlobals.scene03_timeline.stop();
+		myGlobals.scene04_timeline.stop();
+	}
 	get_canvases(which_canvas): Canvas[] {
+		if (which_canvas == 1)
+			this._service2.anim_init();
 		if (!isNaN(which_canvas)) {
 			this.current_canvas_id = which_canvas;
 			return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
