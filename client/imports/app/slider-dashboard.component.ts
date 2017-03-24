@@ -21,13 +21,22 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		private _service:AuthenticationService,
 		private _service2:Canvas0218Service,
 		private router: Router ) {
+		this._service2.anim_init();
+		console.log('End of anim_init()');
 		router.events.forEach((event) => {
 			console.log('router event!');
+			console.log('event : ' + event);
+			console.log('event.url : ' + event.url);
+			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#firstPage") {
+				this.stop_other_anims();
+				console.log('I am in but,');
+				myGlobals.scene03_timeline.play();
+			}
 			if (event instanceof NavigationStart) {
 				this.stop_other_anims();
-				if (event.url == "/slider-dashboard#firstPage/1")
-					myGlobals.global_timeline.play();
 				if (event.url == "/slider-dashboard#firstPage/2")
+					myGlobals.global_timeline.play();
+				if (event.url == "/slider-dashboard#firstPage/1")
 					myGlobals.burst_timeline.play();
 			}
 		});
@@ -35,10 +44,9 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	stop_other_anims() {
 		myGlobals.global_timeline.stop();
 		myGlobals.burst_timeline.stop();
+		myGlobals.scene03_timeline.stop();
 	}
 	ngOnInit() {
-		console.log('On Init Slider Dashboard');
-		this._service2.anim_init();
 		$( document ).ready(function() {
 			if($('html').hasClass('fp-enabled')){
 			    $.fn.fullpage.destroy('all');

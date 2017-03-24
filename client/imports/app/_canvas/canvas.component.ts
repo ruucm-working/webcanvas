@@ -8,19 +8,6 @@ export class TotalCanvas {
 	contentid: number;
 	content: Canvas[];
 }
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
-
 const TEST_CANVASES: TotalCanvas[] = [
 	{ contentid: 11, content: [ { id: 31, text: 'slide-text01'}, { id: 32, text: 'slide-text02'} ] },
 	{ contentid: 12, content: [ { id: 41, text: 'slide-text11'}, { id: 42, text: 'slide-text12'} ] },
@@ -40,10 +27,9 @@ const TEST_CANVASES: TotalCanvas[] = [
 })
 export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
-	current_canvas = this.get_canvases(1);
+	current_canvas = this.get_canvases(1).reverse();
 	current_canvas_id: number;
 
-	heroes = HEROES;
 	constructor() {	}
 	get_canvases(which_canvas): Canvas[] {
 		if (!isNaN(which_canvas)) {
@@ -68,9 +54,6 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 				this.current_canvas = this.get_canvases(this.current_canvas_id);
 		}
 		return '';
-	}
-	get_current_canvas_id() {
-		return 0;
 	}
 	prev_from_current_canvase() {
 		this.get_canvases('prev');
@@ -209,7 +192,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 				// leg_left
 				);
 			// new MojsPlayer({ add: timeline });
-			timeline.play();
+			// timeline.play();
 		});
 	}
 	ngOnDestory() {
