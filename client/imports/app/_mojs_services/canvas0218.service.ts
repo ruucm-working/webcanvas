@@ -55,7 +55,7 @@ export class Canvas0218Service {
 			CYAN:		'cyan',
 		}
 		const burst3 = new mojs.Burst({
-			left: 'rand(100, 600)', top: 'rand(200, 800)',
+			left: 'rand(100, 300)', top: 'rand(100, 500)',
 			count:    5,
 			radius:   { 50: 250 },
 			children: {
@@ -72,7 +72,7 @@ export class Canvas0218Service {
 			}
 		});
 		const burst4 = new mojs.Burst({
-			left: 'rand(100, 600)', top: 'rand(200, 800)',
+			left: 'rand(100, 300)', top: 'rand(100, 500)',
 			count:    5,
 			radius:   { 50: 250 },
 			children: {
@@ -89,7 +89,7 @@ export class Canvas0218Service {
 			}
 		});
 		const burst5 = new mojs.Burst({
-			left: 'rand(100, 600)', top: 'rand(200, 800)',
+			left: 'rand(100, 300)', top: 'rand(100, 500)',
 			count:    5,
 			radius:   { 50: 250 },
 			children: {
@@ -225,7 +225,7 @@ export class Canvas0218Service {
 				el: '.scene_02_bottom__text01',
 				y: { [Y_SHIFT]: -200 + Y_SHIFT },
 				angle: { 0 : -180, easing: 'cubic.in' },
-				x: 315,
+				x: 55,
 				scaleY: { 1: 1, curve: bounceCurve },
 				scaleX: { 1: 1, curve: nBounceCurve },
 				easing: 'quad.out',
@@ -253,7 +253,7 @@ export class Canvas0218Service {
 				el: '.scene_03_bottom__text01',
 				y: { [Y_SHIFT]: -200 + Y_SHIFT },
 				angle: { 0 : -180, easing: 'cubic.in' },
-				x: 315,
+				x: -115,
 				scaleY: { 1: 1, curve: bounceCurve },
 				scaleX: { 1: 1, curve: nBounceCurve },
 				easing: 'quad.out',
@@ -261,7 +261,7 @@ export class Canvas0218Service {
 				duration: 350,
 			})
 			.then({
-			  y: 50,
+			  y: -280,
 			  angle: { to: -360, easing: 'expo.out' },
 			  easing: 'bounce.out',
 			  duration: 1000,

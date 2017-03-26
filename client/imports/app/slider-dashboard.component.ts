@@ -31,11 +31,12 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				anchors:['firstPage', 'secondPage'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['firstSlide', 'secondSlide'],
+				navigationTooltips: ['Canvas', 'Project', 'Word'],
 				showActiveTooltip: true,
 				slidesNavigation: true,
 				slidesNavPosition: 'top',
 				sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
+				controlArrows: false,
 			});
 		});
 	}
