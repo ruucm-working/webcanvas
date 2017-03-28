@@ -1,11 +1,11 @@
 <div class="myhome">
 	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" >
 		<div class="hello" fxFlex fxLayoutAlign="space-around center">
-			<h2>Hello, I'm ruucm.</h2>
+			<h2>{{ 'HOME.TITLE' | translate }}</h2>
 		</div>
 		<div class="myhome-descriptions" fxFlex fxLayoutAlign="space-around center">
-			<h3>You can use  ⬅️, ⬇️, ➡️, ⬆️ key to Navigate 😀</h3>
-			<h3>or, Just Swipe 👆</h3>
+			<h3>{{ 'HOME.INSTRUCTIONA' | translate }}</h3>
+			<h3>{{ 'HOME.INSTRUCTIONB' | translate }}</h3>
 		</div>
 		<div class="title" fxFlex fxFlex.xs="50%" fxLayoutAlign="space-around center">
 			<a routerLink="/slider-dashboard"><button md-button>Go!</button></a>
@@ -15,6 +15,13 @@
 			<h3>Hello Ruucm</h3>
 			<a routerLink="/admin">go to admin</a>
 			<button (click)="logout()">Click Here to logout</button>
+		</div>
+		<!-- <button md-button (click)="change_lang('en')">en</button>
+			<button md-button (click)="change_lang('kr')">kr</button> -->
+		<div class="select_lang">
+			<select #langSelect (change)="translate.use(langSelect.value)">
+				<option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+			</select>
 		</div>
 	</div>
 </div>

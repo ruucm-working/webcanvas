@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 	selector: 'my-words',
 	template: `
 	<div class="mywords">
-		<h2>Words</h2>
+		<h2>Word</h2>
 		<h3>🚦Construction Mode🚦</h3>
 	</div>
 	`,

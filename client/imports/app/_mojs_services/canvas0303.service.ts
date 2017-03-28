@@ -1,6 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import myGlobals = require('../globals');
 import _0303_css from '../css/0303.css';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	_0303_css
@@ -8,8 +9,10 @@ import _0303_css from '../css/0303.css';
 @Injectable()
 export class Canvas0303Service {
 	constructor(
+		private translate: TranslateService
 	) { }
 	anim_init() {
+		var currentlang = this.translate.currentLang;
 		// console.log('anim_init');
 		// myGlobals.scene01_timeline = new mojs.Timeline();
 		// myGlobals.scene02_timeline = new mojs.Timeline();
@@ -85,7 +88,7 @@ export class Canvas0303Service {
 		busrttimeline03.add( burst5 );
 		myGlobals._0218_page02_burst = new mojs.Timeline();
 		myGlobals._0218_page02_burst.add( busrttimeline01, busrttimeline02, busrttimeline03 );
-		$( document ).ready(function() {
+		$( document ).ready(function(currntlang) {
 			// /**
 			//  *	Scene 01
 			//  */
@@ -279,7 +282,11 @@ export class Canvas0303Service {
 			const character3 = document.createElement('div');
 			character3.classList.add( 'character' );
 			myGlobals._0303_scene01_word.el.appendChild( character3 );
-			character3.innerHTML = '이야기를 사람들과 할때 보면 <br> 종종 황당한 경우를 만난다';
+			console.log('translate.currentLang at canvas0303 : ' + currentlang);
+			if (currentlang == 'en')
+				character3.innerHTML = "There often the weird situation,<br>when You talking with some people";
+			else
+				character3.innerHTML = "이야기를 사람들과 할때 보면<br>종종 황당한 경우를 만난다";
 			var add_to_canvas2_timeline = function(){
 				console.log('add_to_scene01_timeline');
 				myGlobals.scene01_timeline.add(myGlobals._0303_scene01_word);

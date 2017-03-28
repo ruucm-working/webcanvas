@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyCanvas } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CanvasComponent } from './_canvas/canvas.component';
@@ -23,9 +23,19 @@ import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
+
+import {HttpModule, Http} from "@angular/http";
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
 import './__external_lib/mo.min.js';
 import './__external_lib/mojs-player.min.js';
 import './__external_lib/mojs-curve-editor.min.js';
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: Http) {
+    return new TranslateHttpLoader(http, "i18n/", ".json");
+}
 
 @NgModule({
 	declarations: [
@@ -46,10 +56,18 @@ import './__external_lib/mojs-curve-editor.min.js';
 	imports: [
 		BrowserModule,
 		FormsModule,
+		ReactiveFormsModule,
 		AppRoutingModule,
 		MaterialModule,
 		FlexLayoutModule.forRoot(),
-		FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
+		FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+		TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [Http]
+          }
+        })
 	],
 	providers: [
 		MnFullpageService,

@@ -16,6 +16,9 @@
     "@angular/platform-browser": "^2.4.9",
     "@angular/platform-browser-dynamic": "^2.4.9",
     "@angular/platform-server": "^2.4.9",
+    "@angular/router": "^3.4.9",
+    "@ngx-translate/core": "^6.0.1",
+    "@ngx-translate/http-loader": "0.0.3",
     "angular2-froala-wysiwyg": "^2.5.1-1",
     "babel-runtime": "^6.20.0",
     "meteor-node-stubs": "~0.2.4",
@@ -23,8 +26,7 @@
     "ng2-fullpage": "^2.1.0",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.2.0",
-    "zone.js": "^0.7.7",
-    "@angular/router": "^3.4.9"
+    "zone.js": "^0.7.7"
   },
   "devDependencies": {
     "@types/jquery": "^2.0.41",

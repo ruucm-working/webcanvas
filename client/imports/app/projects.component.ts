@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 	selector: 'my-projects',
 	template: `
 	<div class="myprojects">
-		<h2>Projects</h2>
+		<h2>Project</h2>
 		<h3>🚦Construction Mode🚦</h3>
 	</div>
 	`,
