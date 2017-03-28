@@ -15,11 +15,6 @@ import myGlobals = require('../globals');
 })
 export class HomeComponent {
 	newText = '';
-	foods = [
-	    {value: 'steak-0', viewValue: 'Steak'},
-	    {value: 'pizza-1', viewValue: 'Pizza'},
-	    {value: 'tacos-2', viewValue: 'Tacos'}
-	];
 	constructor(
 		private _service:AuthenticationService,
 		private _service2:CanvasTitleService,
