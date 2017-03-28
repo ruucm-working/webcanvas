@@ -11,7 +11,7 @@
 	border: solid 1px #b6b6b6;
 	box-sizing: content-box !important;
 	text-align: center;
-	background: lightblue;
+	background: pink;
 	height: 100vh;
 	div.title {
 		max-height: 25% !important;
@@ -80,4 +80,27 @@ ul {
 		bottom: 0;
 		left: 50%;
 	}
+}
+.canvases_navigate_on_title {
+	position: absolute;
+	float: right;
+	width: 100%;
+	z-index: 2;
+	button {
+		margin: 20px;
+		float: right;
+	}
+}
+.fp-slides {
+	.slide:first-child {
+		.fp-tableCell {
+			font-weight: bold;
+			h3 {
+				background: pink;
+			}
+		}
+	}
+}
+body #fp-nav ul li .fp-tooltip {
+	color: #07019A;
 }

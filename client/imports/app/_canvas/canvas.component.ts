@@ -1,21 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
-import { Canvas } from './canvas.ts';
+import { Slide } from './slide.ts';
 import { Canvas0218Service } from '../_mojs_services/canvas0218.service';
+import { Canvas0303Service } from '../_mojs_services/canvas0303.service';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import template from './canvas.component.html';
-import feb01_css from '../css/0218.css';
+import template_dialog from './dialog-show-canvas-list.html';
 import myGlobals = require('../globals');
 
-export class TotalCanvas {
-	contentid: number;
-	content: Canvas[];
-}
-const TEST_CANVASES: TotalCanvas[] = [
-	{ contentid: 11, content: [ { id: 31, text: 'slide-text01'}, { id: 32, text: 'slide-text02'} ] },
-	{ contentid: 12, content: [ { id: 41, text: 'slide-text11'}, { id: 42, text: 'slide-text12'} ] },
-	{ contentid: 13, content: [ { id: 51, text: 'slide-text21'}, { id: 52, text: 'slide-text22'} ] },
-];
 @Component({
 	selector: 'my-canvases',
 	template: template,
@@ -26,79 +19,136 @@ const TEST_CANVASES: TotalCanvas[] = [
 		width: 100%;
 		background: pink;
 	}` ],
-	feb01_css,
-	providers: [ Canvas0218Service ]
+	providers: [ Canvas0218Service, Canvas0303Service ]
 })
 export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
-	current_canvas = this.get_canvases(1);
+	current_canvas;
+	current_canvas_length = 0;
 	current_canvas_id: number;
+	canvas_list;
+	canvas_list_length = 0;
+	isLastScene;
+	isTitleScene;
 
 	constructor(
 		private _service2:Canvas0218Service,
-		private router: Router ) {
+		private _service3:Canvas0303Service,
+		private router: Router,
+		public dialog: MdDialog ) {
 		router.events.forEach((event) => {
-			console.log('router event!');
-			console.log('event : ' + event);
-			console.log('event.url : ' + event.url);
-			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#firstPage") {
-				this.stop_other_anims();
-				console.log('I am in but,');
-				myGlobals.title_timeline.play();
-			}
+			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#CanvasPage") {
+				// this.stop_other_anims();
+				// myGlobals.title_timeline.play();
+				this.isTitleScene = true;
+			} else
+				this.isTitleScene = false; 
 			if (event instanceof NavigationStart) {
-				this.stop_other_anims();
-				if (event.url == "/slider-dashboard#firstPage/1")
-					myGlobals.global_timeline.play();
-				if (event.url == "/slider-dashboard#firstPage/2")
-					myGlobals.burst_timeline.play();
-				if (event.url == "/slider-dashboard#firstPage/3")
+				if ( (event.url).slice(-1) == this.current_canvas_length - 1)
+					this.isLastScene = true;
+				else
+					this.isLastScene = false; 
+				if (event.url == "/slider-dashboard#CanvasPage/1") {
+					this.stop_other_anims();
+					myGlobals.scene01_timeline.play();
+				}
+				if (event.url == "/slider-dashboard#CanvasPage/2") {
+					this.stop_other_anims();
+					myGlobals.scene02_timeline.play();
+				}
+				if (event.url == "/slider-dashboard#CanvasPage/3") {
+					this.stop_other_anims();
 					myGlobals.scene03_timeline.play();
-				if (event.url == "/slider-dashboard#firstPage/4")
+				}
+				if (event.url == "/slider-dashboard#CanvasPage/4") {
+					this.stop_other_anims();
 					myGlobals.scene04_timeline.play();
-
+				}
 			}
 		});
 	}
+	ngOnInit() {
+		console.log('ng OnInit get_canvase');
+		this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+		this.canvas_list_length = this.canvas_list.length;
+		this.current_canvas = this.get_canvase(1);
+		console.log('this.current_canvas : ');
+		console.log(this.current_canvas);
+		console.log('this.current_canvas_length : ' + this.current_canvas_length);
+	}
 	stop_other_anims() {
+		console.log('stop anim!');
 		myGlobals.title_timeline.stop();
-		myGlobals.global_timeline.stop();
-		myGlobals.burst_timeline.stop();
+		myGlobals.scene01_timeline.stop();
+		myGlobals.scene02_timeline.stop();
 		myGlobals.scene03_timeline.stop();
 		myGlobals.scene04_timeline.stop();
 	}
-	get_canvases(which_canvas): Canvas[] {
-		if (which_canvas == 1)
+	get_canvase(which_canvas): Canvas[] {
+		console.log('which_canvas : ' + which_canvas);
+		if (which_canvas == 1){
+			console.log('which_canvas == 1');
+		} else if (which_canvas == 2)
 			this._service2.anim_init();
+		else if (which_canvas == 3)
+			this._service3.anim_init();
 		if (!isNaN(which_canvas)) {
+			console.log('!isNaN(which_canvas)');
 			this.current_canvas_id = which_canvas;
+			this.current_canvas_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content.length;
+			console.log('this.current_canvas_id : ' + this.current_canvas_id);
 			return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
-		} else if(which_canvas == 'prev') {
+		} else if(which_canvas == 'older') {
 			this.current_canvas_id -= 1;
-			if (this.current_canvas_id - 1 < 0) {
+			if (this.current_canvas_id - 1 < 1) {
 				alert('It is the First Canvas!');
 				this.current_canvas_id += 1;
-			} else
-				this.current_canvas = this.get_canvases(this.current_canvas_id);
-		} else if(which_canvas == 'next') {
-			console.log('Get Next');
-			console.log('this.current_canvas_id');
-			console.log(this.current_canvas_id);
+			} else {
+				this.stop_other_anims();
+				this.current_canvas = this.get_canvase(this.current_canvas_id);
+				this.router.navigateByUrl('slider-dashboard');
+				myGlobals.scene01_timeline.play();
+			}
+		} else if(which_canvas == 'younger') {
 			this.current_canvas_id += 1;
-			if (this.current_canvas_id - 1 >= CanvasContents.find().map((messages: Canvas[]) => { return messages; }).length) {
+			if (this.current_canvas_id - 1 >= this.canvas_list_length) {
 				alert('It is the Last Canvas!');
 				this.current_canvas_id -= 1;
-			} else
-				this.current_canvas = this.get_canvases(this.current_canvas_id);
+			} else {
+				this.stop_other_anims();
+				this.current_canvas = this.get_canvase(this.current_canvas_id);
+				this.router.navigateByUrl('slider-dashboard');
+				myGlobals.scene01_timeline.play();
+			}
 		}
 		return '';
 	}
-	prev_from_current_canvase() {
-		this.get_canvases('prev');
+	get_recent_canvas() {
+		this.current_canvas = this.get_canvase(this.canvas_list_length);
 		this.updatefullpage();
 	}
-	next_from_current_canvase() {
-		this.get_canvases('next');
+	openCanvasListDialog() {
+		const config = new MdDialogConfig();
+
+		config.data = this.canvas_list;
+		let dialogRef = this.dialog.open(DialogShowCanvasList, config);
+		dialogRef.afterClosed().subscribe(
+			result => {
+			console.log('result : ');
+			console.log(result);
+			if (result != undefined) {
+				console.log('update!@')
+				this.current_canvas = this.get_canvase(result)
+				this.updatefullpage();
+			}
+		});
+	}
+	older_from_current_canvase() {
+		this.get_canvase('older');
+		this.updatefullpage();
+	}
+	younger_from_current_canvase() {
+		this.get_canvase('younger');
 		this.updatefullpage();
 	}
 	updatefullpage() {
@@ -106,14 +156,15 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			$('#fullpage').fullpage({
 				menu: '#menu',
 				lockAnchors: false,
-				anchors:['firstPage', 'secondPage'],
+				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
 				navigation: true,
 				navigationPosition: 'right',
-				navigationTooltips: ['firstSlide', 'secondSlide'],
+				navigationTooltips: ['Canvas', 'Project', 'Word'],
 				showActiveTooltip: true,
 				slidesNavigation: true,
 				slidesNavPosition: 'top',
 				sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
+				controlArrows: false,
 			});
 		}
 		//Promise 선언
@@ -151,89 +202,19 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		}
 		return true;
 	}
-	ngOnChanges() {
-		console.log('ngOnChange canvas.component');
-	}
+}
+
+@Component({
+	selector: 'dialog-show-canvas-list',
+	template: template_dialog
+})
+export class DialogShowCanvasList {
+	private canvas_list;
+	constructor(public dialogRef: MdDialogRef<DialogShowCanvasList>) {}
 	ngOnInit() {
-		console.log('ngOnInit canvas.component');
-
-		$( document ).ready(function() {
-			const burst = new mojs.Burst({
-				left: 0, top: 0,
-				radius: { 0: 300 },
-				count: 3,
-				degree: 30,
-				angle: { 0: 60 },
-				opacity: { 1: 0 },
-			});
-			const burst2 = new mojs.Burst({
-				left: 0, top: 0,
-				radius: { 0: 300 },
-				count: 3,
-				degree: 30,
-				angle: { 0: 60 },
-				opacity: { 1: 0 },
-				children: {
-					fill: { 'cyan' : 'yellow' },
-					radius:       20,
-					duration: 5000
-				},
-			});
-			document.addEventListener( 'click', function (e) {
-				burst2
-				  .tune({ x: e.pageX, y: e.pageY })
-				  .setSpeed(3)
-				  .replay();
-				});
-			let CHAR_STEP  = 50;
-			const bounceCurve = mojs.easing.path('M0,-100 C0,-100 15.6877613,115.487686 32.0269814,74.203186 C62.0118605,-1.559962 100.057489,-0.0941416292 100.057489,-0.0941416292');
-			const nBounceCurve = (p) => { return 2 - bounceCurve(p) };
-			Y_SHIFT    = -20;
-			X_SHIFT    = CHAR_STEP/2;
-			class Underline extends mojs.CustomShape {
-			  getShape () { return '<path d="M2.5,50.3296666 C3.31230785,50.3563224 4.33314197,51.7391553 5.26159075,51.244112 C6.0077473,50.8462659 7.06209448,50.3203773 7.71562592,50.3296666 C8.76504493,50.344583 10.5026522,50.7289147 10.5026522,50.7289147 C10.5026522,50.7289147 12.2264054,51.3540485 14.3045941,51.244112 C15.3644039,51.1880478 16.0579859,49.0942327 17.5373074,49.0205791 C18.3943409,48.9779084 19.7113596,50.7755195 20.6875422,50.7289147 C21.6556682,50.6826945 22.3001602,49.0692534 23.3699153,49.0205791 C24.1641633,48.9844405 26.4617126,51.2809265 27.3045404,51.244112 C28.6211722,51.1866018 29.868997,49.0779353 31.2843519,49.0205791 C32.5621635,48.9687968 34.5177647,50.7788661 35.8572938,50.7289147 C36.7433562,50.6958732 38.2335712,49.0522313 39.1401705,49.0205791 C39.9800278,48.9912571 40.561996,49.9055655 41.4152209,49.877823 C42.1696178,49.8532938 42.2680621,50.7519349 43.0298941,50.7289147 C43.9790327,50.7002347 44.036439,49.4065744 44.9921859,49.3806853 C45.4945214,49.3670781 46.5973018,48.5718404 47.1003097,48.559109 C48.1308079,48.5330267 48.971762,50.3516106 49.9999991,50.3296666 C50.8452183,50.3116285 50.5604619,49.1586632 51.3999478,49.1438038 C51.9113862,49.134751 53.4831103,48.5668789 53.9912876,48.559109 C54.882369,48.5454847 55.8282738,48.5684585 56.7056958,48.559109 C57.5279585,48.5503473 57.7153436,49.0252286 58.5216754,49.0205791 C59.2920272,49.016137 59.891015,48.0863678 60.6434283,48.0859881 C61.5658387,48.0855227 62.142412,49.0587083 63.0323087,49.0648534 C63.7314385,49.0696813 66.0372641,48.0767735 66.712955,48.0859881 C68.0228785,48.1038519 67.6682957,49.130074 68.8737479,49.1659145 C69.5874211,49.1871333 71.5986501,48.5310407 72.2696752,48.559109 C73.0379259,48.5912442 75.275178,49.892825 76.2284459,49.877823 C77.75882,49.8537388 76.8128295,49.1641707 78.6451998,49.0836451 C79.7893236,49.0333653 80.4770207,49.924725 81.6706526,49.877823 C83.0151778,49.8249918 82.7003946,49.0428007 84.0369748,49.0205791 C84.9618645,49.0052021 86.6077598,49.8672453 87.4984761,49.877823 C88.1326772,49.8853544 90.8057301,49.8531233 91.4118266,49.877823 C92.2804437,49.9132209 93.4120929,49.7988292 94.2005825,49.877823 C95.0771269,49.9656384 95.2679881,49.7233196 96.0110715,49.877823 C96.6642711,50.0136376 96.9762504,49.6806854 97.5,49.877823"></path>'; }
-			  getLength () { return 100; }
-			}
-			mojs.addShape( 'underline', Underline );
-			const COLORS = {
-				RED:      '#FD5061',
-				YELLOW:   '#FFCEA5',
-				BLACK:    '#29363B',
-				WHITE:    'white',
-				VINOUS:   '#A50710'
-			}
-			const undeline = new mojs.Shape({
-				shape: 'underline',
-				fill: 'none',
-				radius:   75,
-				y: 20,
-				duration: 600,
-				scaleX: { 2: 1 },
-				origin: '0 50%',
-				easing: 'cubic.out',
-				delay:  675,
-				stroke: COLORS.VINOUS,
-				strokeWidth: 4,
-				strokeLinecap: 'round',
-				strokeDasharray:  '100',
-				strokeDashoffset: { '100': 0 }
-			});
-			const wordTimeline = new mojs.Timeline({ delay: 1600 });
-			wordTimeline
-				.add(
-				    // word_char3,
-				    // undeline
-			);
-
-			const timeline = new mojs.Timeline();
-			timeline.add( wordTimeline, 
-				// leg_left
-				);
-			// new MojsPlayer({ add: timeline });
-			// timeline.play();
-		});
-	}
-	ngOnDestory() {
-		console.log('ngOnDestory at canvas.component');
+		// data
+		this.canvas_list = this.dialogRef.config.data;
+		console.log('this.canvas_list : ' + this.canvas_list);
+		console.log(this.canvas_list);
 	}
 }

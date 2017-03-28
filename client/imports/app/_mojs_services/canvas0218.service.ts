@@ -1,6 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import myGlobals = require('../globals');
+import feb01_css from '../css/0218.css';
 
+@Component({
+	feb01_css
+})
 @Injectable()
 export class Canvas0218Service {
 	constructor(
@@ -8,39 +12,10 @@ export class Canvas0218Service {
 	ngOnInit() {
 		console.log('ngOnInit at page01 service');
 	}
-	first_page_anim_init() {
-		myGlobals.title_timeline = new mojs.Timeline();
-		class TitleAnim extends mojs.CustomShape {
-		  getShape () { return '<path id="XMLID_142_" fill="#F2F2F2" d="M12.2,18.2c-0.6-1.5-0.9-3.2-0.9-4.9C11.2,6,16.9,0,23.9,0c7,0,12.7,6,12.7,13.3 c0,3.8-1.5,7.2-3.9,9.6c1.8-0.3,3.6-0.5,5.5-0.5c6.9,0,13,2.1,17.1,5.4H32.1h-11H0C2.6,23,7,19.5,12.2,18.2z"/>'; }
-		  getLength () { return 100; }
-		}
-		mojs.addShape( 'titleanim', TitleAnim );
-		myGlobals._0218_title = new mojs.Shape({
-			shape: 'titleanim',
-			fill: 'none',
-			radius:   75,
-			y: 20,
-			duration: 1600,
-			opacity: { 1: 0 },
-			repeat: 999,
-			origin: '0 50%',
-			easing: 'cubic.out',
-			delay:  675,
-			stroke: 'blue',
-			strokeWidth: 4,
-			strokeLinecap: 'round',
-			strokeDasharray:  '100',
-			strokeDashoffset: { '100': 0 }
-		});
-		myGlobals.title_timeline.add( myGlobals._0218_title );
-		$( document ).ready(function() {
-		
-		});
-	}
 	anim_init() {
 		console.log('anim_init');
-		myGlobals.global_timeline = new mojs.Timeline();
-		myGlobals.burst_timeline = new mojs.Timeline();
+		myGlobals.scene01_timeline = new mojs.Timeline();
+		myGlobals.scene02_timeline = new mojs.Timeline();
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
 		// const curveE01 = new MojsCurveEditor({ name: 'curveE01' });
@@ -281,15 +256,16 @@ export class Canvas0218Service {
 			character_scene_4.classList.add( 'character' );
 			myGlobals._0218_page04_word_1.el.appendChild( character_scene_4 );
 			character_scene_4.innerHTML = '근데 약간은 허전하다';
-			var add_to_global_timeline = function(){
-				console.log('add_to_global_timeline');
-				myGlobals.global_timeline.add( myGlobals._0218_page01_left_leg, myGlobals._0218_page01_word );
-				myGlobals.burst_timeline.add( myGlobals._0218_page02_burst, myGlobals._0218_page02_word_1 );
+			var add_to_scene01_timeline = function(){
+				console.log('add_to_scene01_timeline');
+				myGlobals.scene01_timeline.add( myGlobals._0218_page01_left_leg, myGlobals._0218_page01_word );
+				myGlobals.scene02_timeline.add( myGlobals._0218_page02_burst, myGlobals._0218_page02_word_1 );
 				myGlobals.scene03_timeline.add( myGlobals._0218_page03_gem_whole, myGlobals._0218_page03_gem_whole_jump, myGlobals._0218_page03_gem_cloud, myGlobals._0218_page03_gem_cloud02, myGlobals._0218_page03_gem_cloud03, myGlobals._0218_page03_word_1 );
 				myGlobals.scene04_timeline.add( myGlobals._0218_page04_character01_expression, myGlobals._0218_page04_character02_expression, myGlobals._0218_page04_gem_expression, myGlobals._0218_page04_word_1 );
 				// myGlobals.mojsplayer = new MojsPlayer({ add: myGlobals.scene04_timeline });
 			}
-			add_to_global_timeline();
+			add_to_scene01_timeline();
+			myGlobals.scene01_timeline.play();
 		});
 	}
 }

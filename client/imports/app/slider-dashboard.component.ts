@@ -28,7 +28,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			 	//Navigation
 				menu: '#menu',
 				lockAnchors: false,
-				anchors:['firstPage', 'secondPage'],
+				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
 				navigation: true,
 				navigationPosition: 'right',
 				navigationTooltips: ['Canvas', 'Project', 'Word'],

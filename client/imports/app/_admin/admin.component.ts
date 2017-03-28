@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../_simple_login/authentication.service'
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
-import { Canvas } from '../canvas.ts';
+import { Slide } from '../slide.ts';
 
 @Component({
 	selector: 'my-admin',

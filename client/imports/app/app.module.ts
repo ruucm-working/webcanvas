@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MyCanvas } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CanvasComponent } from './_canvas/canvas.component';
+import { DialogShowCanvasList } from './_canvas/canvas.component';
 import { ProjectsComponent } from './projects.component';
 import { WordsComponent } from './words.component';
 import { HomeComponent } from './home.component';
@@ -39,7 +40,9 @@ import './__external_lib/mojs-curve-editor.min.js';
 		PrivateComponent,
 		RegisterComponent,
 		AdminComponent,
+		DialogShowCanvasList
 	],
+	entryComponents: [DialogShowCanvasList],
 	imports: [
 		BrowserModule,
 		FormsModule,

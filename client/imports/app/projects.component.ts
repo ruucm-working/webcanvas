@@ -17,6 +17,5 @@ import { Component } from '@angular/core';
 })
 export class ProjectsComponent {
 	ngOnInit() {
-		console.log('ngOnInit project.component');
 	}
 }
