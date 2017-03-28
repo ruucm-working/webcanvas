@@ -19,6 +19,27 @@ export class AdminComponent {
 	public editorContent: string = 'My Canvas\'s Contents'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
+	public options: Object = { 
+		placeholderText: 'Edit Your Content Here!',
+		charCounterCount: false,
+		// Set the image upload parameter.
+        // imageUploadParam: 'image_param',
+
+        // Set the image upload URL.
+        imageUploadURL: 'http://i.froala.com/upload',
+
+        // Additional upload params.
+        // imageUploadParams: {id: 'my_editor'},
+
+        // Set request type.
+        imageUploadMethod: 'POST',
+
+        // Set max image size to 5MB.
+        imageMaxSize: 5 * 1024 * 1024,
+
+        // Allow to upload PNG and JPG.
+        imageAllowedTypes: ['jpeg', 'jpg', 'png']
+	}
 
 	constructor(
 		private _service:AuthenticationService){}

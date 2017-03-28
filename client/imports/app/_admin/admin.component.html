@@ -37,7 +37,7 @@
 <form (ngSubmit)="addWord(word_title)">
 	<input [(ngModel)]="word_title" type="text" name="text" placeholder="Make a new Word"/>
 </form>
-<div [froalaEditor] [(froalaModel)]="editorContent3"></div>
+<div [froalaEditor]='options' [(froalaModel)]="editorContent3"></div>
 <h3>Html :</h3><div>{{editorContent3}}</div>
 <h3>Output :</h3><div [froalaView]="editorContent3"></div>
 <br>

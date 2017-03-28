@@ -71,14 +71,11 @@ ul {
  *	Canvas Component
  */
 .canvases_navigate {
-	position: absolute;
-	z-index: 2;
-	height: 10vh;
-	width: 100%;
 	.canvases_navigate_buttons {
 		position: absolute;
 		bottom: 0;
 		width: 100%;
+		z-index: 2;
 	}
 }
 .canvases_navigate_on_title {
@@ -95,6 +92,8 @@ ul {
 	.slide:first-child {
 		.fp-tableCell {
 			font-weight: bold;
+			padding: 0 35px;
+			font-size: 30px;
 			h3 {
 				background: pink;
 			}
@@ -121,4 +120,10 @@ body #fp-nav ul li .fp-tooltip {
 	select, md-select {
 		margin: 11px;
 	}
+}
+.fp-scrollable {
+	padding: 80px 35px 0px 35px;
+}
+.canvas_title {
+	margin: 2.56em 0;
 }
