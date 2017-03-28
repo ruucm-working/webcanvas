@@ -1,0 +1,36 @@
+/**
+ *	Scene 01
+ */
+.gem-left-whole-0303-scene01 {
+  position: absolute;
+  width: 237.7px;
+  height: 193.4px;
+  top: 300px;
+  left: -250px;
+  background: url('data:image/svg+xml;utf8, <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="237.7px" height="193.4px" viewBox="0 0 237.7 193.4" enable-background="new 0 0 237.7 193.4" xml:space="preserve"> <g id="XMLID_3_"> <path id="XMLID_19_" fill="#35F0B2" d="M199.8,20.8c-31-22.2-86-32.5-124.6-0.7C53.7,37.8,2.6,92.4,5.3,95.1 c0,0-15.2,26.7,5.8,29.6c31.5,4.4,24.7,29.2,49.4,48.5c6.5,5.1,19.4,8,36.3,8.9c3.2,0.2,7.1,4.2,16.8,3.7s12.3-4.1,14.1-4.3 c6.2-0.7,19.5,4.3,37.9,0.5c18.3-3.8,23.7-10.2,26.1-10.6C269.2,160,232.5,44.1,199.8,20.8z"/> <circle id="XMLID_18_" fill="#162148" cx="197.7" cy="84.4" r="3.1"/> <circle id="XMLID_4_" fill="#162148" cx="133.2" cy="84.4" r="3.1"/> <path id="XMLID_468_" fill="#35F0B2" d="M96.3,162.9h32.2v18.4c-0.3,0-0.6,0.1-0.9,0.1c-1.8,0.2-3.5,0.3-4.5,1.8 c-0.9,1.5-1.2,2.9-1.8,3.7c-0.8,1.3-2.1,2-2.7,3.3c-0.1,0.3,1.2,1,1,1.2c-2.7,3.5-9.6,1.3-13.9,0.2c-1-0.3-2.1-0.6-2.7-1.5 c-0.5-0.8-0.5-0.7-0.5-1.7l0-1.4c0-3.2-2.5-4.9-5.8-5.1c-0.1,0-0.3,0-0.4,0V162.9z"/> <path id="XMLID_469_" fill="#35F0B2" d="M154.7,162.9h38.1v8.2c-0.4,0.1-0.7,0.1-1.1,0.2c-2.4,0.4-4.5,5.6-5.1,7.2 c-0.6,1.6-0.8,5.1-2.3,7.7c-0.5,0.8-1.5,1.8-1.8,2.7c-0.2,0.6,1,1.4,0.5,1.8c-0.6,0.5-2,1.1-3.6,1.4s-7.1,0.9-9.8-1.1 c-1.6-1.1-3.2-4.4-4.8-7.3c-0.9-1.6-6.9-5.2-8.5-5.7c-0.3-0.1-0.9-0.1-1.7-0.1V162.9z"/> <circle id="XMLID_20_" fill="#162148" cx="153.9" cy="135.8" r="5.8"/> </g> </svg>'); }
+
+.gem-left-tongue-0303-scene01 {
+  position: absolute;
+  width: 106px;
+  height: 63.4px;
+  top: 374px;
+  left: -98px;
+  background: url('data:image/svg+xml;utf8, <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="106px" height="63.4px" viewBox="0 0 106 63.4" enable-background="new 0 0 106 63.4" xml:space="preserve"> <path id="XMLID_16_" fill="none" stroke="#F6CEAA" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" d="M2,61.4 c0.1-4.2,2.6-7.9,5.7-10.8c6.6-6.2,15.6-9.1,24.5-10.3c8.9-1.2,18-0.9,27-1.6c8-0.6,16.6-2.4,21.9-8.5c5.1-5.9,5.7-14.3,7.7-21.8 c0.3-1.3,0.8-2.7,1.7-3.7c3.3-3.4,9.7,0,13.6-2.6"/> </svg>'); }
+
+.gem-right-whole-0303-scene01 {
+  position: absolute;
+  width: 237.7px;
+  height: 193.4px;
+  top: 394px;
+  left: 142px;
+  background: url('data:image/svg+xml;utf8, <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="237.7px" height="193.4px" viewBox="0 0 237.7 193.4" enable-background="new 0 0 237.7 193.4" xml:space="preserve"> <path id="XMLID_70_" fill="#35F0B2" d="M37.9,20.8c31-22.2,86-32.5,124.6-0.7c21.5,17.7,72.5,72.3,69.9,75c0,0,15.2,26.7-5.8,29.6 c-31.5,4.4-24.7,29.2-49.4,48.5c-6.5,5.1-19.4,8-36.3,8.9c-3.2,0.2-7.1,4.2-16.8,3.7s-12.3-4.1-14.1-4.3c-6.2-0.7-19.5,4.3-37.9,0.5 c-18.3-3.8-23.7-10.2-26.1-10.6C-31.4,160,5.2,44.1,37.9,20.8z"/> <circle id="XMLID_69_" fill="#162148" cx="40" cy="84.4" r="3.1"/> <circle id="XMLID_63_" fill="#162148" cx="104.5" cy="84.4" r="3.1"/> <path id="XMLID_62_" fill="#35F0B2" d="M141.4,162.9h-32.2v18.4c0.3,0,0.6,0.1,0.9,0.1c1.8,0.2,3.5,0.3,4.5,1.8 c0.9,1.5,1.2,2.9,1.8,3.7c0.8,1.3,2.1,2,2.7,3.3c0.1,0.3-1.2,1-1,1.2c2.7,3.5,9.6,1.3,13.9,0.2c1-0.3,2.1-0.6,2.7-1.5 c0.5-0.8,0.5-0.7,0.5-1.7l0-1.4c0-3.2,2.5-4.9,5.8-5.1c0.1,0,0.3,0,0.4,0V162.9z"/> <path id="XMLID_61_" fill="#35F0B2" d="M83,162.9H45v8.2c0.4,0.1,0.7,0.1,1.1,0.2c2.4,0.4,4.5,5.6,5.1,7.2c0.6,1.6,0.8,5.1,2.3,7.7 c0.5,0.8,1.5,1.8,1.8,2.7c0.2,0.6-1,1.4-0.5,1.8c0.6,0.5,2,1.1,3.6,1.4s7.1,0.9,9.8-1.1c1.6-1.1,3.2-4.4,4.8-7.3 c0.9-1.6,6.9-5.2,8.5-5.7c0.3-0.1,0.9-0.1,1.7-0.1V162.9z"/> <circle id="XMLID_60_" fill="#162148" cx="83.8" cy="135.8" r="5.8"/> </svg>'); }
+
+.gem-right-tongue-0303-scene01 {
+  position: absolute;
+  width: 106px;
+  height: 63.4px;
+  top: 467px;
+  left: 121px;
+  background: url('data:image/svg+xml;utf8, <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="106px" height="63.4px" viewBox="0 0 106 63.4" enable-background="new 0 0 106 63.4" xml:space="preserve"> <path id="XMLID_59_" fill="none" stroke="#F6CEAA" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" d="M104,61.4 c-0.1-4.2-2.6-7.9-5.7-10.8c-6.6-6.2-15.6-9.1-24.5-10.3c-8.9-1.2-18-0.9-27-1.6c-8-0.6-16.6-2.4-21.9-8.5 c-5.1-5.9-5.7-14.3-7.7-21.8C17,7,16.6,5.6,15.6,4.6C12.3,1.2,5.9,4.7,2,2"/> </svg>'); }
+
+/*# sourceMappingURL=0303.css.map */

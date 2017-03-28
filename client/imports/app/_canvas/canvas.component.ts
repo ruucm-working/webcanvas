@@ -38,30 +38,29 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		public dialog: MdDialog ) {
 		router.events.forEach((event) => {
 			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#CanvasPage") {
-				// this.stop_other_anims();
-				// myGlobals.title_timeline.play();
+				console.log('title scene event');
+				this.stop_other_anims();
+				myGlobals.title_timeline.play();
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
 			if (event instanceof NavigationStart) {
+				console.log('NavigationStart event');
 				if ( (event.url).slice(-1) == this.current_canvas_length - 1)
 					this.isLastScene = true;
 				else
 					this.isLastScene = false; 
+				this.stop_other_anims();
 				if (event.url == "/slider-dashboard#CanvasPage/1") {
-					this.stop_other_anims();
 					myGlobals.scene01_timeline.play();
 				}
 				if (event.url == "/slider-dashboard#CanvasPage/2") {
-					this.stop_other_anims();
 					myGlobals.scene02_timeline.play();
 				}
 				if (event.url == "/slider-dashboard#CanvasPage/3") {
-					this.stop_other_anims();
 					myGlobals.scene03_timeline.play();
 				}
 				if (event.url == "/slider-dashboard#CanvasPage/4") {
-					this.stop_other_anims();
 					myGlobals.scene04_timeline.play();
 				}
 			}
@@ -69,6 +68,10 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	}
 	ngOnInit() {
 		console.log('ng OnInit get_canvase');
+		myGlobals.scene01_timeline = new mojs.Timeline();
+		myGlobals.scene02_timeline = new mojs.Timeline();
+		myGlobals.scene03_timeline = new mojs.Timeline();
+		myGlobals.scene04_timeline = new mojs.Timeline();
 		this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
 		this.canvas_list_length = this.canvas_list.length;
 		this.current_canvas = this.get_canvase(1);

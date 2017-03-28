@@ -1,16 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import myGlobals = require('../globals');
+import _0303_css from '../css/0303.css';
 
+@Component({
+	_0303_css
+})
 @Injectable()
 export class Canvas0303Service {
 	constructor(
 	) { }
 	anim_init() {
 		// console.log('anim_init');
-		myGlobals.scene01_timeline = new mojs.Timeline();
-		myGlobals.scene02_timeline = new mojs.Timeline();
-		myGlobals.scene03_timeline = new mojs.Timeline();
-		myGlobals.scene04_timeline = new mojs.Timeline();
+		// myGlobals.scene01_timeline = new mojs.Timeline();
+		// myGlobals.scene02_timeline = new mojs.Timeline();
+		// myGlobals.scene03_timeline = new mojs.Timeline();
+		// myGlobals.scene04_timeline = new mojs.Timeline();
 		// const curveE01 = new MojsCurveEditor({ name: 'curveE01' });
 		// const curveE02 = new MojsCurveEditor({ name: 'curveE02' });
 
@@ -249,9 +253,36 @@ export class Canvas0303Service {
 			// character_scene_4.classList.add( 'character' );
 			// myGlobals._0218_page04_word_1.el.appendChild( character_scene_4 );
 			// character_scene_4.innerHTML = '근데 약간은 허전하다';
+
+			let CHAR_STEP  = 50;
+			const bounceCurve = mojs.easing.path('M0,-100 C0,-100 15.6877613,115.487686 32.0269814,74.203186 C62.0118605,-1.559962 100.057489,-0.0941416292 100.057489,-0.0941416292');
+			const nBounceCurve = (p) => { return 2 - bounceCurve(p) };
+			Y_SHIFT    = -20;
+			X_SHIFT    = CHAR_STEP/2;
+			myGlobals._0303_scene01_word = new mojs.Html({
+				el: '._0303_scene_01__text01',
+				opacity: { 0: 1 },
+				x: -215,
+				scaleY: { 1: 1, curve: bounceCurve },
+				scaleX: { 1: 1, curve: nBounceCurve },
+				easing: 'quad.out',
+				delay: 500,
+				duration: 650,
+			})
+			.then({
+				y: -440,
+				angle: { to: -360, easing: 'expo.out' },
+				easing: 'bounce.out',
+				duration: 1000,
+				origin: '50% 100%',
+			})
+			const character3 = document.createElement('div');
+			character3.classList.add( 'character' );
+			myGlobals._0303_scene01_word.el.appendChild( character3 );
+			character3.innerHTML = '이야기를 사람들과 할때 보면 <br> 종종 황당한 경우를 만난다';
 			var add_to_canvas2_timeline = function(){
 				console.log('add_to_scene01_timeline');
-				// myGlobals.scene01_timeline.add(myGlobals._0218_page02_burst);
+				myGlobals.scene01_timeline.add(myGlobals._0303_scene01_word);
 				// myGlobals.scene02_timeline.add(myGlobals._0218_page02_burst);
 				// myGlobals.scene03_timeline.add(myGlobals._0218_page02_burst);
 				myGlobals.scene04_timeline.add(myGlobals._0218_page02_burst);

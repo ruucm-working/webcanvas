@@ -1,9 +1,9 @@
 import { Injectable, Component } from '@angular/core';
 import myGlobals = require('../globals');
-import feb01_css from '../css/0218.css';
+import _0218_css from '../css/0218.css';
 
 @Component({
-	feb01_css
+	_0218_css
 })
 @Injectable()
 export class Canvas0218Service {
@@ -14,10 +14,10 @@ export class Canvas0218Service {
 	}
 	anim_init() {
 		console.log('anim_init');
-		myGlobals.scene01_timeline = new mojs.Timeline();
-		myGlobals.scene02_timeline = new mojs.Timeline();
-		myGlobals.scene03_timeline = new mojs.Timeline();
-		myGlobals.scene04_timeline = new mojs.Timeline();
+		// myGlobals.scene01_timeline = new mojs.Timeline();
+		// myGlobals.scene02_timeline = new mojs.Timeline();
+		// myGlobals.scene03_timeline = new mojs.Timeline();
+		// myGlobals.scene04_timeline = new mojs.Timeline();
 		// const curveE01 = new MojsCurveEditor({ name: 'curveE01' });
 		// const curveE02 = new MojsCurveEditor({ name: 'curveE02' });
 

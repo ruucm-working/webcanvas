@@ -22,6 +22,7 @@ import { Slide } from '../slide.ts';
 		<div *ngFor="let canvas of my_canvases; let i=index">
 			canvas {{i+1}} : 
 			<button (click)="addCanvasContents(canvas, editorContent)">Edit</button>
+			<button (click)="removeCanvas(canvas)">Remove</button>
 		</div>
 	`,
 })
@@ -60,6 +61,10 @@ export class AdminComponent {
 			},
 		});
 		this.editorContent = '';
+	}
+	removeCanvas(canvas) {
+		CanvasContents.remove(canvas._id);
+		this.my_canvases = this.get_canvases();
 	}
 	get_canvases(): Canvas[] {
 		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
