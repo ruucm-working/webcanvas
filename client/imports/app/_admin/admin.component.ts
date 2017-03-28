@@ -1,35 +1,24 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../_simple_login/authentication.service'
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
+import { ProjectContents } from '../../../../imports/api/project-contents.js';
+import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Slide } from '../slide.ts';
+import template from './admin.component.html'
 
 @Component({
 	selector: 'my-admin',
-  providers: [AuthenticationService],
-	template: `
-		<div>Hello, Admin</div>
-		<h2>Canvas Editor</h2>
-		<form (ngSubmit)="addCanvas(canvas_title)">
-			<input [(ngModel)]="canvas_title" type="text" name="text" placeholder="Make a new Canvas"/>
-		</form>
-		<div [froalaEditor] [(froalaModel)]="editorContent"></div>
-		<h3>Html :</h3><div>{{editorContent}}</div>
-		<h3>Output :</h3><div [froalaView]="editorContent"></div>
-		<br>
-		<a routerLink="/home">go back to home</a>
-		<a routerLink="/slider-dashboard">Slider Dashboard</a>
-		<button (click)="logout()">Click Here to logout</button>
-		<div *ngFor="let canvas of my_canvases; let i=index">
-			canvas {{i+1}} : 
-			<button (click)="addCanvasContents(canvas, editorContent)">Edit</button>
-			<button (click)="removeCanvas(canvas)">Remove</button>
-		</div>
-	`,
+	providers: [AuthenticationService],
+	template: template
 })
 export class AdminComponent {
 	canvas_title = '';
+	project_title = '';
+	my_words = this.get_words();
 	my_canvases = this.get_canvases();
-	public editorContent: string = 'My Document\'s Contents'
+	public editorContent: string = 'My Canvas\'s Contents'
+	public editorContent2: string = 'My Project\'s Contents'
+	public editorContent3: string = 'My Word\'s Contents'
 
 	constructor(
 		private _service:AuthenticationService){}
@@ -62,11 +51,52 @@ export class AdminComponent {
 		});
 		this.editorContent = '';
 	}
+	get_canvases(): Canvas[] {
+		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+	}
 	removeCanvas(canvas) {
 		CanvasContents.remove(canvas._id);
 		this.my_canvases = this.get_canvases();
 	}
-	get_canvases(): Canvas[] {
-		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+	addProject(project_title) {
+		var inital_value = [ { id: 1, text: project_title} ];
+		var content_length = ProjectContents.find().map((messages: Canvas[]) => { return messages; }).length;
+		ProjectContents.insert({
+			contentid: content_length + 1,
+			content: inital_value,
+			createdAt: new Date,
+		});
+		this.project_title = '';
+		// this.my_canvases = this.get_canvases();
+	}
+	addWord(word_title) {
+		var inital_value = [ { id: 1, text: word_title} ];
+		var content_length = WordContents.find().map((messages: Canvas[]) => { return messages; }).length;
+		WordContents.insert({
+			contentid: content_length + 1,
+			content: inital_value,
+			createdAt: new Date,
+		});
+		this.word_title = '';
+		this.my_words = this.get_words();
+	}
+	addWordContents(word, editorContent3) {
+		console.log('canvas._id : ');
+		console.log(word._id);
+		var value = word.content;
+		value.push({ id: value.length + 1, text: editorContent3, createdAt: new Date, });
+		WordContents.update(word._id, {
+			$set: {
+				content: value
+			},
+		});
+		this.editorContent3 = '';
+	}
+	get_words(): Canvas[] {
+		return WordContents.find().map((messages: Canvas[]) => { return messages; });
+	}
+	removeWord(word) {
+		WordContents.remove(word._id);
+		this.my_words = this.get_words();
 	}
 }

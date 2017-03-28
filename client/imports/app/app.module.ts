@@ -5,8 +5,9 @@ import { MyCanvas } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CanvasComponent } from './_canvas/canvas.component';
 import { DialogShowCanvasList } from './_canvas/canvas.component';
-import { ProjectsComponent } from './projects.component';
-import { WordsComponent } from './words.component';
+import { DialogShowWordList } from './_word/words.component';
+import { ProjectsComponent } from './_project/projects.component';
+import { WordsComponent } from './_word/words.component';
 import { HomeComponent } from './home.component';
 import { MnFullpageService } from "ng2-fullpage";
 import { SliderDashboardComponent } from './slider-dashboard.component';
@@ -50,9 +51,9 @@ export function HttpLoaderFactory(http: Http) {
 		PrivateComponent,
 		RegisterComponent,
 		AdminComponent,
-		DialogShowCanvasList
+		DialogShowCanvasList, DialogShowWordList
 	],
-	entryComponents: [DialogShowCanvasList],
+	entryComponents: [DialogShowCanvasList, DialogShowWordList],
 	imports: [
 		BrowserModule,
 		FormsModule,

@@ -1,6 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 import myGlobals = require('../globals');
 import _0218_css from '../css/0218.css';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	_0218_css
@@ -8,12 +9,10 @@ import _0218_css from '../css/0218.css';
 @Injectable()
 export class Canvas0218Service {
 	constructor(
+		private translate: TranslateService
 	) { }
-	ngOnInit() {
-		console.log('ngOnInit at page01 service');
-	}
 	anim_init() {
-		console.log('anim_init');
+		var currentlang = this.translate.currentLang;
 		// myGlobals.scene01_timeline = new mojs.Timeline();
 		// myGlobals.scene02_timeline = new mojs.Timeline();
 		// myGlobals.scene03_timeline = new mojs.Timeline();
@@ -186,11 +185,13 @@ export class Canvas0218Service {
 				duration: 1000,
 				origin: '50% 100%',
 			})
-			const character3 = document.createElement('div');
-			character3.classList.add( 'character' );
-			myGlobals._0218_page01_word.el.appendChild( character3 );
-			character3.innerHTML = '카페에 와있다';
-
+			const character_scene_1 = document.createElement('div');
+			character_scene_1.classList.add( 'character' );
+			myGlobals._0218_page01_word.el.appendChild( character_scene_1 );
+			if (currentlang == 'en')
+				character_scene_1.innerHTML = 'I\'m in a cafe';
+			else
+				character_scene_1.innerHTML = '카페에 와있다';
 			myGlobals._0218_page02_word_1 = new mojs.Html({
 				left: '30%', top: '70%',
 				fill:         'none',
@@ -217,8 +218,10 @@ export class Canvas0218Service {
 			const character_scene_2 = document.createElement('div');
 			character_scene_2.classList.add( 'character' );
 			myGlobals._0218_page02_word_1.el.appendChild( character_scene_2 );
-			character_scene_2.innerHTML = '컴퓨터만 있으면 모든걸 할 수있는 엄청난 놀이터..';
-
+			if (currentlang == 'en')
+				character_scene_2.innerHTML = 'It\'s a paradise when you are on nice WIFI';
+			else
+				character_scene_2.innerHTML = '컴퓨터만 있으면 모든걸 할 수있는 엄청난 놀이터..';
 			myGlobals._0218_page03_word_1 = new mojs.Html({
 				left: '30%', top: '70%',
 				fill:         'none',
@@ -245,7 +248,10 @@ export class Canvas0218Service {
 			const character_scene_3 = document.createElement('div');
 			character_scene_3.classList.add( 'character' );
 			myGlobals._0218_page03_word_1.el.appendChild( character_scene_3 );
-			character_scene_3.innerHTML = '엄청난 포켓몬 명당자리도 있고.. 일도하고 <br>아주 천국';
+			if (currentlang == 'en')
+				character_scene_3.innerHTML = 'Usually there are nice Pokestop, and you could do your job at the same time<br>😃😃';
+			else
+				character_scene_3.innerHTML = '엄청난 포켓몬 명당자리도 있고.. 일도하고 <br>아주 천국';
 			myGlobals._0218_page04_word_1 = new mojs.Html({
 				el: '.scene_04_bottom__text01',
 				delay: 1250,
@@ -255,7 +261,10 @@ export class Canvas0218Service {
 			const character_scene_4 = document.createElement('div');
 			character_scene_4.classList.add( 'character' );
 			myGlobals._0218_page04_word_1.el.appendChild( character_scene_4 );
-			character_scene_4.innerHTML = '근데 약간은 허전하다';
+			if (currentlang == 'en')
+				character_scene_4.innerHTML = 'But, It also makes me lonely sometimes..';
+			else
+				character_scene_4.innerHTML = '근데 약간은 허전하다';
 			var add_to_scene01_timeline = function(){
 				console.log('add_to_scene01_timeline');
 				myGlobals.scene01_timeline.add( myGlobals._0218_page01_left_leg, myGlobals._0218_page01_word );

@@ -73,13 +73,12 @@ ul {
 .canvases_navigate {
 	position: absolute;
 	z-index: 2;
-	height: 100vh;
+	height: 10vh;
 	width: 100%;
 	.canvases_navigate_buttons {
 		position: absolute;
 		bottom: 0;
 		width: 100%;
-		// left: 50%;
 	}
 }
 .canvases_navigate_on_title {

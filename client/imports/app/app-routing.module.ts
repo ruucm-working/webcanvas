@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CanvasComponent } from './_canvas/canvas.component';
-import { ProjectsComponent } from './projects.component';
-import { WordsComponent } from './words.component';
+import { ProjectsComponent } from './_project/projects.component';
+import { WordsComponent } from './_word/words.component';
 import { HomeComponent } from './home.component';
 import { SliderDashboardComponent } from './slider-dashboard.component';
 

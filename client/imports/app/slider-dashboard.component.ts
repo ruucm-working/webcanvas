@@ -37,6 +37,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				slidesNavPosition: 'top',
 				sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
 				controlArrows: false,
+				scrollOverflow: true
 			});
 		});
 	}

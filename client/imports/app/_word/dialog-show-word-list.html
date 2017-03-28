@@ -1,0 +1,8 @@
+<h1 md-dialog-title>Word List</h1>
+<div md-dialog-actions>
+	<ul>
+		<md-chip-list *ngFor="let word of word_list; let i=index let first=first">
+			<md-chip md-button *ngIf="!first" (click)="dialogRef.close(word.contentid)">#{{i}} : {{ word.content[0].text }}</md-chip>
+		</md-chip-list>
+	</ul>
+</div>
