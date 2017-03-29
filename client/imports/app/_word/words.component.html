@@ -1,7 +1,7 @@
 <div *ngIf="isLastScene" class="canvases_navigate">
-	<div class="canvases_navigate_buttons">
-		<button md-button (click)="younger_from_current_word()">Younger Post</button>
-		<button md-button (click)="older_from_current_word()">Older Post</button>
+	<div class="navigate_fab_buttons">
+		<a md-mini-fab (click)="younger_from_current_word()"><md-icon>keyboard_arrow_left</md-icon></a>
+		<a md-fab (click)="older_from_current_word()"><md-icon>keyboard_arrow_right</md-icon></a>
 	</div>
 </div>
 <div *ngIf="isTitleScene" class="canvases_navigate">
@@ -10,4 +10,4 @@
 		<button md-button (click)="get_recent_word()">Recent Word</button>
 	</div>
 </div>
-<div *ngFor="let slide of current_word; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text | safeHtml">Title</div>
+<div (scroll)="onScroll($event)" *ngFor="let slide of current_word; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text | safeHtml">Title</div>

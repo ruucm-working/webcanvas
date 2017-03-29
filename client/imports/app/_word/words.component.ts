@@ -1,4 +1,5 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, HostListener, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
@@ -28,6 +29,7 @@ export class WordsComponent implements OnInit {
 	isTitleScene;
 
 	constructor(
+		@Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		public dialog: MdDialog ) {
 		router.events.forEach((event) => {
@@ -57,6 +59,10 @@ export class WordsComponent implements OnInit {
 			onError: function () { console.log("onError", arguments); }
 		});
 	}
+	@HostListener('scroll', ['$event'])
+	onScroll(event) {
+		console.log('scrolllll');
+	}
 	updateData() {
 		this.word_list = WordContents.find().map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
@@ -73,10 +79,8 @@ export class WordsComponent implements OnInit {
 				alert('It is the First Canvas!');
 				this.current_word_id += 1;
 			} else {
-				this.stop_other_anims();
 				this.current_word = this.get_word(this.current_word_id);
-				this.router.navigateByUrl('slider-dashboard');
-				myGlobals.scene01_timeline.play();
+				this.router.navigateByUrl('slider-dashboard/#WordPage');
 			}
 		} else if(which_word == 'younger') {
 			this.current_word_id += 1;
@@ -84,10 +88,8 @@ export class WordsComponent implements OnInit {
 				alert('It is the Last Canvas!');
 				this.current_word_id -= 1;
 			} else {
-				this.stop_other_anims();
 				this.current_word = this.get_word(this.current_word_id);
-				this.router.navigateByUrl('slider-dashboard');
-				myGlobals.scene01_timeline.play();
+				this.router.navigateByUrl('slider-dashboard/#WordPage');
 			}
 		}
 		return '';

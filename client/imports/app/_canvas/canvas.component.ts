@@ -39,7 +39,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#CanvasPage") {
 				console.log('title scene event');
 				this.stop_other_anims();
-				// myGlobals.title_timeline.play();
+				myGlobals.title_timeline.play();
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 

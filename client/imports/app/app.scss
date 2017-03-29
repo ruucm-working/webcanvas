@@ -76,6 +76,26 @@ ul {
 		bottom: 0;
 		width: 100%;
 		z-index: 2;
+		button {
+			margin: 15px 0;
+		}
+		button:first-child {
+			margin-left: 24px;
+		}
+	}
+	.navigate_fab_buttons {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		z-index: 2;
+		text-align: right;
+		opacity: 0.8;
+		a {
+			margin: 15px 10px;
+		}
+		a:nth-child(2) {
+			margin-right: 15px;
+		}
 	}
 }
 .canvases_navigate_on_title {
