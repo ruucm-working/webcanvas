@@ -1,5 +1,6 @@
 <div class="myhome">
-	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center" >
+	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+		<div *ngFor="let word of home_words; let i=index; trackBy: trackByFn">hey </div>
 		<div class="hello" fxFlex fxLayoutAlign="space-around center">
 			<h2>{{ 'HOME.TITLE' | translate }}</h2>
 		</div>

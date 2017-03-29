@@ -22,7 +22,7 @@ import myGlobals = require('../globals');
 })
 export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
-	current_canvas = this.get_canvase(1);
+	current_canvas;
 	current_canvas_length = 0;
 	current_canvas_id: number;
 	canvas_list;
@@ -73,14 +73,14 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
 		
-		$( document ).ready(function() {
+		// $( document ).ready(function() {
 			this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
 			this.canvas_list_length = this.canvas_list.length;
 			this.current_canvas = this.get_canvase(1);
 			console.log('this.current_canvas : ');
 			console.log(this.current_canvas);
 			console.log('this.current_canvas_length : ' + this.current_canvas_length);
-		});
+		// });
 	}
 	stop_other_anims() {
 		console.log('stop anim!');
