@@ -10,4 +10,4 @@
 		<button md-button (click)="get_recent_word()">Recent Word</button>
 	</div>
 </div>
-<div *ngFor="let slide of current_word; let i=index" class="slide" [innerHTML]="slide.text | safeHtml">Title</div>}
+<div *ngFor="let slide of current_word; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text | safeHtml">Title</div>

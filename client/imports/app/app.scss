@@ -90,13 +90,23 @@ ul {
 }
 .fp-slides {
 	.slide:first-child {
+		font-weight: bold;
+		font-size: 30px;
+		h3 {
+			background: pink;
+		}
 		.fp-tableCell {
-			font-weight: bold;
 			padding: 0 35px;
-			font-size: 30px;
-			h3 {
-				background: pink;
-			}
+		}
+	}
+}
+.fp-tableCell {
+	.slide {
+		font-weight: bold;
+		padding: 0 35px;
+		font-size: 30px;
+		h3 {
+			background: pink;
 		}
 	}
 }

@@ -65,7 +65,21 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			}
 		});
 	}
+	trackByFn(index, item) {
+		return index;
+	}
 	ngOnInit() {
+		var refreshIntervalId = setInterval(() => this.updateData(), 100);
+		Meteor.subscribe("canvascontents", {
+			onReady: function () {
+				console.log("onReady And the Items actually Arrive");
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+					console.log("STOP!!");
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
 		console.log('ng OnInit get_canvase');
 		myGlobals.title_timeline = new mojs.Timeline();
 		myGlobals.scene01_timeline = new mojs.Timeline();
@@ -73,14 +87,16 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
 		
-		// $( document ).ready(function() {
-			this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
-			this.canvas_list_length = this.canvas_list.length;
-			this.current_canvas = this.get_canvase(1);
-			console.log('this.current_canvas : ');
-			console.log(this.current_canvas);
-			console.log('this.current_canvas_length : ' + this.current_canvas_length);
-		// });
+		// this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+		// this.canvas_list_length = this.canvas_list.length;
+		// this.current_canvas = this.get_canvase(1);
+		
+	}
+	updateData() {
+		console.log('updateDate!');
+		this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+		this.canvas_list_length = this.canvas_list.length;
+		this.current_canvas = this.get_canvase(1);
 	}
 	stop_other_anims() {
 		console.log('stop anim!');

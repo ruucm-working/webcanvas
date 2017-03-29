@@ -10,4 +10,4 @@
 		<button md-button (click)="get_recent_canvas()">Recent Canvas</button>
 	</div>
 </div>
-<div *ngFor="let slide of current_canvas; let i=index" class="slide" [innerHTML]="slide.text"></div>
+<div *ngFor="let slide of current_canvas; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text"></div>

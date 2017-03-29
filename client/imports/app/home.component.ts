@@ -23,12 +23,7 @@ export class HomeComponent {
 		private _service:AuthenticationService,
 		private _service2:CanvasTitleService,
 		private translate: TranslateService
-	){
-		translate.addLangs(["en", "kr"]);
-		translate.setDefaultLang('en');
-		let browserLang = translate.getBrowserLang();
-		translate.use(browserLang.match(/en|kr/) ? browserLang : 'en');
-	}
+	) { }
 	logout() {
 		this._service.logout('home');
 	}

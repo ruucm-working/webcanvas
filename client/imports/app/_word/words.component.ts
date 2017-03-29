@@ -36,7 +36,6 @@ export class WordsComponent implements OnInit {
 			} else
 				this.isTitleScene = false; 
 			if (event instanceof NavigationStart) {
-				console.log('NavigationStart event');
 				if ( (event.url).slice(-1) == this.current_word_length - 1)
 					this.isLastScene = true;
 				else
@@ -44,21 +43,29 @@ export class WordsComponent implements OnInit {
 			}
 		});
 	}
+	trackByFn(index, item) {
+		return index;
+	}
 	ngOnInit() {
+		var refreshIntervalId = setInterval(() => this.updateData(), 100);
+		Meteor.subscribe("wordcontents", {
+			onReady: function () {
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
+	}
+	updateData() {
 		this.word_list = WordContents.find().map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 		this.current_word = this.get_word(1);
-		console.log('this.current_word : ');
-		console.log(this.current_word);
-		console.log('this.current_word_length : ' + this.current_word_length);
 	}
 	get_word(which_word): Canvas[] {
-		console.log('which_word : ' + which_word);
 		if (!isNaN(which_word)) {
-			console.log('!isNaN(which_word)');
 			this.current_word_id = which_word;
 			this.current_word_length = WordContents.find().map((messages: Canvas[]) => { return messages; })[this.current_word_id - 1].content.length;
-			console.log('this.current_word_id : ' + this.current_word_id);
 			return WordContents.find().map((messages: Canvas[]) => { return messages; })[this.current_word_id - 1].content;
 		} else if(which_word == 'older') {
 			this.current_word_id -= 1;
@@ -96,10 +103,7 @@ export class WordsComponent implements OnInit {
 		let dialogRef = this.dialog.open(DialogShowWordList, config);
 		dialogRef.afterClosed().subscribe(
 			result => {
-			console.log('result : ');
-			console.log(result);
 			if (result != undefined) {
-				console.log('update!@')
 				this.current_word = this.get_word(result)
 				this.updatefullpage();
 			}
@@ -177,7 +181,5 @@ export class DialogShowWordList {
 	ngOnInit() {
 		// data
 		this.word_list = this.dialogRef.config.data;
-		console.log('this.word_list : ' + this.word_list);
-		console.log(this.word_list);
 	}
 }
