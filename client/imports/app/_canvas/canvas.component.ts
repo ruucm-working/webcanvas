@@ -39,7 +39,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#CanvasPage") {
 				console.log('title scene event');
 				this.stop_other_anims();
-				myGlobals.title_timeline.play();
+				// myGlobals.title_timeline.play();
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
@@ -72,7 +72,6 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		var refreshIntervalId = setInterval(() => this.updateData(), 100);
 		Meteor.subscribe("canvascontents", {
 			onReady: function () {
-				console.log("onReady And the Items actually Arrive");
 				setTimeout( () => {
 					clearInterval(refreshIntervalId);
 					console.log("STOP!!");
@@ -80,27 +79,18 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
-		console.log('ng OnInit get_canvase');
-		myGlobals.title_timeline = new mojs.Timeline();
 		myGlobals.scene01_timeline = new mojs.Timeline();
 		myGlobals.scene02_timeline = new mojs.Timeline();
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
-		
-		// this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
-		// this.canvas_list_length = this.canvas_list.length;
-		// this.current_canvas = this.get_canvase(1);
-		
 	}
 	updateData() {
-		console.log('updateDate!');
 		this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
 		this.canvas_list_length = this.canvas_list.length;
 		this.current_canvas = this.get_canvase(1);
 	}
 	stop_other_anims() {
 		console.log('stop anim!');
-		myGlobals.title_timeline.stop();
 		myGlobals.scene01_timeline.stop();
 		myGlobals.scene02_timeline.stop();
 		myGlobals.scene03_timeline.stop();

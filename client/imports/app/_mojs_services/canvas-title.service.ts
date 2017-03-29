@@ -30,8 +30,5 @@ export class CanvasTitleService {
 			strokeDashoffset: { '100': 0 }
 		});
 		myGlobals.title_timeline.add( myGlobals.canvas_title_anim );
-		$( document ).ready(function() {
-			
-		});
 	}
 }
