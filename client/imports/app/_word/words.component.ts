@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import template from './words.component.html';
 import template_dialog from './dialog-show-word-list.html';
+import { SafeHtmlPipe } from '../safe.html.pipe';
 
 @Component({
 	selector: 'my-words',

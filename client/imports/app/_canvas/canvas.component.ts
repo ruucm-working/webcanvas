@@ -22,7 +22,7 @@ import myGlobals = require('../globals');
 })
 export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	newText = '';
-	current_canvas;
+	current_canvas = this.get_canvase(1);
 	current_canvas_length = 0;
 	current_canvas_id: number;
 	canvas_list;
@@ -67,16 +67,20 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	}
 	ngOnInit() {
 		console.log('ng OnInit get_canvase');
+		myGlobals.title_timeline = new mojs.Timeline();
 		myGlobals.scene01_timeline = new mojs.Timeline();
 		myGlobals.scene02_timeline = new mojs.Timeline();
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
-		this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
-		this.canvas_list_length = this.canvas_list.length;
-		this.current_canvas = this.get_canvase(1);
-		console.log('this.current_canvas : ');
-		console.log(this.current_canvas);
-		console.log('this.current_canvas_length : ' + this.current_canvas_length);
+		
+		$( document ).ready(function() {
+			this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+			this.canvas_list_length = this.canvas_list.length;
+			this.current_canvas = this.get_canvase(1);
+			console.log('this.current_canvas : ');
+			console.log(this.current_canvas);
+			console.log('this.current_canvas_length : ' + this.current_canvas_length);
+		});
 	}
 	stop_other_anims() {
 		console.log('stop anim!');
@@ -97,8 +101,12 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		if (!isNaN(which_canvas)) {
 			console.log('!isNaN(which_canvas)');
 			this.current_canvas_id = which_canvas;
-			this.current_canvas_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content.length;
 			console.log('this.current_canvas_id : ' + this.current_canvas_id);
+			console.log('CanvasContents : ');
+			console.log(CanvasContents);
+			this.current_canvas_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content.length;
+			console.log('this.current_canvas_length : ');
+			console.log(this.current_canvas_length);
 			return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
 		} else if(which_canvas == 'older') {
 			this.current_canvas_id -= 1;

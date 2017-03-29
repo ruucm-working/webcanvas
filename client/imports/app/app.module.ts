@@ -28,6 +28,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import {HttpModule, Http} from "@angular/http";
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { SafeHtmlPipe } from './safe.html.pipe';
 
 import './__external_lib/mo.min.js';
 import './__external_lib/mojs-player.min.js';
@@ -51,7 +52,8 @@ export function HttpLoaderFactory(http: Http) {
 		PrivateComponent,
 		RegisterComponent,
 		AdminComponent,
-		DialogShowCanvasList, DialogShowWordList
+		DialogShowCanvasList, DialogShowWordList,
+		SafeHtmlPipe
 	],
 	entryComponents: [DialogShowCanvasList, DialogShowWordList],
 	imports: [

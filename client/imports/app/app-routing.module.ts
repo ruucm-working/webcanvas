@@ -13,7 +13,7 @@ import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
 
 const routes: Routes = [
-	{ path: 'home', name: 'Home', component: HomeComponent, useAsDefault:true },
+	{ path: 'home', component: HomeComponent, useAsDefault:true },
 	{ path: 'slider-dashboard', component: SliderDashboardComponent },
 	{ path: 'canvas', component: CanvasComponent },
 	{ path: 'projects', component: ProjectsComponent },
