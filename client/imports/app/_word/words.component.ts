@@ -1,4 +1,5 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Location } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
@@ -27,10 +28,12 @@ export class WordsComponent implements OnInit {
 	word_list_length = 0;
 	isLastScene;
 	isTitleScene;
+	location: Location;
 
 	constructor(
 		private router: Router,
-		public dialog: MdDialog ) {
+		public dialog: MdDialog,
+		location: Location ) {
 		router.events.forEach((event) => {
 			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#WordPage") {
 				this.isTitleScene = true;
@@ -43,6 +46,7 @@ export class WordsComponent implements OnInit {
 					this.isLastScene = false; 
 			}
 		});
+		this.location = location;
 	}
 	trackByFn(index, item) {
 		return index;
@@ -78,7 +82,7 @@ export class WordsComponent implements OnInit {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				this.router.navigateByUrl('slider-dashboard/#WordPage');
+				this.location.go('slider-dashboard/#WordPage');
 			}
 		} else if(which_word == 'younger') {
 			this.current_word_id += 1;
@@ -88,7 +92,7 @@ export class WordsComponent implements OnInit {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				this.router.navigateByUrl('slider-dashboard/#WordPage');
+				this.location.go('slider-dashboard/#WordPage');
 			}
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
