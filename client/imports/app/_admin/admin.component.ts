@@ -14,6 +14,7 @@ import template from './admin.component.html'
 export class AdminComponent {
 	canvas_title = '';
 	project_title = '';
+	word_title = '';
 	my_words = this.get_words();
 	my_canvases = this.get_canvases();
 	public editorContent: string = 'My Canvas\'s Contents'
@@ -33,6 +34,7 @@ export class AdminComponent {
 		var content_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; }).length;
 		CanvasContents.insert({
 			contentid: content_length + 1,
+			canvastitle: canvas_title,
 			content: inital_value,
 			createdAt: new Date,
 		});
@@ -63,6 +65,7 @@ export class AdminComponent {
 		var content_length = ProjectContents.find().map((messages: Canvas[]) => { return messages; }).length;
 		ProjectContents.insert({
 			contentid: content_length + 1,
+			projecttitle: project_title,
 			content: inital_value,
 			createdAt: new Date,
 		});
@@ -74,6 +77,7 @@ export class AdminComponent {
 		var content_length = WordContents.find().map((messages: Canvas[]) => { return messages; }).length;
 		WordContents.insert({
 			contentid: content_length + 1,
+			wordtitle: word_title,
 			content: inital_value,
 			createdAt: new Date,
 		});

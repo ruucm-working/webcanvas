@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
@@ -6,6 +6,7 @@ import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import template from './words.component.html';
 import template_dialog from './dialog-show-word-list.html';
 import { SafeHtmlPipe } from '../safe.html.pipe';
+import { Counts } from 'meteor/tmeasday:publish-counts';
 
 @Component({
 	selector: 'my-words',
@@ -17,7 +18,6 @@ import { SafeHtmlPipe } from '../safe.html.pipe';
 		background: green;
 	}` ],
 })
-
 export class WordsComponent implements OnInit {
 	newText = '';
 	current_word;
@@ -29,7 +29,6 @@ export class WordsComponent implements OnInit {
 	isTitleScene;
 
 	constructor(
-		@Inject(DOCUMENT) private document: Document,
 		private router: Router,
 		public dialog: MdDialog ) {
 		router.events.forEach((event) => {
@@ -50,6 +49,7 @@ export class WordsComponent implements OnInit {
 	}
 	ngOnInit() {
 		var refreshIntervalId = setInterval(() => this.updateData(), 100);
+		
 		Meteor.subscribe("wordcontents", {
 			onReady: function () {
 				setTimeout( () => {
@@ -59,25 +59,23 @@ export class WordsComponent implements OnInit {
 			onError: function () { console.log("onError", arguments); }
 		});
 	}
-	@HostListener('scroll', ['$event'])
-	onScroll(event) {
-		console.log('scrolllll');
-	}
 	updateData() {
-		this.word_list = WordContents.find().map((messages: Canvas[]) => { return messages; });
+		this.word_list = WordContents.find({}, {fields: {'wordtitle':1}}).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 		this.current_word = this.get_word(1);
 	}
 	get_word(which_word): Canvas[] {
 		if (!isNaN(which_word)) {
 			this.current_word_id = which_word;
-			this.current_word_length = WordContents.find().map((messages: Canvas[]) => { return messages; })[this.current_word_id - 1].content.length;
-			return WordContents.find().map((messages: Canvas[]) => { return messages; })[this.current_word_id - 1].content;
+			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_word_length = res.length;
+			return res;
 		} else if(which_word == 'older') {
 			this.current_word_id -= 1;
 			if (this.current_word_id - 1 < 1) {
 				alert('It is the First Canvas!');
 				this.current_word_id += 1;
+				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
 				this.router.navigateByUrl('slider-dashboard/#WordPage');
@@ -87,12 +85,17 @@ export class WordsComponent implements OnInit {
 			if (this.current_word_id - 1 >= this.word_list_length) {
 				alert('It is the Last Canvas!');
 				this.current_word_id -= 1;
+				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
 				this.router.navigateByUrl('slider-dashboard/#WordPage');
 			}
+		} else {
+			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_word_length = res.length;
+			return res;
 		}
-		return '';
+		return true;
 	}
 	get_recent_word() {
 		this.current_word = this.get_word(this.word_list_length);
@@ -112,12 +115,12 @@ export class WordsComponent implements OnInit {
 		});
 	}
 	older_from_current_word() {
-		this.get_word('older');
-		this.updatefullpage();
+		if ( this.get_word('older') )
+			this.updatefullpage();
 	}
 	younger_from_current_word() {
-		this.get_word('younger');
-		this.updatefullpage();
+		if ( this.get_word('younger') )
+			this.updatefullpage();
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
