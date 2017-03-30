@@ -15,6 +15,7 @@ import { AdminComponent } from './_admin/admin.component';
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent, useAsDefault:true },
 	{ path: 'slider-dashboard', component: SliderDashboardComponent },
+	{ path: 'post/:plink', component: SliderDashboardComponent },
 	{ path: 'canvas', component: CanvasComponent },
 	{ path: 'projects', component: ProjectsComponent },
 	{ path: 'words', component: WordsComponent },

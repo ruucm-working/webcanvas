@@ -1,8 +1,4 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-
-/**
- *  App Global Sass
- */
+@import 'sass/base/variables';
 
 /**
  *	Home
@@ -11,10 +7,30 @@
 	border: solid 1px #b6b6b6;
 	box-sizing: content-box !important;
 	text-align: center;
-	background: pink;
+	background: $charcoal;
 	height: 100vh;
+	color: $pastel_pink;
 	div.title {
 		max-height: 25% !important;
+	}
+	.hello {
+		color: $melon-light;
+		h2 {
+			font-family: SouvenirStd-Medium;
+		}
+	}
+	.myhome-descriptions {
+		h3 {
+			font-weight: 400;
+		}
+	}
+	h3, h2	{
+		padding: 0 10px;
+		font-family: Spoqa Han Sans;
+	}
+	button {
+		font-family: SouvenirStd-Medium;
+		font-weight: bold;
 	}
 }
 .myhome-contents {
@@ -23,11 +39,6 @@
 }
 ul {
 	list-style-type: none;
-}
-.myhome {
-	h3, h2	{
-		padding: 0 10px;
-	}
 }
 
 /**
@@ -68,7 +79,7 @@ ul {
 }
 
 /**
- *	Canvas Component
+ *	Slider Dashboard General
  */
 .canvases_navigate {
 	.canvases_navigate_buttons {
@@ -114,9 +125,16 @@ ul {
 		font-size: 30px;
 		h3 {
 			background: pink;
+			margin: 2.56em 0;
+			font-family: Spoqa Han Sans;
+			font-weight: 300;
 		}
 		.fp-tableCell {
 			padding: 0 35px;
+			font-family: SouvenirStd-Medium;
+			h2 {
+				font-family: SouvenirStd-Medium;
+			}
 		}
 	}
 }
@@ -133,14 +151,6 @@ ul {
 body #fp-nav ul li .fp-tooltip {
 	color: #07019A;
 }
-.mat-dialog-actions {
-	ul {
-		padding: 0;
-		.md-chip-list-wrapper {
-			margin: 10px 0;
-		}
-	}
-}
 .select_lang {
 	position: absolute;
 	width: 100%;
@@ -154,6 +164,23 @@ body #fp-nav ul li .fp-tooltip {
 .fp-scrollable {
 	padding: 0 35px;
 }
-.canvas_title {
-	margin: 2.56em 0;
+body #fp-nav ul li .fp-tooltip {
+	font-family: Spoqa Han Sans;
+	color: $charcoal;
+}
+
+/* Content List (Dialog) */
+.mat-dialog-actions {
+	ul {
+		padding: 0;
+		.md-chip-list-wrapper {
+			margin: 10px 0;
+		}
+	}
+	.mat-chip:not(.mat-basic-chip) {
+		color: $charcoal;
+	}
+}
+.mat-dialog-title {
+	font-family: SouvenirStd-Medium;
 }

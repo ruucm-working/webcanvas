@@ -1,23 +1,42 @@
-// App
-@import "imports/app/app";
+/**
+ *  Imports
+ */
 
-//colors
+@import "imports/app/app";
+@import 'imports/app/sass/base/variables';
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+
+@font-face {
+	font-family: 'SouvenirStd-Medium';
+	src: url('/fonts/SouvenirStd-Medium.woff') format('woff'),
+		url('/fonts/SouvenirStd-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'SouvenirStd-Light';
+	src: url('/fonts/SouvenirStd-Light.woff') format('woff'),
+		url('/fonts/SouvenirStd-Light.ttf') format('truetype');
+}
+
 $color_royal_purple_approx: rebeccapurple;
 $color_azure_approx: #369;
 $color_tundora_approx: #444;
 $color_suva_gray_approx: #888;
 
-//fonts
-$font_0: Arial;
-$font_1: Helvetica;
-$font_2: sans-serif;
-$font_3: Cambria;
-$font_4: Georgia;
+$font_0: SouvenirStd-Medium;
+$font_1: SouvenirStd-Light;
+$font_2: Spoqa Han Sans;
+$font_safe_0: Arial;
+$font_safe_1: Helvetica;
+$font_safe_2: sans-serif;
+$font_safe_3: Cambria;
+$font_safe_4: Georgia;
 
-* {
-	font-family: $font_0, $font_1, $font_2;
-}
+/**
+ *  App Global Sass
+ */
+
 body {
 	margin: 0;
-	font-family: $font_3, $font_4;
+	font-family: $font_2, $font_safe_4;
+	color: $charcoal;
 }

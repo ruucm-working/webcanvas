@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, Input } from '@angular/core';
 import { Location } from '@angular/common';
 import { DOCUMENT } from '@angular/platform-browser';
 import { WordContents } from '../../../../imports/api/word-contents.js';
@@ -21,7 +21,8 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 })
 export class WordsComponent implements OnInit {
 	newText = '';
-	current_word;
+	// current_word;
+	@Input('current_word') current_word;
 	current_word_length = 0;
 	current_word_id: number;
 	word_list;
@@ -29,12 +30,14 @@ export class WordsComponent implements OnInit {
 	isLastScene;
 	isTitleScene;
 	location: Location;
+	@Input('master') masterName: string;
 
 	constructor(
 		private router: Router,
 		public dialog: MdDialog,
 		location: Location ) {
 		router.events.forEach((event) => {
+			console.log('event.url : ' + event.url);
 			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#WordPage") {
 				this.isTitleScene = true;
 			} else
@@ -51,22 +54,46 @@ export class WordsComponent implements OnInit {
 	trackByFn(index, item) {
 		return index;
 	}
-	ngOnInit() {
-		var refreshIntervalId = setInterval(() => this.updateData(), 100);
+	// test_func() {
+	// 	// alert('hey');
+	// 	console.log('test_func()');
+	// 	var refreshIntervalId = setInterval(() => this.updateData(2), 100);
 		
-		Meteor.subscribe("wordcontents", {
-			onReady: function () {
-				setTimeout( () => {
-					clearInterval(refreshIntervalId);
-				},100)
-			},
-			onError: function () { console.log("onError", arguments); }
-		});
+	// 	Meteor.subscribe("wordcontents", {
+	// 		onReady: function () {
+	// 			setTimeout( () => {
+	// 				clearInterval(refreshIntervalId);
+	// 			},100)
+	// 		},
+	// 		onError: function () { console.log("onError", arguments); }
+	// 	});
+	// 	// this.current_word = this.get_word(2);
+	// 	console.log('E - test_func()');
+	// }
+	ngOnInit() {
+		console.log('current_word(on Word Component) : ' + this.current_word);
+		console.log(this.current_word);
+		// var refreshIntervalId = setInterval(() => this.updateData(1), 100);
+		
+		// Meteor.subscribe("wordcontents", {
+		// 	onReady: function () {
+		// 		setTimeout( () => {
+		// 			clearInterval(refreshIntervalId);
+		// 		},100)
+		// 	},
+		// 	onError: function () { console.log("onError", arguments); }
+		// });
+		// console.log('E - ngOnInit');
 	}
-	updateData() {
+	updateData(opt) {
 		this.word_list = WordContents.find({}, {fields: {'wordtitle':1}}).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
-		this.current_word = this.get_word(1);
+		this.current_word = this.get_word(opt);
+		console.log('this.current_word : ');
+		console.log(this.current_word);
+		console.log('E - updateData');
+		if (opt == 2)
+			this.updatefullpage();
 	}
 	get_word(which_word): Canvas[] {
 		if (!isNaN(which_word)) {
@@ -174,7 +201,7 @@ export class WordsComponent implements OnInit {
 	}
 	destroyfullpage() {
 		if($('html').hasClass('fp-enabled')){
-		    $.fn.fullpage.destroy('all');
+			$.fn.fullpage.destroy('all');
 		}
 		return true;
 	}

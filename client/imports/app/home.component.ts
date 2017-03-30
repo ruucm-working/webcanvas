@@ -19,7 +19,7 @@ export class HomeComponent {
 	constructor(
 		private _service:AuthenticationService,
 		private translate: TranslateService
-	) { }
+	){}
 	logout() {
 		this._service.logout('home');
 	}

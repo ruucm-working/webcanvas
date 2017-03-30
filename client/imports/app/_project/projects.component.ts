@@ -5,14 +5,16 @@ import { Component } from '@angular/core';
 	template: `
 	<div class="myprojects">
 		<h2>Project</h2>
-		<h3>🚦Construction Mode🚦</h3>
+		<h3>🍿Construction Mode</h3>
 	</div>
 	`,
 	styles: [ `
 	.myprojects {
-		height: 100%;
 		width: 100%;
-		background: yellow;
+		background: #F9ACB3;
+		margin: 30px;
+		padding: 6px;
+		border-radius: 16px;
 	}` ],
 })
 export class ProjectsComponent {

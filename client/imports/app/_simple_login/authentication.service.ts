@@ -13,9 +13,6 @@ export class User {
 export class AuthenticationService {
 	constructor(
 		private _router: Router){}
-	route_test() {
-		this._router.navigate(['login']);
-	}
 	logout(navigateTo) {
 		localStorage.removeItem("user");
 		if (navigateTo == 'home')
