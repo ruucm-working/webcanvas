@@ -8,7 +8,7 @@ import { UsersDatabase } from '../../../../imports/api/users-database.js'
 	template: `
 		<form (ngSubmit)="addUser(newId, newPassword)">
 			<input [(ngModel)]="newId" type="text" name="text" placeholder="Type new Id"/>
-			<input [(ngModel)]="newPassword" type="text" name="text" placeholder="Type new Id"/>
+			<input [(ngModel)]="newPassword" type="text" name="text" placeholder="Type new PW"/>
 			<input type="submit" value="Submit">
 		</form>
 		<div>
