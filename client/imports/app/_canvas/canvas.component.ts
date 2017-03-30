@@ -39,7 +39,6 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#CanvasPage") {
 				console.log('title scene event');
 				this.stop_other_anims();
-				myGlobals.title_timeline.play();
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
@@ -181,6 +180,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 				slidesNavPosition: 'top',
 				sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
 				controlArrows: false,
+				scrollOverflow: true
 			});
 		}
 		//Promise 선언

@@ -1,5 +1,5 @@
 import template from './home.component.html';
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
@@ -17,7 +17,6 @@ import { Meteor } from 'meteor/meteor';
 export class HomeComponent {
 	home_words;
 	constructor(
-		@Inject(DOCUMENT) private document: Document,
 		private _service:AuthenticationService,
 		private translate: TranslateService
 	) { }
@@ -26,13 +25,5 @@ export class HomeComponent {
 	}
 	change_lang(value) {
 		this.translate.use(value);
-	}
-	@HostListener("window:scroll", [])
-	onWindowScroll() {
-		console.log('onWindowScroll');
-		let number = this.document.body.scrollTop;
-		if (number > 100) {
-			// this.navIsFixed = true;
-		}
 	}
 }
