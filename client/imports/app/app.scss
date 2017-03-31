@@ -94,6 +94,16 @@ ul {
 			margin-left: 24px;
 		}
 	}
+	.permalink_copy_button {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 2;
+		text-align: right;
+		button {
+			margin: 15px;
+		}
+	}
 	.navigate_fab_buttons {
 		position: absolute;
 		bottom: 0;

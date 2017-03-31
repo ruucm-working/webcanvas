@@ -20,15 +20,16 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 	}` ],
 })
 export class WordsComponent implements OnInit {
-	newText = '';
 	@Input('current_word') current_word;
 	@Input('current_word_length') current_word_length;
 	@Input('current_word_id') current_word_id;
+	@Input('current_word_url') current_word_url;
 	@Input('word_list') word_list;
 	@Input('word_list_length') word_list_length;
+	@Input('master') masterName: string;
 	isLastScene;
 	isTitleScene;
-	@Input('master') masterName: string;
+	isCopied1: boolean = false;
 
 	constructor(
 		private router: Router,
@@ -48,22 +49,22 @@ export class WordsComponent implements OnInit {
 			}
 		});
 	}
+	ngOnInit() {
+		
+		// $(document).ready(function () {
+		// 	console.log('current_word_id : ' + this.current_word_id);
+			
+		// });
+	}
 	trackByFn(index, item) {
 		return index;
-	}
-	updateData(opt) {
-		this.word_list = WordContents.find({}, {fields: {'wordtitle':1}}).map((messages: Canvas[]) => { return messages; });
-		this.word_list_length = this.word_list.length;
-		this.current_word = this.get_word(opt);
-		console.log(this.current_word);
-		// if (opt == 2)
-		// 	this.updatefullpage();
 	}
 	get_word(which_word): Canvas[] {
 		if (!isNaN(which_word)) {
 			this.current_word_id = which_word;
 			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
+			// this.update_permalink(this.current_word_id);
 			return res;
 		} else if(which_word == 'older') {
 			this.current_word_id -= 1;
@@ -76,6 +77,7 @@ export class WordsComponent implements OnInit {
 				this.location.go('slider-dashboard/#WordPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
+				// this.update_permalink(this.current_word_id);
 			}
 		} else if(which_word == 'younger') {
 			this.current_word_id += 1;
@@ -88,6 +90,7 @@ export class WordsComponent implements OnInit {
 				this.location.go('slider-dashboard/#WordPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
+				// this.update_permalink(this.current_word_id);
 			}
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
@@ -95,6 +98,11 @@ export class WordsComponent implements OnInit {
 			return res;
 		}
 		return true;
+	}
+	update_permalink(id) {
+		var getUrl = window.location;
+		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+		this.current_word_url = baseUrl + 'words/'+ id;
 	}
 	get_recent_word() {
 		this.current_word = this.get_word(this.word_list_length);
@@ -107,8 +115,10 @@ export class WordsComponent implements OnInit {
 		let dialogRef = this.dialog.open(DialogShowWordList, config);
 		dialogRef.afterClosed().subscribe(
 			result => {
+			console.log('curr - result : ' + result);
 			if (result != undefined) {
-				this.current_word = this.get_word(result)
+				this.current_word = this.get_word(result);
+				// console.log('curr - result : ' + result);
 				this.updatefullpage();
 			}
 		});
@@ -166,6 +176,7 @@ export class WordsComponent implements OnInit {
 			// 실패시 
 			console.error(error);
 		});
+		this.update_permalink(this.current_word_id);
 	}
 	destroyfullpage() {
 		if($('html').hasClass('fp-enabled')){

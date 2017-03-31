@@ -9,5 +9,8 @@
 		<button md-button (click)="openWordListDialog()">Word List</button>
 		<button md-button (click)="get_recent_word()">Recent Word</button>
 	</div>
+	<div class="permalink_copy_button">
+		<button [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="current_word_url" (cbOnSuccess)="isCopied1 = true">Share it!</button>
+	</div>
 </div>
-<div (scroll)="onScroll($event)" *ngFor="let slide of current_word; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text | safeHtml">Title</div>
+<div (scroll)="onScroll($event)" *ngFor="let slide of current_word; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text | safeHtml"></div>

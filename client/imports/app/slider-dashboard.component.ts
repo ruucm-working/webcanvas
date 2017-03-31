@@ -21,6 +21,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	current_word;
 	current_word_length = 0;
 	current_word_id: number;
+	current_word_url;
 	word_list;
 	word_list_length = 0;
 	master: string = 'Master';
@@ -50,6 +51,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	get_word(which_word): Canvas[] {
 		if (!isNaN(which_word)) {
 			this.current_word_id = which_word;
+			this.make_permalink(this.current_word_id);
 			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
 			return res;
@@ -60,13 +62,18 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		}
 		return true;
 	}
+	make_permalink(id) {
+		var getUrl = window.location;
+		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+		this.current_word_url = baseUrl + 'words/'+ id;
+	}
 	updateData(opt) {
 		var isfromPermalink = false;
 		if (opt == 'init')
 			opt = 1;
 		else
 			isfromPermalink = true;
-		this.word_list = WordContents.find({}, {fields: {'wordtitle':1}}).map((messages: Canvas[]) => { return messages; });
+		this.word_list = WordContents.find({}, {fields: {'content':0}}).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 		this.current_word = this.get_word(opt);
 		this.updatefullpage(isfromPermalink);

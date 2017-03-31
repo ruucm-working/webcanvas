@@ -22,6 +22,7 @@ import {HttpModule, Http} from "@angular/http";
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { SafeHtmlPipe } from './safe.html.pipe';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import './__external_lib/mo.min.js';
 import './__external_lib/mojs-player.min.js';
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: Http) {
 		ReactiveFormsModule,
 		AppRoutingModule,
 		MaterialModule,
+		ClipboardModule,
 		FlexLayoutModule.forRoot(),
 		FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
 		TranslateModule.forRoot({
