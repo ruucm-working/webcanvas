@@ -56,8 +56,8 @@ export class WordsComponent implements OnInit {
 		this.word_list_length = this.word_list.length;
 		this.current_word = this.get_word(opt);
 		console.log(this.current_word);
-		if (opt == 2)
-			this.updatefullpage();
+		// if (opt == 2)
+		// 	this.updatefullpage();
 	}
 	get_word(which_word): Canvas[] {
 		if (!isNaN(which_word)) {
@@ -133,7 +133,7 @@ export class WordsComponent implements OnInit {
 				showActiveTooltip: true,
 				slidesNavigation: true,
 				slidesNavPosition: 'top',
-				sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
+				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
 				scrollOverflow: true
 			});

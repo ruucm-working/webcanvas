@@ -29,42 +29,13 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		private route: ActivatedRoute ) {
 	}
 	ngOnInit() {
-		console.log('this.route.params : ' + this.route.params);
-		console.log(this.route.params);
 		this.route.params
 			.switchMap((params: Params) => this.ready_words_content(+params['plink']))
 			.subscribe(result => this.hero = result);
-
-		console.log('E - ngOnInit');
-		console.log('result : ' + this.hero);
-
-		$( document ).ready(function() {
-			if($('html').hasClass('fp-enabled')){
-				$.fn.fullpage.destroy('all');
-			}
-			$('#fullpage').fullpage({
-				//Navigation
-				menu: '#menu',
-				lockAnchors: false,
-				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
-				navigation: true,
-				navigationPosition: 'right',
-				navigationTooltips: ['Canvas', 'Project', 'Word'],
-				showActiveTooltip: true,
-				slidesNavigation: true,
-				slidesNavPosition: 'top',
-				sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
-				controlArrows: false,
-				scrollOverflow: true
-			});
-		});
 	}
 	ready_words_content(plink) {
-		console.log('S - test_route_func');
-		console.log('plink : ' + plink);
 		if (isNaN(plink))
-			plink = 1;
-		console.log('plink : ' + plink);
+			plink = 'init';
 		var refreshIntervalId = setInterval(() => this.updateData(plink), 100);
 		Meteor.subscribe("wordcontents", {
 			onReady: function () {
@@ -81,7 +52,6 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			this.current_word_id = which_word;
 			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
-			$.fn.fullpage.moveTo('WordPage');
 			return res;
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
@@ -91,16 +61,17 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		return true;
 	}
 	updateData(opt) {
-		console.log('S - updateData');
+		var isfromPermalink = false;
+		if (opt == 'init')
+			opt = 1;
+		else
+			isfromPermalink = true;
 		this.word_list = WordContents.find({}, {fields: {'wordtitle':1}}).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 		this.current_word = this.get_word(opt);
-		console.log('this.current_word : ');
-		console.log(this.current_word);
-		console.log('E - updateData');
-		this.updatefullpage();
+		this.updatefullpage(isfromPermalink);
 	}
-	updatefullpage() {
+	updatefullpage(isfromPermalink) {
 		var reloadfullpage = function() {
 			$('#fullpage').fullpage({
 				menu: '#menu',
@@ -116,7 +87,6 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				controlArrows: false,
 				scrollOverflow: true
 			});
-			// $.fn.fullpage.moveTo(3);
 		}
 		//Promise 선언
 		var _promise = function (param) {
@@ -142,6 +112,8 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			// 성공시
 			reloadfullpage();
 			console.log(text);
+			if (isfromPermalink)
+				$.fn.fullpage.moveTo('WordPage');
 		}, function (error) {
 			// 실패시 
 			console.error(error);
@@ -157,7 +129,6 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		this._service.logout();
 	}
 	ngOnDestroy() {
-		console.log('On Destory Slider Dashboard');
 		if($('html').hasClass('fp-enabled')){
 			$.fn.fullpage.destroy('all');
 		}
