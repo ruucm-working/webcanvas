@@ -34,6 +34,14 @@ export class AdminComponent {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
+		Meteor.subscribe("canvascontents", {
+			onReady: function () {
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
 	}
 	updateData() {
 		this.my_words = this.get_words();
@@ -55,8 +63,6 @@ export class AdminComponent {
 		this.my_canvases = this.get_canvases();
 	}
 	addCanvasContents(canvas, editorContent) {
-		console.log('canvas._id : ');
-		console.log(canvas._id);
 		var value = canvas.content;
 		value.push({ id: value.length + 1, text: editorContent, createdAt: new Date, });
 		CanvasContents.update(canvas._id, {
@@ -83,7 +89,6 @@ export class AdminComponent {
 			createdAt: new Date,
 		});
 		this.project_title = '';
-		// this.my_canvases = this.get_canvases();
 	}
 	addWord(word_title) {
 		var inital_value = [ { id: 1, text: word_title} ];
@@ -110,9 +115,6 @@ export class AdminComponent {
 		this.editorContent3 = '';
 	}
 	get_words(): Canvas[] {
-		console.log('get_words !');
-		console.log('WordContents.find().map((messages: Canvas[]) => { return messages; }) : ');
-		console.log(WordContents.find().map((messages: Canvas[]) => { return messages; }));
 		return WordContents.find().map((messages: Canvas[]) => { return messages; });
 	}
 	removeWord(word) {
