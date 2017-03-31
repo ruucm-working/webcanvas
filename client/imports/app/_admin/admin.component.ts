@@ -15,8 +15,8 @@ export class AdminComponent {
 	canvas_title = '';
 	project_title = '';
 	word_title = '';
-	my_words = this.get_words();
-	my_canvases = this.get_canvases();
+	my_words;
+	my_canvases;
 	public editorContent: string = 'My Canvas\'s Contents'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
@@ -25,6 +25,19 @@ export class AdminComponent {
 		private _service:AuthenticationService){}
 	ngOnInit(){
 		this._service.checkCredentials();
+		var refreshIntervalId = setInterval(() => this.updateData(), 100);
+		Meteor.subscribe("wordcontents", {
+			onReady: function () {
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
+	}
+	updateData() {
+		this.my_words = this.get_words();
+		this.my_canvases = this.get_canvases();
 	}
 	logout() {
 		this._service.logout();

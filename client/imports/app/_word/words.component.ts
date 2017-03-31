@@ -21,24 +21,22 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 })
 export class WordsComponent implements OnInit {
 	newText = '';
-	// current_word;
 	@Input('current_word') current_word;
-	current_word_length = 0;
-	current_word_id: number;
-	word_list;
-	word_list_length = 0;
+	@Input('current_word_length') current_word_length;
+	@Input('current_word_id') current_word_id;
+	@Input('word_list') word_list;
+	@Input('word_list_length') word_list_length;
 	isLastScene;
 	isTitleScene;
-	location: Location;
 	@Input('master') masterName: string;
 
 	constructor(
 		private router: Router,
 		public dialog: MdDialog,
-		location: Location ) {
+		private location: Location ) {
 		router.events.forEach((event) => {
-			console.log('event.url : ' + event.url);
-			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#WordPage") {
+			console.log('(event.url).slice(-9) : ' + (event.url).slice(-9));
+			if ((event.url).slice(-9) == "#WordPage") {
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
@@ -49,49 +47,15 @@ export class WordsComponent implements OnInit {
 					this.isLastScene = false; 
 			}
 		});
-		this.location = location;
 	}
 	trackByFn(index, item) {
 		return index;
-	}
-	// test_func() {
-	// 	// alert('hey');
-	// 	console.log('test_func()');
-	// 	var refreshIntervalId = setInterval(() => this.updateData(2), 100);
-		
-	// 	Meteor.subscribe("wordcontents", {
-	// 		onReady: function () {
-	// 			setTimeout( () => {
-	// 				clearInterval(refreshIntervalId);
-	// 			},100)
-	// 		},
-	// 		onError: function () { console.log("onError", arguments); }
-	// 	});
-	// 	// this.current_word = this.get_word(2);
-	// 	console.log('E - test_func()');
-	// }
-	ngOnInit() {
-		console.log('current_word(on Word Component) : ' + this.current_word);
-		console.log(this.current_word);
-		// var refreshIntervalId = setInterval(() => this.updateData(1), 100);
-		
-		// Meteor.subscribe("wordcontents", {
-		// 	onReady: function () {
-		// 		setTimeout( () => {
-		// 			clearInterval(refreshIntervalId);
-		// 		},100)
-		// 	},
-		// 	onError: function () { console.log("onError", arguments); }
-		// });
-		// console.log('E - ngOnInit');
 	}
 	updateData(opt) {
 		this.word_list = WordContents.find({}, {fields: {'wordtitle':1}}).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 		this.current_word = this.get_word(opt);
-		console.log('this.current_word : ');
 		console.log(this.current_word);
-		console.log('E - updateData');
 		if (opt == 2)
 			this.updatefullpage();
 	}
@@ -110,6 +74,8 @@ export class WordsComponent implements OnInit {
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
 				this.location.go('slider-dashboard/#WordPage');
+				this.isTitleScene = true; 
+				this.isLastScene = false; 
 			}
 		} else if(which_word == 'younger') {
 			this.current_word_id += 1;
@@ -120,6 +86,8 @@ export class WordsComponent implements OnInit {
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
 				this.location.go('slider-dashboard/#WordPage');
+				this.isTitleScene = true; 
+				this.isLastScene = false; 
 			}
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;

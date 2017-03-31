@@ -1,10 +1,10 @@
-import template from './slider-dashboard.component.html';
-import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
 import { ActivatedRoute, Params } from '@angular/router';
 import { WordContents } from '../../../imports/api/word-contents.js';
+import template from './slider-dashboard.component.html';
+import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 import myGlobals = require('./globals');
 
 @Component({
@@ -19,38 +19,31 @@ import myGlobals = require('./globals');
 export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	hero;
 	current_word;
+	current_word_length = 0;
 	current_word_id: number;
 	word_list;
 	word_list_length = 0;
 	master: string = 'Master';
 	constructor(
 		private _service:AuthenticationService,
-		private route: ActivatedRoute, ) {
+		private route: ActivatedRoute ) {
 	}
 	ngOnInit() {
+		console.log('this.route.params : ' + this.route.params);
+		console.log(this.route.params);
 		this.route.params
-			.switchMap((params: Params) => this.test_route_func(params['plink']))
+			.switchMap((params: Params) => this.ready_words_content(+params['plink']))
 			.subscribe(result => this.hero = result);
-		// console.log('masterName : ' + this.masterName);
-		var refreshIntervalId = setInterval(() => this.updateData(2), 100);
-		
-		Meteor.subscribe("wordcontents", {
-			onReady: function () {
-				setTimeout( () => {
-					clearInterval(refreshIntervalId);
-				},100)
-			},
-			onError: function () { console.log("onError", arguments); }
-		});
+
 		console.log('E - ngOnInit');
 		console.log('result : ' + this.hero);
 
 		$( document ).ready(function() {
 			if($('html').hasClass('fp-enabled')){
-			    $.fn.fullpage.destroy('all');
+				$.fn.fullpage.destroy('all');
 			}
 			$('#fullpage').fullpage({
-			 	//Navigation
+				//Navigation
 				menu: '#menu',
 				lockAnchors: false,
 				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
@@ -66,9 +59,21 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			});
 		});
 	}
-	test_route_func(plink) {
+	ready_words_content(plink) {
 		console.log('S - test_route_func');
 		console.log('plink : ' + plink);
+		if (isNaN(plink))
+			plink = 1;
+		console.log('plink : ' + plink);
+		var refreshIntervalId = setInterval(() => this.updateData(plink), 100);
+		Meteor.subscribe("wordcontents", {
+			onReady: function () {
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
 		return 'A';
 	}
 	get_word(which_word): Canvas[] {
@@ -76,27 +81,8 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			this.current_word_id = which_word;
 			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
+			$.fn.fullpage.moveTo('WordPage');
 			return res;
-		} else if(which_word == 'older') {
-			this.current_word_id -= 1;
-			if (this.current_word_id - 1 < 1) {
-				alert('It is the First Canvas!');
-				this.current_word_id += 1;
-				return false;
-			} else {
-				this.current_word = this.get_word(this.current_word_id);
-				this.location.go('slider-dashboard/#WordPage');
-			}
-		} else if(which_word == 'younger') {
-			this.current_word_id += 1;
-			if (this.current_word_id - 1 >= this.word_list_length) {
-				alert('It is the Last Canvas!');
-				this.current_word_id -= 1;
-				return false;
-			} else {
-				this.current_word = this.get_word(this.current_word_id);
-				this.location.go('slider-dashboard/#WordPage');
-			}
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
@@ -112,8 +98,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 		console.log('this.current_word : ');
 		console.log(this.current_word);
 		console.log('E - updateData');
-		if (opt == 2)
-			this.updatefullpage();
+		this.updatefullpage();
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
@@ -131,6 +116,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				controlArrows: false,
 				scrollOverflow: true
 			});
+			// $.fn.fullpage.moveTo(3);
 		}
 		//Promise 선언
 		var _promise = function (param) {
