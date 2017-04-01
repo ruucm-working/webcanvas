@@ -24,9 +24,4 @@ export class MyCanvas {
 		let browserLang = translate.getBrowserLang();
 		translate.use(browserLang.match(/en|kr/) ? browserLang : 'en');
 	}
-	// ngOnInit() {
-	// 	Meteor.startup(function() {
-
-	//   });
-	// }
 }

@@ -1,0 +1,8 @@
+<h1 md-dialog-title>File Uploader</h1>
+<button class="fileBrowse">File Browse</button>
+<h3>File List</h3>
+<ul>
+	<li *ngFor="let data of get_dataEntries()">
+		<a [attr.href]="['gridfs/myFiles/'+ data.md5]">{{data.filename}}</a>
+	</li>
+</ul>

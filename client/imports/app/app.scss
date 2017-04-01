@@ -91,8 +91,18 @@ body {
 	position: absolute;
 	z-index: 99;
 	background: grey;
-
 	color: white
+}
+.admin_file_uploader_button {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	z-index: 2;
+	text-align: right;
+	opacity: 0.8;
+	a {
+		margin: 35px;
+	}
 }
 
 /**
@@ -118,7 +128,16 @@ body {
 		z-index: 2;
 		text-align: left;
 		button {
-			margin: 15px;
+			margin: 25px;
+			background: transparent;
+			border: none;
+			opacity: 0.34;
+			font-size: 18px;
+			&.copied-toggle {
+				background: red;
+				color: $melon;
+				font-size: 20px;
+			}
 		}
 	}
 	.navigate_fab_buttons {

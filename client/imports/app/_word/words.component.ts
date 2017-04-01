@@ -4,10 +4,10 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
-import template from './words.component.html';
-import template_dialog from './dialog-show-word-list.html';
 import { SafeHtmlPipe } from '../safe.html.pipe';
 import { Counts } from 'meteor/tmeasday:publish-counts';
+import template from './words.component.html';
+import template_dialog from './dialog-show-word-list.html';
 
 @Component({
 	selector: 'my-words',
@@ -29,6 +29,8 @@ export class WordsComponent implements OnInit {
 	@Input('master') masterName: string;
 	isLastScene;
 	isTitleScene;
+	share_button_text = 'Share It!';
+	isCopied: boolean = false;
 	isCopied1: boolean = false;
 
 	constructor(
@@ -52,12 +54,20 @@ export class WordsComponent implements OnInit {
 	trackByFn(index, item) {
 		return index;
 	}
+	share_text_change() {
+		if (!this.isCopied) {
+			this.share_button_text = "Now, Link Copied";
+			this.isCopied = true;
+		} else {
+			this.share_button_text = "Share It!";
+			this.isCopied = false;
+		}
+	}
 	get_word(which_word): Canvas[] {
 		if (!isNaN(which_word)) {
 			this.current_word_id = which_word;
 			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
-			// this.update_permalink(this.current_word_id);
 			return res;
 		} else if(which_word == 'older') {
 			this.current_word_id -= 1;
@@ -70,7 +80,6 @@ export class WordsComponent implements OnInit {
 				this.location.go('slider-dashboard/#WordPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
-				// this.update_permalink(this.current_word_id);
 			}
 		} else if(which_word == 'younger') {
 			this.current_word_id += 1;
@@ -83,7 +92,6 @@ export class WordsComponent implements OnInit {
 				this.location.go('slider-dashboard/#WordPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
-				// this.update_permalink(this.current_word_id);
 			}
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
@@ -96,6 +104,8 @@ export class WordsComponent implements OnInit {
 		var getUrl = window.location;
 		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
 		this.current_word_url = baseUrl + 'words/'+ id;
+		this.isCopied = false;
+		this.share_button_text = "Share It!";
 	}
 	get_recent_word() {
 		this.current_word = this.get_word(this.word_list_length);

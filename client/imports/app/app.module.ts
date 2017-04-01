@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyCanvas } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CanvasComponent } from './_canvas/canvas.component';
-import { DialogShowCanvasList } from './_canvas/canvas.component';
-import { DialogShowWordList } from './_word/words.component';
+import { CanvasComponent, DialogShowCanvasList } from './_canvas/canvas.component';
 import { ProjectsComponent } from './_project/projects.component';
-import { WordsComponent } from './_word/words.component';
+import { WordsComponent, DialogShowWordList } from './_word/words.component';
+import { AdminComponent, DialogShowFileList } from './_admin/admin.component';
 import { HomeComponent } from './home.component';
 import { MnFullpageService } from "ng2-fullpage";
 import { SliderDashboardComponent } from './slider-dashboard.component';
@@ -16,11 +15,10 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LoginComponent } from './_simple_login/login.component';
 import { PrivateComponent } from './_simple_login/private.component';
 import { RegisterComponent } from './_simple_login/register.component';
-import { AdminComponent } from './_admin/admin.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
-import {HttpModule, Http} from "@angular/http";
-import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
-import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { HttpModule, Http } from "@angular/http";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { SafeHtmlPipe } from './safe.html.pipe';
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -44,10 +42,10 @@ export function HttpLoaderFactory(http: Http) {
 		PrivateComponent,
 		RegisterComponent,
 		AdminComponent,
-		DialogShowCanvasList, DialogShowWordList,
+		DialogShowCanvasList, DialogShowWordList, DialogShowFileList,
 		SafeHtmlPipe
 	],
-	entryComponents: [DialogShowCanvasList, DialogShowWordList],
+	entryComponents: [ DialogShowCanvasList, DialogShowWordList, DialogShowFileList ],
 	imports: [
 		BrowserModule,
 		FormsModule,

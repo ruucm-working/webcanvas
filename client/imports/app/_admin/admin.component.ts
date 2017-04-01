@@ -5,7 +5,9 @@ import { ProjectContents } from '../../../../imports/api/project-contents.js';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { MyFiles } from '../../../../imports/api/my-files.js';
 import { Slide } from '../slide.ts';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import template from './admin.component.html'
+import template_dialog_filelist from './dialog-show-file-list.html';
 
 @Component({
 	selector: 'my-admin',
@@ -19,32 +21,17 @@ export class AdminComponent {
 	isCopied1: boolean = false;
 	my_words;
 	my_canvases;
-	dataEntries;
-	baseurl;
 	public editorContent: string = 'My Canvas\'s Contents'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
 
 	constructor(
-		private _service:AuthenticationService){}
+		private _service:AuthenticationService,
+		public dialog: MdDialog
+	){}
 	ngOnInit(){
 		this._service.checkCredentials();
-		var getUrl = window.location;
-		var baselocationUrl = getUrl .protocol + "//" + getUrl.host + getUrl.pathname.split('/')[0];
-		this.baseurl = baselocationUrl + MyFiles.baseURL;
-		// Meteor.subscribe("myData", function(){
-		// 	console.log(states, states.find(), states.find().fetch());
-		// });
 		var refreshIntervalId = setInterval(() => this.updateData(), 100);
-		Meteor.subscribe("myData", {
-			onReady: function () {
-				console.log('onReady');
-				setTimeout( () => {
-					clearInterval(refreshIntervalId);
-				},100)
-			},
-			onError: function () { console.log("onError", arguments); }
-		});
 		Meteor.subscribe("wordcontents", {
 			onReady: function () {
 				setTimeout( () => {
@@ -61,31 +48,26 @@ export class AdminComponent {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
-		// This assigns a file upload drop zone to some DOM node
-		// MyFiles.resumable.assignDrop($(".fileDrop"));
-		MyFiles.resumable.assignBrowse($(".fileBrowse"));
-		// When a file is added via drag and drop
-		MyFiles.resumable.on('fileAdded', function (file) {
-		// Create a new file in the file collection to upload
-			MyFiles.insert({
-				_id: file.uniqueIdentifier,  // This is the ID resumable will use
-				filename: file.fileName,
-				contentType: file.file.type
-			},	function (err, _id) {  // Callback to .insert
-					if (err) { return console.error("File creation failed!", err); }
-					// Once the file exists on the server, start uploading
-					MyFiles.resumable.upload();
-				}
-			);
-		});
 	}
-	get_dataEntries() {
-		return MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
+	openFileListDialog() {
+		const config = new MdDialogConfig();
+
+		// config.data = this.word_list;
+		let dialogRef = this.dialog.open(DialogShowFileList, config);
+		// dialogRef.afterClosed().subscribe(
+		// 	result => {
+		// 	console.log('curr - result : ' + result);
+		// 	if (result != undefined) {
+		// 		this.current_word = this.get_word(result);
+		// 		// console.log('curr - result : ' + result);
+		// 		this.updatefullpage();
+		// 	}
+		// });
 	}
 	updateData() {
 		this.my_words = this.get_words();
 		this.my_canvases = this.get_canvases();
-		this.dataEntries = MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
+		// this.dataEntries = MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
 	}
 	logout() {
 		this._service.logout();
@@ -160,5 +142,53 @@ export class AdminComponent {
 	removeWord(word) {
 		WordContents.remove(word._id);
 		this.my_words = this.get_words();
+	}
+}
+
+@Component({
+	selector: 'dialog-show-file-list',
+	template: template_dialog_filelist
+})
+export class DialogShowFileList {
+	private file_list;
+	dataEntries;
+	baseurl;
+
+	constructor(public dialogRef: MdDialogRef<DialogShowFileList>) {}
+	ngOnInit() {
+		// data
+		this.file_list = this.dialogRef.config.data;
+		var getUrl = window.location;
+		var baselocationUrl = getUrl .protocol + "//" + getUrl.host + getUrl.pathname.split('/')[0];
+		this.baseurl = baselocationUrl + MyFiles.baseURL;
+		Meteor.subscribe("myData", {
+			onReady: function () {
+				console.log('onReady');
+				// setTimeout( () => {
+				// 	clearInterval(refreshIntervalId);
+				// },100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
+		// This assigns a file upload drop zone to some DOM node
+		// MyFiles.resumable.assignDrop($(".fileDrop"));
+		MyFiles.resumable.assignBrowse($(".fileBrowse"));
+		// When a file is added via drag and drop
+		MyFiles.resumable.on('fileAdded', function (file) {
+		// Create a new file in the file collection to upload
+			MyFiles.insert({
+				_id: file.uniqueIdentifier,  // This is the ID resumable will use
+				filename: file.fileName,
+				contentType: file.file.type
+			},	function (err, _id) {  // Callback to .insert
+					if (err) { return console.error("File creation failed!", err); }
+					// Once the file exists on the server, start uploading
+					MyFiles.resumable.upload();
+				}
+			);
+		});
+	}
+	get_dataEntries() {
+		return MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
 	}
 }
