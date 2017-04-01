@@ -1,8 +1,9 @@
 {
 	"HOME": {
-		"TITLE": "룸(ruucm) 이라고 해요",
+		"TITLE": "루움의 블로그 입니다",
 		"SELECT": "언어를 선택해주세요",
-		"INSTRUCTIONA": "⬅️, ⬇️, ➡️, ⬆️  키를 사용해보세요 😀",
-		"INSTRUCTIONB": "아니면 그냥 👆"
+		"INSTRUCTIONA": "⬅️ ⬇️ ➡️ ⬆️ 😀",
+		"INSTRUCTIONB": "아니면 그냥, 👆",
+		"GO": "시작하기"
 	}
 }

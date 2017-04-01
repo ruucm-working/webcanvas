@@ -16,20 +16,22 @@
 	.hello {
 		color: $melon-light;
 		h2 {
-			font-family: SouvenirStd-Medium;
+			font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
+			font-weight: 100;
 		}
 	}
 	.myhome-descriptions {
 		h3 {
 			font-weight: 400;
+			font-family: Spoqa Han Sans Thin;
 		}
 	}
 	h3, h2	{
 		padding: 0 10px;
-		font-family: Spoqa Han Sans;
+		font-family: Spoqa Han Sans Regular;
 	}
 	button {
-		font-family: SouvenirStd-Medium;
+		font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 		font-weight: bold;
 	}
 }
@@ -136,14 +138,14 @@ ul {
 		h3 {
 			background: pink;
 			margin: 2.56em 0;
-			font-family: Spoqa Han Sans;
+			font-family: Spoqa Han Sans Regular;
 			font-weight: 300;
 		}
 		.fp-tableCell {
 			padding: 0 35px;
-			font-family: SouvenirStd-Medium;
+			font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 			h2 {
-				font-family: SouvenirStd-Medium;
+				font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 			}
 		}
 	}
@@ -175,7 +177,7 @@ body #fp-nav ul li .fp-tooltip {
 	padding: 0 35px;
 }
 body #fp-nav ul li .fp-tooltip {
-	font-family: Spoqa Han Sans;
+	font-family: Spoqa Han Sans Regular;
 	color: $charcoal;
 }
 
@@ -192,5 +194,5 @@ body #fp-nav ul li .fp-tooltip {
 	}
 }
 .mat-dialog-title {
-	font-family: SouvenirStd-Medium;
+	font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 }

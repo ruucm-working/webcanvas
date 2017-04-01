@@ -4,17 +4,25 @@
 
 @import "imports/app/app";
 @import 'imports/app/sass/base/variables';
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-
+@font-face {
+	font-family: 'SouvenirStd-Bold';
+	src: url('/fonts/SouvenirStd-Bold.woff') format('woff'),
+		url('/fonts/SouvenirStd-Bold.ttf') format('truetype');
+}
 @font-face {
 	font-family: 'SouvenirStd-Medium';
 	src: url('/fonts/SouvenirStd-Medium.woff') format('woff'),
 		url('/fonts/SouvenirStd-Medium.ttf') format('truetype');
 }
 @font-face {
-	font-family: 'SouvenirStd-Light';
-	src: url('/fonts/SouvenirStd-Light.woff') format('woff'),
-		url('/fonts/SouvenirStd-Light.ttf') format('truetype');
+	font-family: 'Spoqa Han Sans Regular';
+	src: url('/fonts/Spoqa Han Sans Regular.woff') format('woff'),
+		url('/fonts/Spoqa Han Sans Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Spoqa Han Sans Thin';
+	src: url('/fonts/Spoqa Han Sans Thin.woff') format('woff'),
+		url('/fonts/Spoqa Han Sans Thin.ttf') format('truetype');
 }
 
 $color_royal_purple_approx: rebeccapurple;
@@ -22,9 +30,9 @@ $color_azure_approx: #369;
 $color_tundora_approx: #444;
 $color_suva_gray_approx: #888;
 
-$font_0: SouvenirStd-Medium;
-$font_1: SouvenirStd-Light;
-$font_2: Spoqa Han Sans;
+$font_0: SouvenirStd-Bold;
+$font_1: SouvenirStd-Medium;
+$font_2: Spoqa Han Sans Regular;
 $font_safe_0: Arial;
 $font_safe_1: Helvetica;
 $font_safe_2: sans-serif;
