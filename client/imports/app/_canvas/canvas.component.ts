@@ -176,8 +176,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 				navigationPosition: 'right',
 				navigationTooltips: ['Canvas', 'Project', 'Word'],
 				showActiveTooltip: true,
-				slidesNavigation: true,
-				slidesNavPosition: 'top',
+				slidesNavigation: false,
 				sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
 				controlArrows: false,
 				scrollOverflow: true

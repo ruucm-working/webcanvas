@@ -3,6 +3,7 @@ import { AuthenticationService } from '../_simple_login/authentication.service'
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
 import { ProjectContents } from '../../../../imports/api/project-contents.js';
 import { WordContents } from '../../../../imports/api/word-contents.js';
+import { MyFiles } from '../../../../imports/api/my-files.js';
 import { Slide } from '../slide.ts';
 import template from './admin.component.html'
 
@@ -15,8 +16,11 @@ export class AdminComponent {
 	canvas_title = '';
 	project_title = '';
 	word_title = '';
+	isCopied1: boolean = false;
 	my_words;
 	my_canvases;
+	dataEntries;
+	baseurl;
 	public editorContent: string = 'My Canvas\'s Contents'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
@@ -25,7 +29,22 @@ export class AdminComponent {
 		private _service:AuthenticationService){}
 	ngOnInit(){
 		this._service.checkCredentials();
+		var getUrl = window.location;
+		var baselocationUrl = getUrl .protocol + "//" + getUrl.host + getUrl.pathname.split('/')[0];
+		this.baseurl = baselocationUrl + MyFiles.baseURL;
+		// Meteor.subscribe("myData", function(){
+		// 	console.log(states, states.find(), states.find().fetch());
+		// });
 		var refreshIntervalId = setInterval(() => this.updateData(), 100);
+		Meteor.subscribe("myData", {
+			onReady: function () {
+				console.log('onReady');
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
 		Meteor.subscribe("wordcontents", {
 			onReady: function () {
 				setTimeout( () => {
@@ -42,10 +61,31 @@ export class AdminComponent {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
+		// This assigns a file upload drop zone to some DOM node
+		// MyFiles.resumable.assignDrop($(".fileDrop"));
+		MyFiles.resumable.assignBrowse($(".fileBrowse"));
+		// When a file is added via drag and drop
+		MyFiles.resumable.on('fileAdded', function (file) {
+		// Create a new file in the file collection to upload
+			MyFiles.insert({
+				_id: file.uniqueIdentifier,  // This is the ID resumable will use
+				filename: file.fileName,
+				contentType: file.file.type
+			},	function (err, _id) {  // Callback to .insert
+					if (err) { return console.error("File creation failed!", err); }
+					// Once the file exists on the server, start uploading
+					MyFiles.resumable.upload();
+				}
+			);
+		});
+	}
+	get_dataEntries() {
+		return MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
 	}
 	updateData() {
 		this.my_words = this.get_words();
 		this.my_canvases = this.get_canvases();
+		this.dataEntries = MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
 	}
 	logout() {
 		this._service.logout();

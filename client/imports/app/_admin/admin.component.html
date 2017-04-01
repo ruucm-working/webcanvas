@@ -5,6 +5,14 @@
 	<a routerLink="/home">go back to home</a>
 	<a routerLink="/slider-dashboard">Slider Dashboard</a>
 </div>
+<h2>File Upload</h2>
+<button class="fileBrowse">File Browse</button>
+<h3>File List</h3>
+<ul>
+	<li *ngFor="let data of get_dataEntries()">
+		<a [attr.href]="['gridfs/myFiles/'+ data.md5]">{{data.filename}}</a>
+	</li>
+</ul>
 <h2>Canvas Editor</h2>
 <form (ngSubmit)="addCanvas(canvas_title)">
 	<input [(ngModel)]="canvas_title" type="text" name="text" placeholder="Make a new Canvas"/>
@@ -28,11 +36,6 @@
 <h3>Output :</h3><div [froalaView]="editorContent2"></div>
 <br>
 <h4>*Project List</h4>
-<!-- <div *ngFor="let project of my_projects; let i=index">
-	canvas {{i+1}} : 
-	<button (click)="addProjectContents(project, editorContent2)">Edit</button>
-	<button (click)="removeProject(project)">Remove</button>
-</div> -->
 <h2>Word Editor</h2>
 <form (ngSubmit)="addWord(word_title)">
 	<input [(ngModel)]="word_title" type="text" name="text" placeholder="Make a new Word"/>

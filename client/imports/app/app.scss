@@ -44,7 +44,7 @@ ul {
 }
 
 /**
- *	General Page Object Align
+ *	General Page Objects Align
  */
 .general-page-sample {
 	-webkit-transform: scale(0.5);
@@ -67,6 +67,21 @@ ul {
 	-webkit-transform-origin: center bottom;
 	-ms-transform-origin: center bottom;
 	transform-origin: center bottom;
+}
+body {
+	#fp-nav {
+		top: 6.2%;
+		opacity: 0.75;
+		&.right {
+			right: 0;
+		}
+		ul li a span {
+			background: $charcoal;
+		}
+	}
+	.fp-slidesNav ul li a span {
+		opacity: 0.6;
+	}
 }
 
 /**
@@ -101,7 +116,7 @@ ul {
 		top: 0;
 		width: 100%;
 		z-index: 2;
-		text-align: right;
+		text-align: left;
 		button {
 			margin: 15px;
 		}

@@ -88,11 +88,11 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				navigationPosition: 'right',
 				navigationTooltips: ['Canvas', 'Project', 'Word'],
 				showActiveTooltip: true,
-				slidesNavigation: true,
-				slidesNavPosition: 'top',
+				slidesNavigation: false,
 				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
-				scrollOverflow: true
+				scrollOverflow: true,
+				dragAndMove: true
 			});
 		}
 		//Promise 선언

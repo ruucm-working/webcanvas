@@ -49,13 +49,6 @@ export class WordsComponent implements OnInit {
 			}
 		});
 	}
-	ngOnInit() {
-		
-		// $(document).ready(function () {
-		// 	console.log('current_word_id : ' + this.current_word_id);
-			
-		// });
-	}
 	trackByFn(index, item) {
 		return index;
 	}
@@ -141,11 +134,11 @@ export class WordsComponent implements OnInit {
 				navigationPosition: 'right',
 				navigationTooltips: ['Canvas', 'Project', 'Word'],
 				showActiveTooltip: true,
-				slidesNavigation: true,
-				slidesNavPosition: 'top',
+				slidesNavigation: false,
 				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
-				scrollOverflow: true
+				scrollOverflow: true,
+				dragAndMove: true
 			});
 		}
 		//Promise 선언
