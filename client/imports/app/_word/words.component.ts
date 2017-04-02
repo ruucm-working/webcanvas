@@ -1,11 +1,9 @@
-import { Component, OnInit, Pipe, PipeTransform, Input } from '@angular/core';
+import { Component, Pipe, PipeTransform, Input } from '@angular/core';
 import { Location } from '@angular/common';
-import { DOCUMENT } from '@angular/platform-browser';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { SafeHtmlPipe } from '../safe.html.pipe';
-import { Counts } from 'meteor/tmeasday:publish-counts';
 import template from './words.component.html';
 import template_dialog from './dialog-show-word-list.html';
 
@@ -19,14 +17,13 @@ import template_dialog from './dialog-show-word-list.html';
 		background: green;
 	}` ],
 })
-export class WordsComponent implements OnInit {
+export class WordsComponent {
 	@Input('current_word') current_word;
 	@Input('current_word_length') current_word_length;
 	@Input('current_word_id') current_word_id;
 	@Input('current_word_url') current_word_url;
 	@Input('word_list') word_list;
 	@Input('word_list_length') word_list_length;
-	@Input('master') masterName: string;
 	isLastScene;
 	isTitleScene;
 	share_button_text = 'Share It!';
@@ -38,7 +35,6 @@ export class WordsComponent implements OnInit {
 		public dialog: MdDialog,
 		private location: Location ) {
 		router.events.forEach((event) => {
-			console.log('(event.url).slice(-9) : ' + (event.url).slice(-9));
 			if ((event.url).slice(-9) == "#WordPage") {
 				this.isTitleScene = true;
 			} else
@@ -72,7 +68,7 @@ export class WordsComponent implements OnInit {
 		} else if(which_word == 'older') {
 			this.current_word_id -= 1;
 			if (this.current_word_id - 1 < 1) {
-				alert('It is the First Canvas!');
+				alert('It is the First Word!');
 				this.current_word_id += 1;
 				return false;
 			} else {
@@ -84,7 +80,7 @@ export class WordsComponent implements OnInit {
 		} else if(which_word == 'younger') {
 			this.current_word_id += 1;
 			if (this.current_word_id - 1 >= this.word_list_length) {
-				alert('It is the Last Canvas!');
+				alert('It is the Last Word!');
 				this.current_word_id -= 1;
 				return false;
 			} else {
@@ -103,7 +99,7 @@ export class WordsComponent implements OnInit {
 	update_permalink(id) {
 		var getUrl = window.location;
 		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
-		this.current_word_url = baseUrl + 'words/'+ id;
+		this.current_word_url = baseUrl + 'word/'+ id;
 		this.isCopied = false;
 		this.share_button_text = "Share It!";
 	}
@@ -127,6 +123,7 @@ export class WordsComponent implements OnInit {
 		});
 	}
 	older_from_current_word() {
+		// this.get_word('older');
 		if ( this.get_word('older') )
 			this.updatefullpage();
 	}
@@ -147,8 +144,7 @@ export class WordsComponent implements OnInit {
 				slidesNavigation: false,
 				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
-				scrollOverflow: true,
-				dragAndMove: true
+				scrollOverflow: true
 			});
 		}
 		//Promise 선언

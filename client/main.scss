@@ -42,6 +42,14 @@ $font_safe_4: Georgia;
 /**
  *  App Global Sass
  */
+* {
+	::selection {
+	  background: $melon; /* WebKit/Blink Browsers */
+	}
+	::-moz-selection {
+	  background: $melon; /* Gecko Browsers */
+	}
+}
 
 body {
 	margin: 0;

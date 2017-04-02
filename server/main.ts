@@ -6,7 +6,6 @@ import { MyFiles } from '../imports/api/my-files.js';
 import { Meteor } from 'meteor/meteor';
 
 Meteor.publish('wordcontents', function() {
-	// Counts.publish(this, 'counter-wordcontents', WordContents.find());
 	return WordContents.find(); 
 });
 Meteor.publish('usersdatabase', function() {

@@ -21,6 +21,7 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { SafeHtmlPipe } from './safe.html.pipe';
 import { ClipboardModule } from 'ngx-clipboard';
+import { NotFoundComponent } from './notfound.component';
 
 import './__external_lib/mo.min.js';
 import './__external_lib/mojs-player.min.js';
@@ -43,7 +44,8 @@ export function HttpLoaderFactory(http: Http) {
 		RegisterComponent,
 		AdminComponent,
 		DialogShowCanvasList, DialogShowWordList, DialogShowFileList,
-		SafeHtmlPipe
+		SafeHtmlPipe,
+		NotFoundComponent
 	],
 	entryComponents: [ DialogShowCanvasList, DialogShowWordList, DialogShowFileList ],
 	imports: [

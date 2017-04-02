@@ -1,7 +1,7 @@
 <div *ngIf="isLastScene" class="canvases_navigate">
 	<div class="navigate_fab_buttons">
-		<a md-mini-fab (click)="younger_from_current_canvase()"><md-icon>keyboard_arrow_left</md-icon></a>
-		<a md-fab (click)="older_from_current_canvase()"><md-icon>keyboard_arrow_right</md-icon></a>
+		<a md-mini-fab (click)="younger_from_current_canvase()"><md-icon>skip_previous</md-icon></a>
+		<a md-fab (click)="older_from_current_canvase()"><md-icon>skip_next</md-icon></a>
 	</div>
 </div>
 <div *ngIf="isTitleScene" class="canvases_navigate">
@@ -9,5 +9,9 @@
 		<button md-button (click)="openCanvasListDialog()">Canvas List</button>
 		<button md-button (click)="get_recent_canvas()">Recent Canvas</button>
 	</div>
+	<div class="permalink_copy_button">
+		<button [class.copied-toggle]="!isCopied" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="current_canvas_url" (cbOnSuccess)="isCopied1 = true" (click)="share_text_change()">{{share_button_text}}</button>
+	</div>
 </div>
-<div *ngFor="let slide of current_canvas; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text"></div>
+<div *ngFor="let slide of current_canvas; let i=index; trackBy: trackByFn" class="slide" [innerHTML]="slide.text">
+</div>

@@ -11,14 +11,15 @@ import { LoginComponent } from './_simple_login/login.component';
 import { PrivateComponent } from './_simple_login/private.component';
 import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
+import { NotFoundComponent } from './notfound.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent, useAsDefault:true },
 	{ path: 'slider-dashboard', component: SliderDashboardComponent },
-	{ path: 'words/:plink', component: SliderDashboardComponent },
-	{ path: 'canvas', component: CanvasComponent },
+	{ path: ':cat/:plink', component: SliderDashboardComponent },
+	{ path: 'canvas', redirectTo: '/404' },
 	{ path: 'projects', component: ProjectsComponent },
-	{ path: 'words', component: WordsComponent },
+	{ path: 'word', redirectTo: '/404' },
 	{	path: '', /*canActivate: [AuthGuard],*/
 		redirectTo: '/home',
 		pathMatch: 'full'
@@ -26,6 +27,9 @@ const routes: Routes = [
 	{ path: 'login', name: 'Login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
 	{ path: 'admin', component: AdminComponent },
+
+	{path: '404', component: NotFoundComponent},
+	{path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
 import { ActivatedRoute, Params } from '@angular/router';
+import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { WordContents } from '../../../imports/api/word-contents.js';
 import template from './slider-dashboard.component.html';
 import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
@@ -24,20 +25,25 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	current_word_url;
 	word_list;
 	word_list_length = 0;
-	master: string = 'Master';
+	current_canvas;
+	current_canvas_length = 0;
+	current_canvas_id: number;
+	current_canvas_url;
+	canvas_list;
+	canvas_list_length = 0;
 	constructor(
 		private _service:AuthenticationService,
 		private route: ActivatedRoute ) {
 	}
 	ngOnInit() {
 		this.route.params
-			.switchMap((params: Params) => this.ready_words_content(+params['plink']))
+			.switchMap((params: Params) => this.ready_contents(params['cat'], +params['plink']))
 			.subscribe(result => this.hero = result);
 	}
-	ready_words_content(plink) {
+	ready_contents(cat, plink) {
 		if (isNaN(plink))
 			plink = 'init';
-		var refreshIntervalId = setInterval(() => this.updateData(plink), 100);
+		var refreshIntervalId = setInterval(() => this.updateDatas(cat, plink), 100);
 		Meteor.subscribe("wordcontents", {
 			onReady: function () {
 				setTimeout( () => {
@@ -46,39 +52,77 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
-		return 'A';
+		Meteor.subscribe("canvascontents", {
+			onReady: function () {
+				setTimeout( () => {
+					clearInterval(refreshIntervalId);
+				},100)
+			},
+			onError: function () { console.log("onError", arguments); }
+		});
+		return 'W';
 	}
-	get_word(which_word): Canvas[] {
-		if (!isNaN(which_word)) {
-			this.current_word_id = which_word;
-			this.make_permalink(this.current_word_id);
-			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_word_length = res.length;
-			return res;
-		} else {
-			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_word_length = res.length;
-			return res;
-		}
-		return true;
-	}
-	make_permalink(id) {
-		var getUrl = window.location;
-		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
-		this.current_word_url = baseUrl + 'words/'+ id;
-	}
-	updateData(opt) {
+	updateDatas(cat, opt) {
 		var isfromPermalink = false;
+
 		if (opt == 'init')
 			opt = 1;
 		else
 			isfromPermalink = true;
+		// Handling ~/slider dashboar/* links
+		if (cat == 'slider-dashboard' || (cat == undefined && opt == 1)) {
+			this.get_canvas(1);
+			this.get_word(1);
+		} else if (cat == 'canvas') {
+			this.get_canvas(opt);
+			this.get_word(1);
+		} else if (cat == 'word') {
+			this.get_canvas(1);
+			this.get_word(opt)
+		}
+		this.updatefullpage(cat, isfromPermalink);
+	}
+	get_canvas(which_canvas): void {
+		this.canvas_list = CanvasContents.find({}, {fields: {'content':0}}).map((messages: Canvas[]) => { return messages; });
+		this.canvas_list_length = this.canvas_list.length;
+		if (!isNaN(which_canvas)) {
+			this.current_canvas_id = which_canvas;
+			this.make_permalink('canvas', this.current_canvas_id);
+			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_canvas_length = res.length;
+			this.current_canvas = res;
+		} else {
+			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_canvas_length = res.length;
+			this.current_canvas = res;
+		}
+	}
+	get_word(which_word): void {
 		this.word_list = WordContents.find({}, {fields: {'content':0}}).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
-		this.current_word = this.get_word(opt);
-		this.updatefullpage(isfromPermalink);
+
+		if (!isNaN(which_word)) {
+			this.current_word_id = which_word;
+			this.make_permalink('word' , this.current_word_id);
+			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_word_length = res.length;
+			this.current_word = res;
+		} else {
+			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_word_length = res.length;
+			return res;
+			this.current_word = res;
+		}
 	}
-	updatefullpage(isfromPermalink) {
+	make_permalink(cat, id) {
+		var getUrl = window.location;
+		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+		if (cat == 'canvas')
+			this.current_canvas_url = baseUrl + cat + '/'+ id;
+		else if (cat == 'word')
+			this.current_word_url = baseUrl + cat + '/'+ id;
+	}
+	updatefullpage(cat, isfromPermalink) {
 		var reloadfullpage = function() {
 			$('#fullpage').fullpage({
 				menu: '#menu',
@@ -91,8 +135,7 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 				slidesNavigation: false,
 				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
-				scrollOverflow: true,
-				dragAndMove: true
+				scrollOverflow: true
 			});
 		}
 		//Promise 선언
@@ -119,8 +162,12 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			// 성공시
 			reloadfullpage();
 			console.log(text);
-			if (isfromPermalink)
-				$.fn.fullpage.moveTo('WordPage');
+			if (isfromPermalink) {
+				if (cat == 'canavs')
+					$.fn.fullpage.moveTo('CanvasPage');
+				else if (cat == 'word')
+					$.fn.fullpage.moveTo('WordPage');
+			}
 		}, function (error) {
 			// 실패시 
 			console.error(error);
@@ -134,10 +181,5 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	}
 	logout() {
 		this._service.logout();
-	}
-	ngOnDestroy() {
-		if($('html').hasClass('fp-enabled')){
-			$.fn.fullpage.destroy('all');
-		}
 	}
 }

@@ -51,33 +51,26 @@ export class AdminComponent {
 	}
 	openFileListDialog() {
 		const config = new MdDialogConfig();
-
-		// config.data = this.word_list;
 		let dialogRef = this.dialog.open(DialogShowFileList, config);
-		// dialogRef.afterClosed().subscribe(
-		// 	result => {
-		// 	console.log('curr - result : ' + result);
-		// 	if (result != undefined) {
-		// 		this.current_word = this.get_word(result);
-		// 		// console.log('curr - result : ' + result);
-		// 		this.updatefullpage();
-		// 	}
-		// });
 	}
 	updateData() {
 		this.my_words = this.get_words();
 		this.my_canvases = this.get_canvases();
-		// this.dataEntries = MyFiles.find({}, {sort: {uploadDate: -1}}).fetch();
 	}
 	logout() {
 		this._service.logout();
+	}
+	strip_from_html(html) {
+		var tmp = document.createElement("DIV");
+		tmp.innerHTML = html;
+		return tmp.textContent || tmp.innerText || "";
 	}
 	addCanvas(canvas_title) {
 		var inital_value = [ { id: 1, text: canvas_title} ];
 		var content_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; }).length;
 		CanvasContents.insert({
 			contentid: content_length + 1,
-			canvastitle: canvas_title,
+			canvastitle: this.strip_from_html(canvas_title),
 			content: inital_value,
 			createdAt: new Date,
 		});
@@ -117,7 +110,7 @@ export class AdminComponent {
 		var content_length = WordContents.find().map((messages: Canvas[]) => { return messages; }).length;
 		WordContents.insert({
 			contentid: content_length + 1,
-			wordtitle: word_title,
+			wordtitle: this.strip_from_html(word_title),
 			content: inital_value,
 			createdAt: new Date,
 		});
@@ -162,12 +155,7 @@ export class DialogShowFileList {
 		var baselocationUrl = getUrl .protocol + "//" + getUrl.host + getUrl.pathname.split('/')[0];
 		this.baseurl = baselocationUrl + MyFiles.baseURL;
 		Meteor.subscribe("myData", {
-			onReady: function () {
-				console.log('onReady');
-				// setTimeout( () => {
-				// 	clearInterval(refreshIntervalId);
-				// },100)
-			},
+			onReady: function () {},
 			onError: function () { console.log("onError", arguments); }
 		});
 		// This assigns a file upload drop zone to some DOM node

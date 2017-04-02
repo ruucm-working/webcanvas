@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Location } from '@angular/common';
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
 import { Canvas0218Service } from '../_mojs_services/canvas0218.service';
 import { Canvas0303Service } from '../_mojs_services/canvas0303.service';
@@ -20,23 +21,29 @@ import myGlobals = require('../globals');
 	}` ],
 	providers: [ Canvas0218Service, Canvas0303Service ]
 })
-export class CanvasComponent implements OnInit, OnDestory, OnChanges {
+export class CanvasComponent {
 	newText = '';
-	current_canvas;
-	current_canvas_length = 0;
-	current_canvas_id: number;
-	canvas_list;
-	canvas_list_length = 0;
+	@Input('current_canvas') current_canvas;
+	@Input('current_canvas_length') current_canvas_length;
+	@Input('current_canvas_id') current_canvas_id;
+	@Input('current_canvas_url') current_canvas_url;
+	@Input('canvas_list') canvas_list;
+	@Input('canvas_list_length') canvas_list_length;
 	isLastScene;
 	isTitleScene;
+	share_button_text = 'Share It!';
+	isCopied: boolean = false;
+	isCopied1: boolean = false;
 
 	constructor(
 		private _service2:Canvas0218Service,
 		private _service3:Canvas0303Service,
 		private router: Router,
-		public dialog: MdDialog ) {
+		public dialog: MdDialog,
+		private location: Location ) {
 		router.events.forEach((event) => {
-			if (event.url == "/slider-dashboard" || event.url == "/slider-dashboard#CanvasPage") {
+			console.log('(event.url).slice(-10) : ' + (event.url).slice(-10));
+			if (event.url == "/slider-dashboard" || (event.url).slice(-11) == "#CanvasPage") {
 				console.log('title scene event');
 				this.stop_other_anims();
 				this.isTitleScene = true;
@@ -67,27 +74,36 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	trackByFn(index, item) {
 		return index;
 	}
+	share_text_change() {
+		if (!this.isCopied) {
+			this.share_button_text = "Now, Link Copied";
+			this.isCopied = true;
+		} else {
+			this.share_button_text = "Share It!";
+			this.isCopied = false;
+		}
+	}
 	ngOnInit() {
-		var refreshIntervalId = setInterval(() => this.updateData(), 100);
-		Meteor.subscribe("canvascontents", {
-			onReady: function () {
-				setTimeout( () => {
-					clearInterval(refreshIntervalId);
-					console.log("STOP!!");
-				},100)
-			},
-			onError: function () { console.log("onError", arguments); }
-		});
+		// var refreshIntervalId = setInterval(() => this.updateData(), 100);
+		// Meteor.subscribe("canvascontents", {
+		// 	onReady: function () {
+		// 		setTimeout( () => {
+		// 			clearInterval(refreshIntervalId);
+		// 			console.log("STOP!!");
+		// 		},100)
+		// 	},
+		// 	onError: function () { console.log("onError", arguments); }
+		// });
 		myGlobals.scene01_timeline = new mojs.Timeline();
 		myGlobals.scene02_timeline = new mojs.Timeline();
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
 	}
-	updateData() {
-		this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
-		this.canvas_list_length = this.canvas_list.length;
-		this.current_canvas = this.get_canvase(1);
-	}
+	// updateData() {
+	// 	this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
+	// 	this.canvas_list_length = this.canvas_list.length;
+	// 	this.current_canvas = this.get_canvase(1);
+	// }
 	stop_other_anims() {
 		console.log('stop anim!');
 		myGlobals.scene01_timeline.stop();
@@ -105,23 +121,45 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			this._service3.anim_init();
 		if (!isNaN(which_canvas)) {
 			console.log('!isNaN(which_canvas)');
+			// this.current_canvas_id = which_canvas;
+			// this.current_canvas_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content.length;
+			// return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
+
 			this.current_canvas_id = which_canvas;
-			console.log('this.current_canvas_id : ' + this.current_canvas_id);
-			console.log('CanvasContents : ');
-			console.log(CanvasContents);
-			this.current_canvas_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content.length;
-			console.log('this.current_canvas_length : ');
-			console.log(this.current_canvas_length);
-			return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
+			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
+			this.current_canvas_length = res.length;
+			console.log('res : ');
+			console.log(res);
+			this.current_canvas_length = res.length;
+			return res;
+			return res;
 		} else if(which_canvas == 'older') {
 			this.current_canvas_id -= 1;
 			if (this.current_canvas_id - 1 < 1) {
 				alert('It is the First Canvas!');
 				this.current_canvas_id += 1;
+				return false;
 			} else {
 				this.stop_other_anims();
+
+
+				// this.current_canvas = this.get_canvase(this.current_canvas_id);
+				// this.router.navigateByUrl('slider-dashboard');
+
+				console.log('older / ');
+				console.log('this.current_canvas_id : ' + this.current_canvas_id);
+
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
-				this.router.navigateByUrl('slider-dashboard');
+				this.location.go('slider-dashboard/#CanvasPage');
+				this.isTitleScene = true; 
+				this.isLastScene = false; 
+
+				// this.current_canvas = this.get_canvase(this.current_canvas_id);
+				// this.location.go('slider-dashboard/#CanvasPage');
+				// this.isTitleScene = true; 
+				// this.isLastScene = false; 
+
+
 				myGlobals.scene01_timeline.play();
 			}
 		} else if(which_canvas == 'younger') {
@@ -129,14 +167,40 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			if (this.current_canvas_id - 1 >= this.canvas_list_length) {
 				alert('It is the Last Canvas!');
 				this.current_canvas_id -= 1;
+				return false;
 			} else {
 				this.stop_other_anims();
+
+
+				// this.current_canvas = this.get_canvase(this.current_canvas_id);
+				// this.router.navigateByUrl('slider-dashboard');
+				console.log('yonger / ');
+				console.log('this.current_canvas_id : ' + this.current_canvas_id);
+
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
-				this.router.navigateByUrl('slider-dashboard');
+				this.location.go('slider-dashboard/#CanvasPage');
+				this.isTitleScene = true; 
+				this.isLastScene = false; 
+				
+
 				myGlobals.scene01_timeline.play();
 			}
+		} else {
+			console.log('eeelse');
+			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
+			console.log('res : ');
+			console.log(res);
+			this.current_canvas_length = res.length;
+			return res;
 		}
-		return '';
+		return true;
+	}
+	update_permalink(id) {
+		var getUrl = window.location;
+		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+		this.current_canvas_url = baseUrl + 'canvas/'+ id;
+		this.isCopied = false;
+		this.share_button_text = "Share It!";
 	}
 	get_recent_canvas() {
 		this.current_canvas = this.get_canvase(this.canvas_list_length);
@@ -144,7 +208,9 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 	}
 	openCanvasListDialog() {
 		const config = new MdDialogConfig();
-
+		console.log('open Dialog');
+		console.log('This! canvas_list : ');
+		console.log(this.canvas_list);
 		config.data = this.canvas_list;
 		let dialogRef = this.dialog.open(DialogShowCanvasList, config);
 		dialogRef.afterClosed().subscribe(
@@ -159,12 +225,14 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 		});
 	}
 	older_from_current_canvase() {
-		this.get_canvase('older');
-		this.updatefullpage();
+		if ( this.get_canvase('older') ) {
+			this.updatefullpage();
+			console.log('older updated!');
+		}
 	}
 	younger_from_current_canvase() {
-		this.get_canvase('younger');
-		this.updatefullpage();
+		if ( this.get_canvase('younger') )
+			this.updatefullpage();
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
@@ -177,7 +245,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 				navigationTooltips: ['Canvas', 'Project', 'Word'],
 				showActiveTooltip: true,
 				slidesNavigation: false,
-				sectionsColor: ['yellow', '#4BBFC3', '#7BAABE', '#F5E0E0', '#000'],
+				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
 				scrollOverflow: true
 			});
@@ -210,6 +278,7 @@ export class CanvasComponent implements OnInit, OnDestory, OnChanges {
 			// 실패시 
 			console.error(error);
 		});
+		this.update_permalink(this.current_canvas_id);
 	}
 	destroyfullpage() {
 		if($('html').hasClass('fp-enabled')){
