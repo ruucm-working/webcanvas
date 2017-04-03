@@ -42,15 +42,12 @@ export class CanvasComponent {
 		public dialog: MdDialog,
 		private location: Location ) {
 		router.events.forEach((event) => {
-			console.log('(event.url).slice(-10) : ' + (event.url).slice(-10));
 			if (event.url == "/slider-dashboard" || (event.url).slice(-11) == "#CanvasPage") {
-				console.log('title scene event');
 				this.stop_other_anims();
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
 			if (event instanceof NavigationStart) {
-				console.log('NavigationStart event');
 				if ( (event.url).slice(-1) == this.current_canvas_length - 1)
 					this.isLastScene = true;
 				else
@@ -84,26 +81,11 @@ export class CanvasComponent {
 		}
 	}
 	ngOnInit() {
-		// var refreshIntervalId = setInterval(() => this.updateData(), 100);
-		// Meteor.subscribe("canvascontents", {
-		// 	onReady: function () {
-		// 		setTimeout( () => {
-		// 			clearInterval(refreshIntervalId);
-		// 			console.log("STOP!!");
-		// 		},100)
-		// 	},
-		// 	onError: function () { console.log("onError", arguments); }
-		// });
 		myGlobals.scene01_timeline = new mojs.Timeline();
 		myGlobals.scene02_timeline = new mojs.Timeline();
 		myGlobals.scene03_timeline = new mojs.Timeline();
 		myGlobals.scene04_timeline = new mojs.Timeline();
 	}
-	// updateData() {
-	// 	this.canvas_list = CanvasContents.find().map((messages: Canvas[]) => { return messages; });
-	// 	this.canvas_list_length = this.canvas_list.length;
-	// 	this.current_canvas = this.get_canvase(1);
-	// }
 	stop_other_anims() {
 		console.log('stop anim!');
 		myGlobals.scene01_timeline.stop();
@@ -112,7 +94,7 @@ export class CanvasComponent {
 		myGlobals.scene04_timeline.stop();
 	}
 	get_canvase(which_canvas): Canvas[] {
-		console.log('which_canvas : ' + which_canvas);
+		console.log('which_canvas == ' + which_canvas);
 		if (which_canvas == 1){
 			console.log('which_canvas == 1');
 		} else if (which_canvas == 2)
@@ -120,18 +102,10 @@ export class CanvasComponent {
 		else if (which_canvas == 3)
 			this._service3.anim_init();
 		if (!isNaN(which_canvas)) {
-			console.log('!isNaN(which_canvas)');
-			// this.current_canvas_id = which_canvas;
-			// this.current_canvas_length = CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content.length;
-			// return CanvasContents.find().map((messages: Canvas[]) => { return messages; })[this.current_canvas_id - 1].content;
-
 			this.current_canvas_id = which_canvas;
 			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_canvas_length = res.length;
-			console.log('res : ');
-			console.log(res);
 			this.current_canvas_length = res.length;
-			return res;
 			return res;
 		} else if(which_canvas == 'older') {
 			this.current_canvas_id -= 1;
@@ -141,25 +115,10 @@ export class CanvasComponent {
 				return false;
 			} else {
 				this.stop_other_anims();
-
-
-				// this.current_canvas = this.get_canvase(this.current_canvas_id);
-				// this.router.navigateByUrl('slider-dashboard');
-
-				console.log('older / ');
-				console.log('this.current_canvas_id : ' + this.current_canvas_id);
-
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
-				this.location.go('slider-dashboard/#CanvasPage');
+				this.location.go('slider-dashboard#CanvasPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
-
-				// this.current_canvas = this.get_canvase(this.current_canvas_id);
-				// this.location.go('slider-dashboard/#CanvasPage');
-				// this.isTitleScene = true; 
-				// this.isLastScene = false; 
-
-
 				myGlobals.scene01_timeline.play();
 			}
 		} else if(which_canvas == 'younger') {
@@ -170,23 +129,13 @@ export class CanvasComponent {
 				return false;
 			} else {
 				this.stop_other_anims();
-
-
-				// this.current_canvas = this.get_canvase(this.current_canvas_id);
-				// this.router.navigateByUrl('slider-dashboard');
-				console.log('yonger / ');
-				console.log('this.current_canvas_id : ' + this.current_canvas_id);
-
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
 				this.location.go('slider-dashboard/#CanvasPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
-				
-
 				myGlobals.scene01_timeline.play();
 			}
 		} else {
-			console.log('eeelse');
 			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
 			console.log('res : ');
 			console.log(res);

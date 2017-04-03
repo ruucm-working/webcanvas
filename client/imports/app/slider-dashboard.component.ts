@@ -17,7 +17,7 @@ import myGlobals = require('./globals');
 	host: {'[@routerTransition]': ''},
 	providers: [ AuthenticationService ]
 })
-export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
+export class SliderDashboardComponent {
 	hero;
 	current_word;
 	current_word_length = 0;
@@ -41,6 +41,9 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 			.subscribe(result => this.hero = result);
 	}
 	ready_contents(cat, plink) {
+		console.log('route on slider');
+		console.log('cat : ' + cat);
+		console.log('plink : ' + plink);
 		if (isNaN(plink))
 			plink = 'init';
 		var refreshIntervalId = setInterval(() => this.updateDatas(cat, plink), 100);
@@ -181,5 +184,9 @@ export class SliderDashboardComponent implements OnInit, OnDestory, OnChanges {
 	}
 	logout() {
 		this._service.logout();
+	}
+	ngOnDestroy() {
+		console.log('ngOnDestroy (Slider D Component)');
+		// this.destroyfullpage();
 	}
 }

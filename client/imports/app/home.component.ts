@@ -1,11 +1,12 @@
-import template from './home.component.html';
 import { Component } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
 import { TranslateService } from '@ngx-translate/core';
-import myGlobals = require('../globals');
+import { SliderDashboardComponent } from '../slider-dashboard.component';
 import { Meteor } from 'meteor/meteor';
+import myGlobals = require('../globals');
+import template from './home.component.html';
 
 @Component({
 	selector: 'my-home',
