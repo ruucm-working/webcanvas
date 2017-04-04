@@ -130,15 +130,13 @@ export class CanvasComponent {
 			} else {
 				this.stop_other_anims();
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
-				this.location.go('slider-dashboard/#CanvasPage');
+				this.location.go('slider-dashboard#CanvasPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 				myGlobals.scene01_timeline.play();
 			}
 		} else {
 			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
-			console.log('res : ');
-			console.log(res);
 			this.current_canvas_length = res.length;
 			return res;
 		}
@@ -157,17 +155,11 @@ export class CanvasComponent {
 	}
 	openCanvasListDialog() {
 		const config = new MdDialogConfig();
-		console.log('open Dialog');
-		console.log('This! canvas_list : ');
-		console.log(this.canvas_list);
 		config.data = this.canvas_list;
 		let dialogRef = this.dialog.open(DialogShowCanvasList, config);
 		dialogRef.afterClosed().subscribe(
 			result => {
-			console.log('result : ');
-			console.log(result);
 			if (result != undefined) {
-				console.log('update!@')
 				this.current_canvas = this.get_canvase(result)
 				this.updatefullpage();
 			}
@@ -176,7 +168,6 @@ export class CanvasComponent {
 	older_from_current_canvase() {
 		if ( this.get_canvase('older') ) {
 			this.updatefullpage();
-			console.log('older updated!');
 		}
 	}
 	younger_from_current_canvase() {
@@ -245,9 +236,6 @@ export class DialogShowCanvasList {
 	private canvas_list;
 	constructor(public dialogRef: MdDialogRef<DialogShowCanvasList>) {}
 	ngOnInit() {
-		// data
 		this.canvas_list = this.dialogRef.config.data;
-		console.log('this.canvas_list : ' + this.canvas_list);
-		console.log(this.canvas_list);
 	}
 }

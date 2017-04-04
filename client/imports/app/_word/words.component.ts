@@ -39,7 +39,6 @@ export class WordsComponent {
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
-			console.log('event.url).slice(-1) : ' + (event.url).slice(-1));
 			if (event instanceof NavigationStart) {
 				if ( (event.url).slice(-1) == this.current_word_length - 1)
 					this.isLastScene = true;
@@ -75,7 +74,7 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				this.location.go('slider-dashboard/#WordPage');
+				$.fn.fullpage.moveTo('WordPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
@@ -87,7 +86,7 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				this.location.go('slider-dashboard#WordPage');
+				$.fn.fullpage.moveTo('WordPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}

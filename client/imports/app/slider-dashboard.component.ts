@@ -41,9 +41,6 @@ export class SliderDashboardComponent {
 			.subscribe(result => this.hero = result);
 	}
 	ready_contents(cat, plink) {
-		console.log('route on slider');
-		console.log('cat : ' + cat);
-		console.log('plink : ' + plink);
 		if (isNaN(plink))
 			plink = 'init';
 		var refreshIntervalId = setInterval(() => this.updateDatas(cat, plink), 100);
@@ -184,9 +181,5 @@ export class SliderDashboardComponent {
 	}
 	logout() {
 		this._service.logout();
-	}
-	ngOnDestroy() {
-		console.log('ngOnDestroy (Slider D Component)');
-		// this.destroyfullpage();
 	}
 }
