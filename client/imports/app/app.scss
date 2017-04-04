@@ -182,7 +182,12 @@ body {
 	}
 }
 .fp-slides {
-	.slide:first-child {
+	iframe {
+		position: absolute;
+		top: 18%;
+		z-index: -1;
+	}
+	.slide:nth-child(1) {
 		font-weight: bold;
 		font-size: 30px;
 		h3 {
@@ -204,6 +209,26 @@ body {
 			margin-right: -100px;
 			border-radius: 0 50px 50px 0;
 			letter-spacing: 3px;
+		}
+	}
+	.slide:nth-child(2) {
+		iframe {
+			left: -20%;
+		}
+	}
+	.slide:nth-child(3) {
+		iframe {
+			left: 0%;
+		}
+	}
+	.slide:nth-child(4) {
+		iframe {
+			left: 20%;
+		}
+	}
+	.slide:nth-child(5) {
+		iframe {
+			left: 40%;
 		}
 	}
 }

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	/**
+	 *	General Page Objects Align
+	 */
+	.general-page-sample {
+		-webkit-transform: scale(0.5);
+		-ms-transform: scale(0.5);
+		transform: scale(0.5);
+	}
+	.general-page-scene {
+		position: absolute;
+		left: 50%;
+		top: 36.625rem;
+		margin-left: -11.75rem;
+		width: 100%;
+		height: 100%;
+	}
+	.general-page {
+		position: absolute;
+		z-index: 2;
+		top: -20.625rem;
+		left: 6.125rem;
+		-webkit-transform-origin: center bottom;
+		-ms-transform-origin: center bottom;
+		transform-origin: center bottom;
+	}
+	/**
+	/**
+	 *	Scene 02
+	 */
+	.notebook__monitor {
+	  top: 100px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 221.2px;
+	  height: 131.7px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="221.2px" height="131.7px" viewBox="0 0 221.2 131.7" enable-background="new 0 0 221.2 131.7" xml:space="preserve"> <path id="XMLID_152_" fill="#FFFFFF" d="M221.2,131.7H0V11C0,4.9,4.9,0,11,0h199.2c6.1,0,11,4.9,11,11V131.7z"/> </svg>'); }
+
+	.monitor__part-01 {
+	  left: 15.58px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 38px;
+	  height: 105px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px" height="105px" viewBox="0 0 38 105" enable-background="new 0 0 38 105" xml:space="preserve"> <rect id="XMLID_194_" fill="#FF0000" width="38" height="105"/> </svg>'); }
+
+	.monitor__part-02 {
+	  left: 53.58px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 38px;
+	  height: 105px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px" height="105px" viewBox="0 0 38 105" enable-background="new 0 0 38 105" xml:space="preserve"> <rect id="XMLID_194_" fill="#FF9900" width="38" height="105"/> </svg>'); }
+
+	.monitor__part-03 {
+	  left: 91.58px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 38px;
+	  height: 105px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px" height="105px" viewBox="0 0 38 105" enable-background="new 0 0 38 105" xml:space="preserve"> <rect id="XMLID_194_" fill="#FFFF00" width="38" height="105"/> </svg>'); }
+
+	.monitor__part-04 {
+	  left: 129.58px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 38px;
+	  height: 105px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px" height="105px" viewBox="0 0 38 105" enable-background="new 0 0 38 105" xml:space="preserve"> <rect id="XMLID_194_" fill="#33FF00" width="38" height="105"/> </svg>'); }
+
+	.monitor__part-05 {
+	  left: 167.58px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 38px;
+	  height: 105px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="38px" height="105px" viewBox="0 0 38 105" enable-background="new 0 0 38 105" xml:space="preserve"> <rect id="XMLID_194_" fill="#593FFF" width="38" height="105"/> </svg>'); }
+
+	.bottom__part-01 {
+	  top: 231px;
+	  right: -247px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 279.3px;
+	  height: 13.7px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="279.3px" height="13.7px" viewBox="0 0 279.3 13.7" enable-background="new 0 0 279.3 13.7" xml:space="preserve"> <path id="XMLID_153_" fill="#FFFFFF" d="M270.3,13.7H9c-5,0-9-4-9-9V0h279.3v4.7C279.3,9.7,275.3,13.7,270.3,13.7z"/> </svg>'); }
+
+	.bottom__part-02 {
+	  top: 230px;
+	  right: -129px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 36.6px;
+	  height: 6.4px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="36.6px" height="6.4px" viewBox="0 0 36.6 6.4" enable-background="new 0 0 36.6 6.4" xml:space="preserve"> <path id="XMLID_155_" fill="#593FFF" d="M36.6,0H0v0c0,3.5,2.9,6.4,6.4,6.4h23.9C33.8,6.4,36.6,3.5,36.6,0L36.6,0z"/> </svg>'); }
+
+	.table__part-top {
+	  top: 240px;
+	  right: -410px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 602.9px;
+	  height: 27.3px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="602.9px" height="27.3px" viewBox="0 0 602.9 27.3" enable-background="new 0 0 602.9 27.3" xml:space="preserve"> <rect id="XMLID_148_" fill="#FFFFFF" width="602.9" height="27.3"/> </svg>'); }
+
+	.table__part-leg-01 {
+	  top: 240px;
+	  left: -190px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 40.7px;
+	  height: 129px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40.7px" height="129px" viewBox="0 0 40.7 129" enable-background="new 0 0 40.7 129" xml:space="preserve"> <polygon id="XMLID_151_" fill="#FFFFFF" points="38.7,129 2,129 0,0 40.7,0 "/> </svg>'); }
+
+	.table__part-leg-02 {
+	  top: 240px;
+	  right: -410px;
+	  bottom: 12px;
+	  z-index: -1;
+	  position: absolute;
+	  width: 40.7px;
+	  height: 129px;
+	  background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40.7px" height="129px" viewBox="0 0 40.7 129" enable-background="new 0 0 40.7 129" xml:space="preserve"> <polygon id="XMLID_151_" fill="#FFFFFF" points="38.7,129 2,129 0,0 40.7,0 "/> </svg>'); }
+	.bottom__text {
+		color: #4089EF;
+		margin-top: 230px;
+		font-family: Spoqa Han Sans Thin, Sans-serif;
+		font-size: 41px;
+		font-weight: 100;
+		width: 400px;
+		top: 213px;
+		left: 19px;
+		position: absolute;
+	}
+	</style>
+</head>
+<body>
+<div class="general-page-sample">
+	<div class="general-page-scene">
+		<div class="general-page general-0218-page-scene_02">
+			<div class="0218-page-scene_02__inner">
+				<div class="notebook__monitor">
+					<div class="monitor__part-base"></div>
+					<div class="monitor__part-01"></div>
+					<div class="monitor__part-02"></div>
+					<div class="monitor__part-03"></div>
+					<div class="monitor__part-04"></div>
+					<div class="monitor__part-05"></div>
+				</div>
+				<div class="notebook__bottom">
+					<div class="bottom__part-01"></div>
+					<div class="bottom__part-02"></div>
+				</div>
+				<div class="table">
+					<div class="table__part-top"></div>
+					<div class="table__part-leg-01"></div>
+					<div class="table__part-leg-02"></div>
+				</div>
+				<div class="bottom__text scene_02_bottom__text01">
+					<p>컴퓨터만 있으면 모든걸 할 수있는 엄청난 놀이터..</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="//cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+<script>
+	// const scene01_timeline = new mojs.Timeline();
+	// const _0218_page01_left_leg = new mojs.Html({
+	// 	repeat:   999,
+	// 	duration: 1000,
+	// 	el: '.gem__leg-left',
+	// 	y: { 0: -2, curve: 'M0, 100 C0, 100 1.9274601017238027, -100.72671479853175 50, -100 C50.072539898276204, 15.583857655674608 100, 100 100, 100' },
+	// 	angleZ: { 0: 21, curve: 'M0, 100 C0, 100 1.9274601017238027, -100.72671479853175 50, -100 C50.072539898276204, 15.583857655674608 100, 100 100, 100' }
+	// });
+	// scene01_timeline.add( _0218_page01_left_leg );
+	// scene01_timeline.play();
+</script>
+</body>
+</html> 
