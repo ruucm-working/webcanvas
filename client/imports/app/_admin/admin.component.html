@@ -1,47 +1,51 @@
-<div>
-	Hello, Admin
-	<button (click)="logout()">Click Here to logout</button>
-	<br>
-	<a routerLink="/home">go back to home</a>
-	<a routerLink="/slider-dashboard">Slider Dashboard</a>
-</div>
-<div class="admin_file_uploader_button">
-	<a md-fab (click)="openFileListDialog()"><md-icon>attach_file</md-icon></a>
-</div>
-<h2>Canvas Editor</h2>
-<form (ngSubmit)="addCanvas(canvas_title)">
-	<input [(ngModel)]="canvas_title" style="width: 300px;" type="text" name="text" placeholder="Canvas Title - using h2, post_title class"/>
-</form>
-<div [froalaEditor] [(froalaModel)]="editorContent"></div>
-<h3>Html :</h3><div>{{editorContent}}</div>
-<h3>Output :</h3><div [froalaView]="editorContent"></div>
-<br>
-<h4>*Canvas List</h4>
-<div *ngFor="let canvas of my_canvases; let i=index">
-	canvas {{i+1}} : 
-	<button (click)="addCanvasContents(canvas, editorContent)">Edit</button>
-	<button (click)="removeCanvas(canvas)">Remove</button>
-</div>
-<h2>Project Editor</h2>
-<form (ngSubmit)="addProject(project_title)">
-	<input [(ngModel)]="project_title" type="text" name="text" placeholder="Make a new Project"/>
-</form>
-<div [froalaEditor] [(froalaModel)]="editorContent2"></div>
-<h3>Html :</h3><div>{{editorContent2}}</div>
-<h3>Output :</h3><div [froalaView]="editorContent2"></div>
-<br>
-<h4>*Project List</h4>
-<h2>Word Editor</h2>
-<form (ngSubmit)="addWord(word_title)">
-	<input [(ngModel)]="word_title" type="text" name="text" placeholder="Word Title - using h2, post_title class"/>
-</form>
-<div [froalaEditor] [(froalaModel)]="editorContent3"></div>
-<h3>Html :</h3><div>{{editorContent3}}</div>
-<h3>Output :</h3><div [froalaView]="editorContent3"></div>
-<br>
-<h4>*Word List</h4>
-<div *ngFor="let word of my_words; let i=index">
-	word {{i+1}} : 
-	<button (click)="addWordContents(word, editorContent3)">Edit</button>
-	<button (click)="removeWord(word)">Remove</button>
+<div class="admin_page_holder">
+	<div class="admin_page_top_bar">
+		Hello, Admin
+		<button (click)="logout()">Click Here to logout</button>
+		<br>
+		<a routerLink="/home">go back to home</a>
+		<a routerLink="/slider-dashboard">Slider Dashboard</a>
+	</div>
+	<div class="page">
+		<h2>Canvas Editor</h2>
+		<form (ngSubmit)="addCanvas(canvas_title)">
+			<input [(ngModel)]="canvas_title" style="width: 300px;" type="text" name="text" placeholder="Canvas Title - using h2, post_title class"/>
+		</form>
+		<div [froalaEditor] [(froalaModel)]="editorContent"></div>
+		<h3>Html :</h3><div>{{editorContent}}</div>
+		<h3>Output :</h3><div [froalaView]="editorContent"></div>
+		<br>
+		<h4>*Canvas List</h4>
+		<div *ngFor="let canvas of my_canvases; let i=index">
+			canvas {{i+1}} : 
+			<button (click)="addCanvasContents(canvas, editorContent)">Edit</button>
+			<button (click)="removeCanvas(canvas)">Remove</button>
+		</div>
+		<h2>Project Editor</h2>
+		<form (ngSubmit)="addProject(project_title)">
+			<input [(ngModel)]="project_title" type="text" name="text" placeholder="Make a new Project"/>
+		</form>
+		<div [froalaEditor] [(froalaModel)]="editorContent2"></div>
+		<h3>Html :</h3><div>{{editorContent2}}</div>
+		<h3>Output :</h3><div [froalaView]="editorContent2"></div>
+		<br>
+		<h4>*Project List</h4>
+		<h2>Word Editor</h2>
+		<form (ngSubmit)="addWord(word_title)">
+			<input [(ngModel)]="word_title" type="text" name="text" placeholder="Word Title - using h2, post_title class"/>
+		</form>
+		<div [froalaEditor] [(froalaModel)]="editorContent3"></div>
+		<h3>Html :</h3><div>{{editorContent3}}</div>
+		<h3>Output :</h3><div [froalaView]="editorContent3"></div>
+		<br>
+		<h4>*Word List</h4>
+		<div *ngFor="let word of my_words; let i=index">
+			word {{i+1}} : 
+			<button (click)="addWordContents(word, editorContent3)">Edit</button>
+			<button (click)="removeWord(word)">Remove</button>
+		</div>
+	</div>
+	<div class="admin_file_uploader_button">
+		<a md-fab (click)="openFileListDialog()"><md-icon>attach_file</md-icon></a>
+	</div>
 </div>

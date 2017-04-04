@@ -182,4 +182,7 @@ export class SliderDashboardComponent {
 	logout() {
 		this._service.logout();
 	}
+	ngOnDestroy() {
+		this.destroyfullpage();
+	}
 }
