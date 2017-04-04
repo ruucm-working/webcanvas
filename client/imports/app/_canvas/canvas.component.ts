@@ -7,7 +7,6 @@ import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCanc
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import template from './canvas.component.html';
 import template_dialog from './dialog-show-canvas-list.html';
-import myGlobals = require('../globals');
 
 @Component({
 	selector: 'my-canvases',
@@ -36,14 +35,11 @@ export class CanvasComponent {
 	isCopied1: boolean = false;
 
 	constructor(
-		private _service2:Canvas0218Service,
-		private _service3:Canvas0303Service,
 		private router: Router,
 		public dialog: MdDialog,
 		private location: Location ) {
 		router.events.forEach((event) => {
 			if (event.url == "/slider-dashboard" || (event.url).slice(-11) == "#CanvasPage") {
-				this.stop_other_anims();
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 
@@ -52,19 +48,6 @@ export class CanvasComponent {
 					this.isLastScene = true;
 				else
 					this.isLastScene = false; 
-				this.stop_other_anims();
-				if (event.url == "/slider-dashboard#CanvasPage/1") {
-					myGlobals.scene01_timeline.play();
-				}
-				if (event.url == "/slider-dashboard#CanvasPage/2") {
-					myGlobals.scene02_timeline.play();
-				}
-				if (event.url == "/slider-dashboard#CanvasPage/3") {
-					myGlobals.scene03_timeline.play();
-				}
-				if (event.url == "/slider-dashboard#CanvasPage/4") {
-					myGlobals.scene04_timeline.play();
-				}
 			}
 		});
 	}
@@ -80,27 +63,7 @@ export class CanvasComponent {
 			this.isCopied = false;
 		}
 	}
-	ngOnInit() {
-		myGlobals.scene01_timeline = new mojs.Timeline();
-		myGlobals.scene02_timeline = new mojs.Timeline();
-		myGlobals.scene03_timeline = new mojs.Timeline();
-		myGlobals.scene04_timeline = new mojs.Timeline();
-	}
-	stop_other_anims() {
-		console.log('stop anim!');
-		myGlobals.scene01_timeline.stop();
-		myGlobals.scene02_timeline.stop();
-		myGlobals.scene03_timeline.stop();
-		myGlobals.scene04_timeline.stop();
-	}
 	get_canvase(which_canvas): Canvas[] {
-		console.log('which_canvas == ' + which_canvas);
-		if (which_canvas == 1){
-			console.log('which_canvas == 1');
-		} else if (which_canvas == 2)
-			this._service2.anim_init();
-		else if (which_canvas == 3)
-			this._service3.anim_init();
 		if (!isNaN(which_canvas)) {
 			this.current_canvas_id = which_canvas;
 			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
@@ -114,12 +77,10 @@ export class CanvasComponent {
 				this.current_canvas_id += 1;
 				return false;
 			} else {
-				this.stop_other_anims();
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
 				this.location.go('slider-dashboard#CanvasPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
-				myGlobals.scene01_timeline.play();
 			}
 		} else if(which_canvas == 'younger') {
 			this.current_canvas_id += 1;
@@ -128,12 +89,10 @@ export class CanvasComponent {
 				this.current_canvas_id -= 1;
 				return false;
 			} else {
-				this.stop_other_anims();
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
 				this.location.go('slider-dashboard#CanvasPage');
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
-				myGlobals.scene01_timeline.play();
 			}
 		} else {
 			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;

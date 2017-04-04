@@ -5,7 +5,6 @@ import { AuthenticationService } from './_simple_login/authentication.service'
 import { TranslateService } from '@ngx-translate/core';
 import { SliderDashboardComponent } from '../slider-dashboard.component';
 import { Meteor } from 'meteor/meteor';
-import myGlobals = require('../globals');
 import template from './home.component.html';
 
 @Component({

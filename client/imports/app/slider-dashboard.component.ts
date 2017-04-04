@@ -6,7 +6,6 @@ import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { WordContents } from '../../../imports/api/word-contents.js';
 import template from './slider-dashboard.component.html';
 import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
-import myGlobals = require('./globals');
 
 @Component({
 	selector: 'my-slider-dashboard',
