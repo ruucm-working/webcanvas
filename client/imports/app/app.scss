@@ -94,16 +94,16 @@ body {
 	color: white
 }
 .admin_page_holder {
-	padding-left: 30px;
 	.admin_page_top_bar {
 		position: fixed;
 		z-index: 5;
 		background: grey;
+		top: 0px;
 	}
 	.page {
 		position: absolute;
 		top: 100px;
-		width: 100%;
+		width: 86%;
 	}
 	.admin_file_uploader_button {
 		position: fixed;
