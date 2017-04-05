@@ -10,29 +10,31 @@
 	background: $charcoal;
 	height: 100vh;
 	color: $pastel_pink;
-	div.title {
-		max-height: 25% !important;
-	}
+	font-size: 2.2em;
 	.hello {
 		color: $melon-light;
-		h2 {
+		span {
 			font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 			font-weight: 100;
+			text-align: left;
+			span {
+				font-family: Spoqa Han Sans Thin;
+				font-size: 0.76em;
+			}
 		}
 	}
 	.myhome-descriptions {
-		h3 {
+		span {
 			font-weight: 400;
 			font-family: Spoqa Han Sans Thin;
 		}
 	}
-	h3, h2	{
-		padding: 0 10px;
-		font-family: Spoqa Han Sans Regular;
-	}
 	button {
-		font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
+		font-family: Spoqa Han Sans Thin;
+		font-size: 1.5em;
+		line-height: 1.5em;
 		font-weight: bold;
+		color: #3d88ae;
 	}
 }
 .myhome-contents {
@@ -41,6 +43,13 @@
 }
 ul {
 	list-style-type: none;
+}
+.home_buttons {
+	position: absolute;
+	width: 100%;
+	bottom: 4%;
+	right: 5%;
+	text-align: right;
 }
 
 /**
@@ -244,16 +253,6 @@ body {
 }
 body #fp-nav ul li .fp-tooltip {
 	color: #07019A;
-}
-.select_lang {
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	text-align: right;
-	select, md-select {
-		margin: 11px;
-	}
 }
 .fp-scrollable {
 	padding: 0 35px;

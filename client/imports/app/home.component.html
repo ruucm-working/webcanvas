@@ -1,20 +1,21 @@
 <div class="myhome">
 	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
-		<div class="hello" fxFlex fxLayoutAlign="space-around center">
-			<h2>{{ 'HOME.TITLE' | translate }}</h2>
+		<div class="hello" fxLayoutAlign="space-around center">
+			<span [innerHTML]="'HOME.TITLE' | translate"></span>
 		</div>
-		<div class="myhome-descriptions" fxFlex fxLayoutAlign="space-around center">
-			<h3>{{ 'HOME.INSTRUCTIONA' | translate }}</h3>
-			<h3>{{ 'HOME.INSTRUCTIONB' | translate }}</h3>
-		</div>
-		<div class="title" fxFlex fxFlex.xs="50%" fxLayoutAlign="space-around center">
-			<a routerLink="/slider-dashboard"><button md-button>{{ 'HOME.GO' | translate }}</button></a>
-			</h2>
-		</div>
-		<div *ngIf="this._service.hideToPublic()" class="user" fxFlex>
-			<h3>Hello Ruucm</h3>
+<!-- 		<div class="myhome-descriptions" fxLayoutAlign="space-around center">
+			<span>{{ 'HOME.INSTRUCTIONA' | translate }}</span>
+			<span>{{ 'HOME.INSTRUCTIONB' | translate }}</span>
+		</div> -->
+		<div *ngIf="this._service.hideToPublic()" class="user">
+			<span>Hello Ruucm</span>
 			<a routerLink="/admin">go to admin</a>
 			<button (click)="logout()">Click Here to logout</button>
+		</div>
+	</div>
+	<div class="home_buttons">
+		<div class="enter_button">
+			<button md-button routerLink="/slider-dashboard">{{ 'HOME.GO' | translate }}</button>
 		</div>
 		<div class="select_lang">
 			<md-select placeholder="language" [(ngModel)]="selectedStatus" (change)="translate.use(selectedStatus)">

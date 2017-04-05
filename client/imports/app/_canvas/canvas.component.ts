@@ -79,7 +79,7 @@ export class CanvasComponent {
 				return false;
 			} else {
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
-				this.location.go('slider-dashboard#CanvasPage');
+				$.fn.fullpage.moveTo('CanvasPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
@@ -91,7 +91,7 @@ export class CanvasComponent {
 				return false;
 			} else {
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
-				this.location.go('slider-dashboard#CanvasPage');
+				$.fn.fullpage.moveTo('CanvasPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
