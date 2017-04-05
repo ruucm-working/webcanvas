@@ -137,6 +137,7 @@ export class CanvasComponent {
 	updatefullpage() {
 		var reloadfullpage = function() {
 			$('#fullpage').fullpage({
+				css3: false,
 				menu: '#menu',
 				lockAnchors: false,
 				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
