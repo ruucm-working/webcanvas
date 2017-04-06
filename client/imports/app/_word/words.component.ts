@@ -10,12 +10,6 @@ import template_dialog from './dialog-show-word-list.html';
 @Component({
 	selector: 'my-words',
 	template: template,
-	styles: [ `
-	.mywords {
-		height: 100%;
-		width: 100%;
-		background: green;
-	}` ],
 })
 export class WordsComponent {
 	@Input('current_word') current_word;
@@ -135,6 +129,7 @@ export class WordsComponent {
 		var reloadfullpage = function() {
 			$('#fullpage').fullpage({
 				menu: '#menu',
+				autoScrolling: false,
 				lockAnchors: false,
 				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
 				navigation: true,

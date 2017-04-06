@@ -1,12 +1,11 @@
-<div class="myhome">
-	<div class="myhome-contents" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-around center">
+<div class="myhome content">
+	<div class="myhome-contents" fxLayout="row" fxLayoutAlign="start center" fxLayout.xs="column" fxLayoutAlign.xs="center start">
 		<div class="hello" fxLayoutAlign="space-around center">
 			<span [innerHTML]="'HOME.TITLE' | translate"></span>
 		</div>
-<!-- 		<div class="myhome-descriptions" fxLayoutAlign="space-around center">
-			<span>{{ 'HOME.INSTRUCTIONA' | translate }}</span>
-			<span>{{ 'HOME.INSTRUCTIONB' | translate }}</span>
-		</div> -->
+		<div class="myhome-descriptions" fxLayoutAlign="space-around center">
+			<span [innerHTML]="'HOME.INSTRUCTIONA' | translate"></span>
+		</div>
 		<div *ngIf="this._service.hideToPublic()" class="user">
 			<span>Hello Ruucm</span>
 			<a routerLink="/admin">go to admin</a>
@@ -24,3 +23,4 @@
 		</div>
 	</div>
 </div>
+<div class="spacer"></div>

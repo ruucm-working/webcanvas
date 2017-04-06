@@ -12,13 +12,6 @@ import template_dialog from './dialog-show-canvas-list.html';
 @Component({
 	selector: 'my-canvases',
 	template: template,
-	styles: [ `
-	.mycanvases {
-		height: 100%;
-		position: absolute;
-		width: 100%;
-		background: pink;
-	}` ],
 	providers: [ Canvas0218Service, Canvas0303Service ]
 })
 export class CanvasComponent {

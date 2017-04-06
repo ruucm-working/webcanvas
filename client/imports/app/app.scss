@@ -1,10 +1,16 @@
 @import 'sass/base/variables';
 
 /**
+ *	Soft Full Screen
+ */
+body { height: 100vh; padding: 0; margin: 0; background: $charcoal; }
+div.content { height: 100%; }
+div.spacer { height: 74px;}
+
+/**
  *	Home
  */
 .myhome {
-	border: solid 1px #b6b6b6;
 	box-sizing: content-box !important;
 	text-align: center;
 	background: $charcoal;
@@ -13,17 +19,24 @@
 	font-size: 2.2em;
 	.hello {
 		color: $melon-light;
+		margin-left: 9%;
 		span {
 			font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 			font-weight: 100;
 			text-align: left;
+			line-height: 1.35em;
+			letter-spacing: 0.04em;
 			span {
 				font-family: Spoqa Han Sans Thin;
 				font-size: 0.76em;
 			}
 		}
 	}
+	.user {
+		font-size: 0.3em;
+	}
 	.myhome-descriptions {
+		margin-left: 13%;
 		span {
 			font-weight: 400;
 			font-family: Spoqa Han Sans Thin;
@@ -39,7 +52,6 @@
 }
 .myhome-contents {
 	height: 100vh;
-	padding: 0 30px;
 }
 ul {
 	list-style-type: none;
@@ -47,8 +59,8 @@ ul {
 .home_buttons {
 	position: absolute;
 	width: 100%;
-	bottom: 4%;
-	right: 5%;
+	top: 38%;
+	right: 6%;
 	text-align: right;
 }
 
@@ -276,4 +288,15 @@ body #fp-nav ul li .fp-tooltip {
 }
 .mat-dialog-title {
 	font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
+}
+
+/**
+ *	Projects
+ */
+.myprojects {
+	width: 100%;
+	background: #F9ACB3;
+	margin: 30px;
+	padding: 6px;
+	border-radius: 16px;
 }

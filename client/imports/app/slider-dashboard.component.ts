@@ -10,7 +10,6 @@ import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 @Component({
 	selector: 'my-slider-dashboard',
 	template: template,
-	styles: [ `` ],
 	fullpagecss,
 	animations: [routerTransition()],
 	host: {'[@routerTransition]': ''},
@@ -32,8 +31,7 @@ export class SliderDashboardComponent {
 	canvas_list_length = 0;
 	constructor(
 		private _service:AuthenticationService,
-		private route: ActivatedRoute ) {
-	}
+		private route: ActivatedRoute ) {}
 	ngOnInit() {
 		this.route.params
 			.switchMap((params: Params) => this.ready_contents(params['cat'], +params['plink']))
