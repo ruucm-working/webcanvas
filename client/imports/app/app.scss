@@ -108,6 +108,9 @@ body {
 /**
  *	Admin
  */
+login-form, my-admin {
+	color: white;
+}
 .admin-bar {
 	position: absolute;
 	z-index: 99;
@@ -203,11 +206,6 @@ body {
 	}
 }
 .fp-slides {
-	iframe {
-		position: absolute;
-		top: 18%;
-		z-index: -1;
-	}
 	.slide:nth-child(1) {
 		font-weight: bold;
 		font-size: 30px;
@@ -231,6 +229,17 @@ body {
 			border-radius: 0 50px 50px 0;
 			letter-spacing: 3px;
 		}
+	}
+}
+
+/**
+ *	Canvases
+ */
+my-canvases .fp-slides {
+	iframe {
+		position: absolute;
+		top: 18%;
+		z-index: -1;
 	}
 	.slide:nth-child(2) {
 		iframe {

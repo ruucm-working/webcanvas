@@ -112,7 +112,6 @@ export class WordsComponent {
 			console.log('curr - result : ' + result);
 			if (result != undefined) {
 				this.current_word = this.get_word(result);
-				// console.log('curr - result : ' + result);
 				this.updatefullpage();
 			}
 		});
@@ -129,7 +128,6 @@ export class WordsComponent {
 		var reloadfullpage = function() {
 			$('#fullpage').fullpage({
 				menu: '#menu',
-				autoScrolling: false,
 				lockAnchors: false,
 				anchors:['CanvasPage', 'ProjectPage', 'WordPage'],
 				navigation: true,
