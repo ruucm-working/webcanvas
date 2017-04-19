@@ -33,7 +33,8 @@ export class CanvasComponent {
 		public dialog: MdDialog,
 		private location: Location ) {
 		router.events.forEach((event) => {
-			if (event.url == "/slider-dashboard" || (event.url).slice(-11) == "#CanvasPage") {
+			console.log('event.url : ' + event.url);
+			if (event.url == "/slider-dashboard" || event.url.split('/')[1] == "canvas" || (event.url).slice(-11) == "#CanvasPage") {
 				this.isTitleScene = true;
 			} else
 				this.isTitleScene = false; 

@@ -158,10 +158,12 @@ export class SliderDashboardComponent {
 			reloadfullpage();
 			console.log(text);
 			if (isfromPermalink) {
-				if (cat == 'canavs')
-					$.fn.fullpage.moveTo('CanvasPage');
+				if (cat == 'project')
+					$.fn.fullpage.moveTo('ProjectPage');
 				else if (cat == 'word')
 					$.fn.fullpage.moveTo('WordPage');
+				else
+					$.fn.fullpage.moveTo('CanvasPage');
 			}
 		}, function (error) {
 			// 실패시 
