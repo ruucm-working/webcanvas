@@ -4,6 +4,8 @@ import { AuthenticationService } from './_simple_login/authentication.service'
 import { ActivatedRoute, Params } from '@angular/router';
 import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { WordContents } from '../../../imports/api/word-contents.js';
+import { MeteorObservable } from 'meteor-rxjs';
+import { Observable } from 'rxjs';
 import template from './slider-dashboard.component.html';
 import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 
@@ -40,24 +42,19 @@ export class SliderDashboardComponent {
 	ready_contents(cat, plink) {
 		if (isNaN(plink))
 			plink = 'init';
-		var refreshIntervalId = setInterval(() => this.updateDatas(cat, plink), 100);
-		Meteor.subscribe("wordcontents", {
-			onReady: function () {
-				setTimeout( () => {
-					clearInterval(refreshIntervalId);
-				},100)
-			},
-			onError: function () { console.log("onError", arguments); }
-		});
-		Meteor.subscribe("canvascontents", {
-			onReady: function () {
-				setTimeout( () => {
-					clearInterval(refreshIntervalId);
-				},100)
-			},
-			onError: function () { console.log("onError", arguments); }
+		MeteorObservable.subscribe('canvascontents').subscribe(() => {
+			MeteorObservable.autorun().subscribe(() => {
+				this.load_words(cat, plink);
+			});
 		});
 		return 'W';
+	}
+	load_words(cat, plink): void {
+		MeteorObservable.subscribe('wordcontents').subscribe(() => {
+			MeteorObservable.autorun().subscribe(() => {
+				this.updateDatas(cat, plink);
+			});
+		});
 	}
 	updateDatas(cat, opt) {
 		var isfromPermalink = false;
@@ -66,7 +63,7 @@ export class SliderDashboardComponent {
 			opt = 1;
 		else
 			isfromPermalink = true;
-		// Handling ~/slider dashboar/* links
+		/* Handling ~/slider dashboar/* links */
 		if (cat == 'slider-dashboard' || (cat == undefined && opt == 1)) {
 			this.get_canvas(1);
 			this.get_word(1);
