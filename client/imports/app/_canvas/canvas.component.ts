@@ -177,7 +177,7 @@ export class CanvasComponent {
 	}
 	destroyfullpage() {
 		if($('html').hasClass('fp-enabled')){
-		    $.fn.fullpage.destroy('all');
+			$.fn.fullpage.destroy('all');
 		}
 		return true;
 	}
