@@ -15,9 +15,9 @@ import template_dialog_filelist from './dialog-show-file-list.html';
 	template: template
 })
 export class AdminComponent {
-	canvas_title = '';
+	canvas_title = '<h2 class="post_title"></h2>';
 	project_title = '';
-	word_title = '';
+	word_title = '<h2 class="post_title"></h2>';
 	isCopied1: boolean = false;
 	my_words;
 	my_canvases;

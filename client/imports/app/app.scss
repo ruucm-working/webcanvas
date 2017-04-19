@@ -111,17 +111,22 @@ body {
 login-form, my-admin {
 	color: white;
 }
+dialog-show-file-list {
+	a {
+		color: $charcoal;
+	}
+}
 .admin-bar {
 	position: absolute;
 	z-index: 99;
-	background: grey;
-	color: white
+	color: white;
+	margin: 10px;
 }
 .admin_page_holder {
 	.admin_page_top_bar {
 		position: fixed;
 		z-index: 5;
-		background: grey;
+		margin: 10px;
 		top: 0px;
 	}
 	.page {
@@ -148,6 +153,12 @@ login-form, my-admin {
 /**
  *	Slider Dashboard General
  */
+.is_admin {
+	.canvases_navigate .permalink_copy_button button {
+		margin-left: 360px;
+		margin-top: 12px;
+	}
+}
 .canvases_navigate {
 	.canvases_navigate_buttons {
 		position: absolute;
@@ -187,11 +198,11 @@ login-form, my-admin {
 		z-index: 2;
 		text-align: right;
 		opacity: 0.8;
-		a {
-			margin: 15px 10px;
+		md-chip {
+			margin: 10px 3px;
 		}
-		a:nth-child(2) {
-			margin-right: 15px;
+		md-chip:nth-child(2) {	
+			margin-right: 10px;
 		}
 	}
 }

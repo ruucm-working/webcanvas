@@ -1,7 +1,9 @@
 <div *ngIf="isLastScene" class="canvases_navigate">
 	<div class="navigate_fab_buttons">
-		<a md-mini-fab (click)="younger_from_current_canvase()"><md-icon>skip_previous</md-icon></a>
-		<a md-fab (click)="older_from_current_canvase()"><md-icon>skip_next</md-icon></a>
+		<md-chip-list>
+			<md-chip color="primary" selected="true" (click)="younger_from_current_canvase()">Younger fish</md-chip>
+			<md-chip color="accent" selected="true" (click)="older_from_current_canvase()">Older fish</md-chip>
+		</md-chip-list>
 	</div>
 </div>
 <div *ngIf="isTitleScene" class="canvases_navigate">
