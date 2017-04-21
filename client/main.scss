@@ -54,7 +54,6 @@ $font_safe_4: Georgia;
 body, html {
 	font-size: 18px;
 }
-
 body {
 	margin: 0;
 	font-family: $font_2, $font_safe_4;
@@ -68,6 +67,32 @@ body {
 }
 a {
 	color: white;
+}
+
+/* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
+.loading {
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    // background: #000;
+    z-index: 999;
+	background: url("/fish-dance.gif") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	&.loading_end {
+		z-index: -1;
+	}
+}
+/* .loading screen is visible when app is not bootstraped yet, .my-app is empty */
+my-app:empty + .loading {
+    opacity: 1;
+    z-index: 100;
 }
 
 @import "imports/app/app-responsive";
