@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { routerTransition } from './router.animations';
 import { AuthenticationService } from './_simple_login/authentication.service'
 import { ActivatedRoute, Params } from '@angular/router';
 import { CanvasContents } from '../../../imports/api/canvas-contents.js';
@@ -13,8 +12,6 @@ import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 	selector: 'my-slider-dashboard',
 	template: template,
 	fullpagecss,
-	animations: [routerTransition()],
-	host: {'[@routerTransition]': ''},
 	providers: [ AuthenticationService ]
 })
 export class SliderDashboardComponent {
