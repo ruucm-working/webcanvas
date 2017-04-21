@@ -42,4 +42,10 @@ export class HomeComponent {
 	change_lang(value) {
 		this.translate.use(value);
 	}
+	over() {
+		$(".myhome").addClass("strip_background");
+	}
+	leave() {
+		$(".myhome").removeClass("strip_background");
+	}
 }

@@ -3,7 +3,6 @@
  */
 
 @import "imports/app/app";
-@import "imports/app/app-responsive";
 @import 'imports/app/sass/base/variables';
 @font-face {
 	font-family: 'SouvenirStd-Bold';
@@ -45,18 +44,30 @@ $font_safe_4: Georgia;
  */
 * {
 	::selection {
-	  background: $melon; /* WebKit/Blink Browsers */
+		background: $melon; /* WebKit/Blink Browsers */
 	}
 	::-moz-selection {
-	  background: $melon; /* Gecko Browsers */
+		background: $melon; /* Gecko Browsers */
 	}
+}
+
+body, html {
+	font-size: 18px;
 }
 
 body {
 	margin: 0;
 	font-family: $font_2, $font_safe_4;
 	color: $charcoal;
+	h2 {
+		font-size: 4.5rem;
+	}
+	h3 {
+		font-size: 3.5rem;
+	}
 }
 a {
 	color: white;
 }
+
+@import "imports/app/app-responsive";

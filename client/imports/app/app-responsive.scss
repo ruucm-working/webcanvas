@@ -4,12 +4,20 @@
  *	iphone 5
  */
 @media screen and (max-width: 330px) {
+	body, html {
+		font-size: 6.9px;
+	}
 	.myhome {
-		font-size: 1.52em;
 		.hello {
 			color: $melon-light;
 			h2 {
 			}
+		}
+	}
+	body #fp-nav ul li .fp-tooltip {
+		top: -0.2rem;
+		&.right {
+			right: 2.6rem;
 		}
 	}
 }
@@ -17,9 +25,32 @@
 /**
  *	Smart Phones
  */
+@media screen and (min-width: 331px) and (max-width: 500px) {
+	body, html {
+		font-size: 10px;
+	}
+	body #fp-nav ul li .fp-tooltip {
+		top: -0.5rem;
+		&.right {
+			right: 2rem;
+		}
+	}
+}
 @media screen and (max-width: 500px) {
 	body #fp-nav {
 		top: 10.7%;
+	}
+	.home_buttons {
+		position: absolute;
+		width: 100%;
+		top: 38%;
+		right: 6%;
+		text-align: right;
+		left: inherit;
+		bottom: inherit;
+	}
+	.myhome .hello {
+		margin-left: 9%;
 	}
 }
 
@@ -29,5 +60,22 @@
 @media screen and (max-width: 1025px) {
 	.myhome-descriptions {
 		display: none !important;
+	}
+}
+
+/**
+ *	PCs
+ */
+@media screen and (min-width: 1026px) {
+	.myhome {
+		font-size: 3.1rem;
+		.hello span {
+			line-height: 5.65rem;
+			letter-spacing: 0.03rem;
+			margin: 0 1rem;
+			span {
+				font-size: 2.37rem;
+			}
+		}
 	}
 }

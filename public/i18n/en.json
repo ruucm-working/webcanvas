@@ -1,6 +1,8 @@
 {
 	"HOME": {
-		"TITLE": "Hey, I'm<br>ruucm<span> (ruːm)</span><br><br>Maker,<br>Web-<br>designer,<br><br>Building a<br>new education<br>platform<br>that we really<br>need",
+		"TITLE": "Hey, I'm<br>ruucm<span> (ruːm)</span><br><br>",
+		"TITLE02": "Maker,<br>Web-<br>designer<br><br>",
+		"TITLE03": "Building a<br>new education<br>platform<br>that we really<br>need",
 		"SELECT": "Change language",
 		"INSTRUCTIONA": "⬅️ ⬇️ ➡️ ⬆️ &nbsp;&nbsp;&nbsp;👆",
 		"GO": "Go!"

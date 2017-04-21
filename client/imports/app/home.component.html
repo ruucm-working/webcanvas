@@ -1,11 +1,13 @@
 <div class="myhome content">
-	<div class="myhome-contents" fxLayout="row" fxLayoutAlign="start center" fxLayout.xs="column" fxLayoutAlign.xs="center start">
-		<div class="hello" fxLayoutAlign="space-around center">
+	<div class="myhome-contents" fxLayout="row" fxLayoutAlign="space-around center" fxLayout.xs="column" fxLayoutAlign.xs="center start">
+		<div class="hello" fxLayout="row" fxLayoutAlign="space-around start" fxLayout.xs="column" fxLayoutAlign.xs="center start">
 			<span [innerHTML]="'HOME.TITLE' | translate"></span>
+			<span [innerHTML]="'HOME.TITLE02' | translate"></span>
+			<span [innerHTML]="'HOME.TITLE03' | translate"></span>
 		</div>
-		<div class="myhome-descriptions" fxLayoutAlign="space-around center">
+		<!-- <div class="myhome-descriptions" fxLayoutAlign="space-around center">
 			<span [innerHTML]="'HOME.INSTRUCTIONA' | translate"></span>
-		</div>
+		</div> -->
 		<div *ngIf="this._service.hideToPublic()" class="user">
 			<span>Hello Ruucm</span>
 			<a routerLink="/admin">go to admin</a>
@@ -14,7 +16,7 @@
 	</div>
 	<div class="home_buttons">
 		<div class="enter_button">
-			<button md-button routerLink="/slider-dashboard">{{ 'HOME.GO' | translate }}</button>
+			<button on-mouseover='over()' on-mouseleave='leave()' md-button routerLink="/slider-dashboard">{{ 'HOME.GO' | translate }}</button>
 		</div>
 		<div class="select_lang">
 			<md-select placeholder="language" [(ngModel)]="selectedStatus" (change)="translate.use(selectedStatus)">
