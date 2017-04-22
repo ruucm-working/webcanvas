@@ -5,9 +5,6 @@
 			<span [innerHTML]="'HOME.TITLE02' | translate"></span>
 			<span [innerHTML]="'HOME.TITLE03' | translate"></span>
 		</div>
-		<!-- <div class="myhome-descriptions" fxLayoutAlign="space-around center">
-			<span [innerHTML]="'HOME.INSTRUCTIONA' | translate"></span>
-		</div> -->
 		<div *ngIf="this._service.hideToPublic()" class="user">
 			<span>Hello Ruucm</span>
 			<a routerLink="/admin">go to admin</a>

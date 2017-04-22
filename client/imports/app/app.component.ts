@@ -7,7 +7,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { WordsComponent } from './_word/words.component';
 import {
 	Router,
-	// import as RouterEvent to avoid confusion with the DOM Event
 	Event as RouterEvent,
 	NavigationStart,
 	NavigationEnd,
@@ -37,20 +36,31 @@ export class MyCanvas {
 			this.navigationInterceptor(event);
 		});
 	}
+	ngOnInit() {
+		/* Set Soft Full Screen for ios Safari */
+		var timeout;
+
+		window.addEventListener('scroll', function(ev) {
+
+			if (timeout) {
+				clearTimeout(timeout);
+			}
+
+			timeout = setTimeout(function() {
+
+				if (window.scrollY > 0) {
+					var cover = document.querySelector('div.spacer');
+					cover.style.display = 'none';
+				}
+
+			}, 200);
+
+		});
+	}
 	navigationInterceptor(event: RouterEvent): void {
 		if (event.url == '/' || event.url == '/home') {
 			this.remove_loading_screen();
 		}
-		// if (event instanceof NavigationStart) {
-		// }
-		// if (event instanceof NavigationEnd) {
-		// }
-		// if (event instanceof NavigationCancel) {
-		// 	setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
-		// }
-		// if (event instanceof NavigationError) {
-		// 	setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
-		// }
 	}
 	remove_loading_screen() {
 		setTimeout(function(){ $(".loading-screen-1").addClass("loading_end"); }, 2100);
