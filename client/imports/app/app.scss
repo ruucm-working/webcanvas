@@ -3,15 +3,9 @@
 /**
  *	Soft Full Screen
  */
-body { height: 100vh; padding: 0; margin: 0; 
-	background: url("/fish-dance.gif") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
+body { height: 100vh; padding: 0; margin: 0; }
 div.content { height: 100%; }
-div.spacer { height: 74px;}
+div.spacer { height: 74px; background: $charcoal; }
 
 /**
  *	General Page Objects Align
@@ -120,7 +114,7 @@ ul {
 }
 .home_buttons {
 	position: absolute;
-	width: 100%;
+	width: 91%;
 	bottom: 4%;
 	left: 9%;
 	text-align: left;
@@ -204,11 +198,11 @@ dialog-show-file-list {
 			background: transparent;
 			border: none;
 			opacity: 0.34;
-			font-size: 1.8rem;
+			font-size: 2.4rem;
 			&.copied-toggle {
 				background: red;
 				color: $melon;
-				font-size: 2rem;
+				font-size: 2.66rem;
 				-webkit-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
 				-moz-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
 				box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
@@ -223,7 +217,12 @@ dialog-show-file-list {
 		text-align: right;
 		opacity: 0.8;
 		md-chip {
-			margin: 10px 3px;
+			margin: 10px 6px;
+			font-size: 1.3rem;
+			line-height: 1.6rem;
+			padding: 0.8rem 1.2rem;
+			border-radius: 2.4rem;
+			opacity: 0.8;
 		}
 		md-chip:nth-child(2) {	
 			margin-right: 10px;
@@ -276,7 +275,7 @@ dialog-show-file-list {
 	}
 }
 my-slider-dashboard .mat-button {
-	font-size: 1.4rem;
+	font-size: 1.86rem;
 	line-height: 3.6rem;
 }
 

@@ -32,20 +32,27 @@ export class MyCanvas {
 		let browserLang = translate.getBrowserLang();
 		translate.use(browserLang.match(/en|kr/) ? browserLang : 'en');
 		router.events.subscribe((event: RouterEvent) => {
+			console.log('navigation event at app-component');
+			console.log('event.url : ' + event.url);
 			this.navigationInterceptor(event);
 		});
 	}
 	navigationInterceptor(event: RouterEvent): void {
-		if (event instanceof NavigationStart) {
+		if (event.url == '/' || event.url == '/home') {
+			this.remove_loading_screen();
 		}
-		if (event instanceof NavigationEnd) {
-			setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
-		}
-		if (event instanceof NavigationCancel) {
-			setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
-		}
-		if (event instanceof NavigationError) {
-			setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
-		}
+		// if (event instanceof NavigationStart) {
+		// }
+		// if (event instanceof NavigationEnd) {
+		// }
+		// if (event instanceof NavigationCancel) {
+		// 	setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
+		// }
+		// if (event instanceof NavigationError) {
+		// 	setTimeout(function(){ $(".loading").addClass("loading_end"); }, 2100);
+		// }
+	}
+	remove_loading_screen() {
+		setTimeout(function(){ $(".loading-screen-1").addClass("loading_end"); }, 2100);
 	}
 }

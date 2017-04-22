@@ -32,6 +32,7 @@ export class SliderDashboardComponent {
 		private _service:AuthenticationService,
 		private route: ActivatedRoute ) {}
 	ngOnInit() {
+		$(".loading-screen-2").addClass("loading");
 		this.route.params
 			.switchMap((params: Params) => this.ready_contents(params['cat'], +params['plink']))
 			.subscribe(result => this.hero = result);
@@ -50,6 +51,8 @@ export class SliderDashboardComponent {
 		MeteorObservable.subscribe('wordcontents').subscribe(() => {
 			MeteorObservable.autorun().subscribe(() => {
 				this.updateDatas(cat, plink);
+				$(".loading-screen-2").addClass("loading_end");
+				setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
 			});
 		});
 	}

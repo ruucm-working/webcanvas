@@ -51,6 +51,7 @@
 	}
 	.myhome .hello {
 		margin-left: 9%;
+		width: 91%;
 	}
 }
 
@@ -78,5 +79,14 @@
 				margin: 0;
 			}
 		}
+	}
+	.fp-slides .slide:nth-child(1) h3 {
+		margin: 0;
+	}
+	.fp-slides .slide:nth-child(1) .fp-tableCell h2 {
+		margin: 5rem -23px -11rem 0;
+	}
+	div.spacer {
+		display: none;
 	}
 }
