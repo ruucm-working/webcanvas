@@ -187,10 +187,13 @@ export class CanvasComponent {
 		return true;
 	}
 	show_loading_cover() {
+		$("#slider-dashboard-container").removeClass("now_loading_end");
+		$("#slider-dashboard-container").addClass("now_loading");
 		$(".loading-screen-2").removeClass("loading_end");
 		$(".loading-screen-2").removeClass("loading-screen-2-hide");
 	}
 	hide_loading_cover() {
+		setTimeout(() => { $("#slider-dashboard-container").removeClass("now_loading"); $("#slider-dashboard-container").addClass("now_loading_end"); }, 100);
 		$(".loading-screen-2").addClass("loading_end");
 		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
 	}

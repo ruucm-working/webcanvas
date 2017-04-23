@@ -59,15 +59,9 @@ export class SliderDashboardComponent {
 				this.updateDatas(cat, plink);
 				$(".loading-screen-2").addClass("loading_end");
 				setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
-				setTimeout(() => { this.loading_end = true; }, 100);
+				setTimeout(() => { $("#slider-dashboard-container").removeClass("now_loading"); $("#slider-dashboard-container").addClass("now_loading_end"); }, 100);
 			});
 		});
-	}
-	isloadingEnd() {
-		if (this.loading_end)
-			return 'loading_end';
-		else
-			return 'loading';
 	}
 	updateDatas(cat, opt) {
 		var isfromPermalink = false;
