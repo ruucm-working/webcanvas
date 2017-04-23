@@ -28,11 +28,13 @@ export class SliderDashboardComponent {
 	current_canvas_url;
 	canvas_list;
 	canvas_list_length = 0;
+	loading_end = false;
 	constructor(
 		private _service:AuthenticationService,
-		private route: ActivatedRoute ) {}
-	ngOnInit() {
+		private route: ActivatedRoute ) {
 		$(".loading-screen-2").addClass("loading");
+	}
+	ngOnInit() {
 		this.route.params
 			.switchMap((params: Params) => this.ready_contents(params['cat'], +params['plink']))
 			.subscribe(result => this.hero = result);
@@ -53,8 +55,15 @@ export class SliderDashboardComponent {
 				this.updateDatas(cat, plink);
 				$(".loading-screen-2").addClass("loading_end");
 				setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
+				setTimeout(() => { this.loading_end = true; }, 100);
 			});
 		});
+	}
+	isloadingEnd() {
+		if (this.loading_end)
+			return 'loading_end';
+		else
+			return 'loading';
 	}
 	updateDatas(cat, opt) {
 		var isfromPermalink = false;

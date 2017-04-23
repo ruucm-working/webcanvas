@@ -1,18 +1,20 @@
-<div class="admin-bar" *ngIf="this._service.hideToPublic()">
-	<md-chip-list>
-		<a routerLink="/home"><md-chip>go back to home</md-chip></a>
-		<a routerLink="/admin"><md-chip>admin</md-chip></a>
-		<a (click)="logout()"><md-chip color="primary" selected="true">Click Here to logout</md-chip></a>
-	</md-chip-list>
-</div>
-<div id="fullpage" [ngClass]="{'is_admin': this._service.hideToPublic() }">
-	<div class="section">
-		<my-canvases [current_canvas]="current_canvas" [current_canvas_length]="current_canvas_length" [canvas_list]="canvas_list" [current_canvas_id]="current_canvas_id" [canvas_list_length]="canvas_list_length" [current_canvas_url]="current_canvas_url"></my-canvases>
+<div [ngClass]="isloadingEnd()">
+	<div class="admin-bar" *ngIf="this._service.hideToPublic()">
+		<md-chip-list>
+			<a routerLink="/home"><md-chip>go back to home</md-chip></a>
+			<a routerLink="/admin"><md-chip>admin</md-chip></a>
+			<a (click)="logout()"><md-chip color="primary" selected="true">Click Here to logout</md-chip></a>
+		</md-chip-list>
 	</div>
-	<div class="section">
-		<my-projects></my-projects>
-	</div>
-	<div class="section">
-		<my-words [current_word]="current_word" [current_word_length]="current_word_length" [word_list]="word_list" [current_word_id]="current_word_id" [word_list_length]="word_list_length" [current_word_url]="current_word_url"></my-words>
+	<div id="fullpage" [ngClass]="{'is_admin': this._service.hideToPublic() }">
+		<div class="section">
+			<my-canvases [current_canvas]="current_canvas" [current_canvas_length]="current_canvas_length" [canvas_list]="canvas_list" [current_canvas_id]="current_canvas_id" [canvas_list_length]="canvas_list_length" [current_canvas_url]="current_canvas_url"></my-canvases>
+		</div>
+		<div class="section">
+			<my-projects [loading_end]="loading_end"></my-projects>
+		</div>
+		<div class="section">
+			<my-words [current_word]="current_word" [current_word_length]="current_word_length" [word_list]="word_list" [current_word_id]="current_word_id" [word_list_length]="word_list_length" [current_word_url]="current_word_url"></my-words>
+		</div>
 	</div>
 </div>

@@ -278,6 +278,12 @@ my-slider-dashboard .mat-button {
 	font-size: 1.86rem;
 	line-height: 3.6rem;
 }
+.loading .section {
+	display: none;
+}
+.loading_end .section {
+	display: inherit;
+}
 
 /**
  *	Canvases
@@ -355,15 +361,18 @@ body #fp-nav ul li .fp-tooltip {
  *	Projects
  */
 .myprojects {
-	width: 100%;
+	width: calc(90% - 30px);
 	background: #F9ACB3;
-	margin: 30px;
 	padding: 6px;
 	border-radius: 60px;
 	height: 100px;
 	-webkit-box-shadow: 0px 0px 58px 5px rgba(186, 105, 113, 0.1);
 	-moz-box-shadow: 0px 0px 58px 5px rgba(186, 105, 113, 0.1);
 	box-shadow: 0px 0px 58px 5px rgba(186, 105, 113, 0.1);
+	&.loading_end {
+		width: 100%;
+		margin: 30px;
+	}
 }
 
 /**
