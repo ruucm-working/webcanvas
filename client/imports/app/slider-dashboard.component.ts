@@ -33,6 +33,7 @@ export class SliderDashboardComponent {
 		private _service:AuthenticationService,
 		private route: ActivatedRoute ) {
 		$(".loading-screen-2").addClass("loading");
+		setTimeout(function(){ $(".loading-screen-1").addClass("loading_end"); }, 2100);
 	}
 	ngOnInit() {
 		this.route.params
@@ -170,7 +171,7 @@ export class SliderDashboardComponent {
 				if (cat == 'project')
 					$.fn.fullpage.moveTo('ProjectPage');
 				else if (cat == 'word')
-					$.fn.fullpage.moveTo('WordPage');
+					setTimeout(function(){ $.fn.fullpage.moveTo('WordPage'); }, 100);
 				else
 					$.fn.fullpage.moveTo('CanvasPage');
 			}

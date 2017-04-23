@@ -46,9 +46,6 @@ export class CanvasComponent {
 			}
 		});
 	}
-	trackByFn(index, item) {
-		return index;
-	}
 	share_text_change() {
 		if (!this.isCopied) {
 			this.share_button_text = "Now, Link Copied";
