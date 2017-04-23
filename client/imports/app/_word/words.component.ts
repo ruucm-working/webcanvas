@@ -68,7 +68,7 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				$.fn.fullpage.moveTo('WordPage', 0);
+				// $.fn.fullpage.moveTo('WordPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
@@ -80,7 +80,7 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				$.fn.fullpage.moveTo('WordPage', 0);
+				// $.fn.fullpage.moveTo('WordPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
@@ -99,8 +99,10 @@ export class WordsComponent {
 		this.share_button_text = "Share It!";
 	}
 	get_recent_word() {
+		this.show_loading_cover();
 		this.current_word = this.get_word(this.word_list_length);
 		this.updatefullpage();
+		this.hide_loading_cover();
 	}
 	openWordListDialog() {
 		const config = new MdDialogConfig();
@@ -111,18 +113,26 @@ export class WordsComponent {
 			result => {
 			console.log('curr - result : ' + result);
 			if (result != undefined) {
+				this.show_loading_cover();
 				this.current_word = this.get_word(result);
 				this.updatefullpage();
+				this.hide_loading_cover();
 			}
 		});
 	}
 	older_from_current_word() {
-		if ( this.get_word('older') )
+		if ( this.get_word('older') ) {
+			this.show_loading_cover();
 			this.updatefullpage();
+			this.hide_loading_cover();
+		}
 	}
 	younger_from_current_word() {
-		if ( this.get_word('younger') )
+		if ( this.get_word('younger') ) {
+			this.show_loading_cover();
 			this.updatefullpage();
+			this.hide_loading_cover();
+		}
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
@@ -175,6 +185,24 @@ export class WordsComponent {
 			$.fn.fullpage.destroy('all');
 		}
 		return true;
+	}
+
+	/* Inner Cover Load-Effect */
+	show_loading_cover() {
+		$("#slider-dashboard-container").removeClass("loading_inner_data_end");
+		$("#slider-dashboard-container").addClass("loading_inner_data");
+		$(".loading-screen-2").removeClass("loading_end");
+		$(".loading-screen-2").removeClass("loading-screen-2-hide");
+	}
+	hide_loading_cover() {
+		setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
+		$(".loading-screen-2").addClass("loading_end");
+
+		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
+	}
+	myproject_lazy_load() {
+		$(".myprojects").removeClass("loading_inner_data");
+		$(".myprojects").addClass("loading_inner_data_end");
 	}
 }
 

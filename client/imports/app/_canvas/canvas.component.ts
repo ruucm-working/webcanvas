@@ -128,10 +128,11 @@ export class CanvasComponent {
 		}
 	}
 	younger_from_current_canvase() {
-		if ( this.get_canvase('younger') )
+		if ( this.get_canvase('younger') ) {
 			this.show_loading_cover();
 			this.updatefullpage();
 			this.hide_loading_cover();
+		}
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
@@ -186,6 +187,8 @@ export class CanvasComponent {
 		}
 		return true;
 	}
+
+	/* Inner Cover Load-Effect */
 	show_loading_cover() {
 		$("#slider-dashboard-container").removeClass("loading_inner_data_end");
 		$("#slider-dashboard-container").addClass("loading_inner_data");
