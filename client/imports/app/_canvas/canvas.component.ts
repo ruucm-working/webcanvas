@@ -71,8 +71,8 @@ export class CanvasComponent {
 			} else {
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
 				$.fn.fullpage.moveTo('CanvasPage', 0);
-				this.isTitleScene = true; 
-				this.isLastScene = false; 
+				this.isTitleScene = true;
+				this.isLastScene = false;
 			}
 		} else if(which_canvas == 'younger') {
 			this.current_canvas_id += 1;
@@ -83,8 +83,8 @@ export class CanvasComponent {
 			} else {
 				this.current_canvas = this.get_canvase(this.current_canvas_id);
 				$.fn.fullpage.moveTo('CanvasPage', 0);
-				this.isTitleScene = true; 
-				this.isLastScene = false; 
+				this.isTitleScene = true;
+				this.isLastScene = false;
 			}
 		} else {
 			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
@@ -101,8 +101,10 @@ export class CanvasComponent {
 		this.share_button_text = "Share It!";
 	}
 	get_recent_canvas() {
+		this.show_loading_cover();
 		this.current_canvas = this.get_canvase(this.canvas_list_length);
 		this.updatefullpage();
+		this.hide_loading_cover();
 	}
 	openCanvasListDialog() {
 		const config = new MdDialogConfig();
@@ -111,19 +113,25 @@ export class CanvasComponent {
 		dialogRef.afterClosed().subscribe(
 			result => {
 			if (result != undefined) {
+				this.show_loading_cover();
 				this.current_canvas = this.get_canvase(result)
 				this.updatefullpage();
+				this.hide_loading_cover();
 			}
 		});
 	}
 	older_from_current_canvase() {
 		if ( this.get_canvase('older') ) {
+			this.show_loading_cover();
 			this.updatefullpage();
+			this.hide_loading_cover();
 		}
 	}
 	younger_from_current_canvase() {
 		if ( this.get_canvase('younger') )
+			this.show_loading_cover();
 			this.updatefullpage();
+			this.hide_loading_cover();
 	}
 	updatefullpage() {
 		var reloadfullpage = function() {
@@ -177,6 +185,14 @@ export class CanvasComponent {
 			$.fn.fullpage.destroy('all');
 		}
 		return true;
+	}
+	show_loading_cover() {
+		$(".loading-screen-2").removeClass("loading_end");
+		$(".loading-screen-2").removeClass("loading-screen-2-hide");
+	}
+	hide_loading_cover() {
+		$(".loading-screen-2").addClass("loading_end");
+		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
 	}
 }
 

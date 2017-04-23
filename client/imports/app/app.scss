@@ -347,15 +347,20 @@ body #fp-nav ul li .fp-tooltip {
 	ul {
 		padding: 0;
 		.md-chip-list-wrapper {
-			margin: 10px 0;
+			margin: 1rem 0;
 		}
 	}
 	.mat-chip:not(.mat-basic-chip) {
 		color: $charcoal;
+		font-size: 1.3rem;
+		padding: 0.8rem 1.2rem;
+		border-radius: 2.4rem;
+		line-height: 1.6rem;
 	}
 }
 .mat-dialog-title {
 	font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
+	font-size: 2rem;
 }
 
 /**

@@ -173,10 +173,8 @@ export class SliderDashboardComponent {
 			if (isfromPermalink) {
 				if (cat == 'project')
 					$.fn.fullpage.moveTo('ProjectPage');
-				else if (cat == 'word') {
-					console.log('cat (after reloadfullpage()) : ' + cat);
-					setTimeout(function(){ $.fn.fullpage.moveTo('WordPage'); }, 2100);
-				}
+				else if (cat == 'word') 
+					setTimeout(function(){ $.fn.fullpage.moveTo('WordPage'); }, 100);
 				else
 					$.fn.fullpage.moveTo('CanvasPage');
 			}
