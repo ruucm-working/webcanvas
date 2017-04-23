@@ -28,7 +28,6 @@ export class SliderDashboardComponent {
 	current_canvas_url;
 	canvas_list;
 	canvas_list_length = 0;
-	loading_end = false;
 	constructor(
 		private _service:AuthenticationService,
 		private route: ActivatedRoute ) {
@@ -59,9 +58,13 @@ export class SliderDashboardComponent {
 				this.updateDatas(cat, plink);
 				$(".loading-screen-2").addClass("loading_end");
 				setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
-				setTimeout(() => { $("#slider-dashboard-container").removeClass("now_loading"); $("#slider-dashboard-container").addClass("now_loading_end"); }, 100);
+				setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
 			});
 		});
+	}
+	myproject_lazy_load() {
+		$(".myprojects").removeClass("loading_inner_data");
+		$(".myprojects").addClass("loading_inner_data_end");
 	}
 	updateDatas(cat, opt) {
 		var isfromPermalink = false;

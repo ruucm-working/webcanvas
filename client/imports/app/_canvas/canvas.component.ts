@@ -187,19 +187,19 @@ export class CanvasComponent {
 		return true;
 	}
 	show_loading_cover() {
-		$("#slider-dashboard-container").removeClass("now_loading_end");
-		$("#slider-dashboard-container").addClass("now_loading");
+		$("#slider-dashboard-container").removeClass("loading_inner_data_end");
+		$("#slider-dashboard-container").addClass("loading_inner_data");
 		$(".loading-screen-2").removeClass("loading_end");
 		$(".loading-screen-2").removeClass("loading-screen-2-hide");
 	}
 	hide_loading_cover() {
-		setTimeout(() => { $("#slider-dashboard-container").removeClass("now_loading"); $("#slider-dashboard-container").addClass("now_loading_end"); this.myproject_lazy_load() }, 100);
+		setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load() }, 100);
 		$(".loading-screen-2").addClass("loading_end");
 		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
 	}
 	myproject_lazy_load() {
-		$(".myprojects").removeClass("loading");
-		$(".myprojects").addClass("loading_end");
+		$(".myprojects").removeClass("loading_inner_data");
+		$(".myprojects").addClass("loading_inner_data_end");
 	}
 }
 

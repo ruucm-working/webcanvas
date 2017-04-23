@@ -279,10 +279,10 @@ my-slider-dashboard .mat-button {
 	font-size: 1.86rem;
 	line-height: 3.6rem;
 }
-.now_loading .section {
+.loading_inner_data .section {
 	display: none;
 }
-.now_loading_end .section {
+.loading_inner_data_end .section {
 	display: inherit;
 }
 
@@ -375,7 +375,7 @@ body #fp-nav ul li .fp-tooltip {
 	-webkit-box-shadow: 0px 0px 58px 5px rgba(186, 105, 113, 0.1);
 	-moz-box-shadow: 0px 0px 58px 5px rgba(186, 105, 113, 0.1);
 	box-shadow: 0px 0px 58px 5px rgba(186, 105, 113, 0.1);
-	&.loading_end {
+	&.loading_inner_data_end {
 		width: 100%;
 		margin: 30px;
 	}
