@@ -24,7 +24,7 @@ export class AdminComponent {
 	public editorContent: string = 'My Canvas\'s Contents'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
-
+ 
 	constructor(
 		private _service:AuthenticationService,
 		public dialog: MdDialog
