@@ -8,6 +8,84 @@ div.content { height: 100%; }
 div.spacer { height: 74px; background: $charcoal; }
 
 /**
+ *	Loading Effects
+ */
+/* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
+.loading-screen-1 {
+	opacity: 0;
+	transition: opacity 2100ms ease-in-out;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: url("/fish-dance.gif") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	h1 {
+		color: #EEE;
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		text-align: center;
+		transform: translate(0, -50%);
+	}
+	&.loading_end {
+		z-index: -1;
+	}
+}
+/* .loading screen is visible when app is not bootstraped yet, .my-app is empty */
+my-app:empty + .loading-screen-1 {
+	opacity: 1;
+	z-index: 100;
+}
+.loading-screen-2 {
+	opacity: 0;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background: $charcoal;
+	h1 {
+		color: $hot-pink;
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		text-align: center;
+		transform: translate(0, -50%);
+		font-size: 4.5rem;
+	}
+	&.loading {
+		opacity: 1;
+		z-index: 2;
+		&.loading_end {
+			transition: opacity 500ms ease-in-out;
+			opacity: 0;
+			&.loading-screen-2-hide {
+				z-index: -1;
+			}
+		}
+	}
+}
+.loading_inner_data #fullpage {
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	padding-right: 17px;
+}
+#slider-dashboard-container {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	background: #EDA89C;
+}
+
+/**
  *	General Page Objects Align
  */
 .general-page-sample {
@@ -284,18 +362,6 @@ my-slider-dashboard .mat-button {
 	font-size: 1.86rem;
 	line-height: 3.6rem;
 }
-.loading_inner_data #fullpage {
-	width: 100%;
-	height: 100%;
-	overflow-y: scroll;
-	padding-right: 17px;
-}
-#slider-dashboard-container {
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	background: #EDA89C;
- }
 
 /**
  *	Canvases

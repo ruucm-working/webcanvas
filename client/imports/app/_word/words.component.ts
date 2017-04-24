@@ -1,4 +1,5 @@
 import { Component, Pipe, PipeTransform, Input } from '@angular/core';
+import { SectionService } from '../section.service';
 import { Location } from '@angular/common';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
@@ -25,6 +26,7 @@ export class WordsComponent {
 	isCopied1: boolean = false;
 
 	constructor(
+		private sectionService: SectionService,
 		private router: Router,
 		public dialog: MdDialog,
 		private location: Location ) {
@@ -197,8 +199,7 @@ export class WordsComponent {
 	hide_loading_cover() {
 		setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
 		$(".loading-screen-2").addClass("loading_end");
-
-		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
+		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, this.sectionService.loading_screen_2_duration);
 	}
 	myproject_lazy_load() {
 		$(".myprojects").removeClass("loading_inner_data");
