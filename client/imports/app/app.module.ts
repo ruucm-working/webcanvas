@@ -23,10 +23,6 @@ import { SafeHtmlPipe } from './safe.html.pipe';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NotFoundComponent } from './notfound.component';
 
-// import './__external_lib/mo.min.js';
-// import './__external_lib/mojs-player.min.js';
-// import './__external_lib/mojs-curve-editor.min.js';
-
 export function HttpLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, "i18n/", ".json");
 }

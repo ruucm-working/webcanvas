@@ -27,7 +27,6 @@ export class RegisterComponent {
 	constructor( private _service:AuthenticationService ) { }
 
 	addUser(newId, newPassword) {
-		console.log('add User()!');
 		UsersDatabase.insert({
 			email: newId,
 			password: newPassword,
@@ -37,9 +36,7 @@ export class RegisterComponent {
 		this.newPassword = '';
 	}
 	ngOnInit() {
-		console.log('ngOnInit');
 		this.users = this._service.get_users();
-		console.log('this.users : ');
-		console.log(this.users);
+		$('body').addClass('is_register_components');
 	}
 }

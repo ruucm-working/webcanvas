@@ -48,6 +48,7 @@ export class AdminComponent {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
+		$('body').addClass('is_admin_components');
 	}
 	openFileListDialog() {
 		const config = new MdDialogConfig();

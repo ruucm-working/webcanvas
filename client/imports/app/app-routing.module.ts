@@ -25,7 +25,7 @@ const routes: Routes = [
 		pathMatch: 'full'
 	},
 	{ path: 'login', name: 'Login', component: LoginComponent },
-	{ path: 'register', component: RegisterComponent },
+	// { path: 'register', component: RegisterComponent },
 	{ path: 'admin', component: AdminComponent },
 
 	{path: '404', component: NotFoundComponent},

@@ -26,12 +26,14 @@ div.spacer { height: 74px; background: $charcoal; }
 	-o-background-size: cover;
 	background-size: cover;
 	h1 {
-		color: #EEE;
-		position: absolute;
-		top: 50%;
-		width: 100%;
+		color: $melon-light;
+		margin: 0;
 		text-align: center;
-		transform: translate(0, -50%);
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
 	}
 	&.loading_end {
 		z-index: -1;
@@ -53,12 +55,14 @@ my-app:empty + .loading-screen-1 {
 	background: $charcoal;
 	h1 {
 		color: $hot-pink;
-		position: absolute;
-		top: 50%;
-		width: 100%;
-		text-align: center;
-		transform: translate(0, -50%);
 		font-size: 4.5rem;
+		margin: 0;
+		text-align: center;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
 	}
 	&.loading {
 		opacity: 1;
@@ -204,10 +208,37 @@ ul {
 }
 
 /**
- *	Admin
+ *	Admin, Simple Login
  */
+.is_admin_components, .is_login_components, .is_register_components {
+	.loading-screen-1, .loading-screen-2 {
+		display: none;
+	}
+	background: $charcoal;
+	my-admin {
+		h3 {
+			font-size: 2.5rem;
+		}
+	}
+}
 login-form, my-admin {
 	color: white;
+}
+login-form {
+	.container {
+		width: 100%;
+		height: 100%;
+		.panel-body {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			.row {
+				width: 300px;
+				margin: 0 auto;
+			}
+		}
+	}
 }
 dialog-show-file-list {
 	a {
@@ -465,7 +496,7 @@ my-words {
 	.fp-slide:not(:first-child) {
 		text-align: center;
 		.fp-tableCell {
-			max-width: 720px;
+			// max-width: 720px;
 			display: inline-block;
 			position: relative;
 			box-sizing: content-box !important

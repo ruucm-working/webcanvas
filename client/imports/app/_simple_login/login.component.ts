@@ -6,12 +6,12 @@ import { AuthenticationService, User } from './authentication.service'
 	providers: [ AuthenticationService ],
 	template: `
 		<div class="container" >
-			<div class="title">
-				Welcome
-			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="input-field col s12">
+					<div class="title">Welcome</div>
+				</div>
+				<div class="row">
+					<div class="input-field">
 						<input [(ngModel)]="user.email" id="email" 
 							type="email" class="validate">
 						<label for="email">Email</label>
@@ -19,17 +19,19 @@ import { AuthenticationService, User } from './authentication.service'
 				</div>
 
 				<div class="row">
-					<div class="input-field col s12">
+					<div class="input-field">
 						<input [(ngModel)]="user.password" id="password" 
 							type="password" class="validate">
 						<label for="password">Password</label>
 					</div>
 				</div>
 
-				<span>{{errorMsg}}</span>
-				<button (click)="login()" 
-					class="btn waves-effect waves-light" 
-					type="submit" name="action">Login</button>
+				<div class="row">
+					<span>{{errorMsg}}</span>
+					<button (click)="login()" 
+						class="btn waves-effect waves-light" 
+						type="submit" name="action">Login</button>
+				</div>
 			</div>
 		</div>
 		`
@@ -47,6 +49,7 @@ export class LoginComponent {
 			},
 			onError: function () { console.log("onError", arguments); }
 		});
+		$('body').addClass('is_login_components');
 	}
 	login() {
 		if(!this._service.login(this.user)){
