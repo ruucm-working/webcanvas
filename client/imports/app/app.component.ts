@@ -32,8 +32,6 @@ export class MyCanvas {
 		let browserLang = translate.getBrowserLang();
 		translate.use(browserLang.match(/en|kr/) ? browserLang : 'en');
 		router.events.subscribe((event: RouterEvent) => {
-			console.log('navigation event at app-component');
-			console.log('event.url : ' + event.url);
 			this.navigationInterceptor(event);
 		});
 	}
