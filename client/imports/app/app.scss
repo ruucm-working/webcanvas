@@ -442,7 +442,7 @@ body #fp-nav ul li .fp-tooltip {
 	color: #07019A;
 }
 .fp-scrollable {
-	padding: 0 35px;
+	// padding: 0 35px;
 }
 body #fp-nav ul li .fp-tooltip {
 	font-family: Spoqa Han Sans Regular;
@@ -498,7 +498,6 @@ body #fp-nav ul li .fp-tooltip {
  */
 my-words {
 	.fp-slide:not(:first-child) {
-		text-align: center;
 		.fp-tableCell {
 			display: inline-block;
 			position: relative;
@@ -513,6 +512,26 @@ my-words {
 				left: 2px;
 				-webkit-border-radius: 32px;
 				border-radius: 32px
+			}
+			>.fp-scrollable {
+				padding: 0 8.5rem 0rem 8.5rem;
+				h1, h2, h3, h4, p, pre, .fp-scrollable {
+					&:first-child {
+						margin-top: 8rem;
+					}
+					&:last-child {
+						margin-bottom: 8rem;
+					}
+				}
+			}
+			h1, h2, h3, h4, p, pre {
+				padding: 0 8.5rem 0rem 8.5rem;
+				&:first-child {
+					margin-top: 8rem;
+				}
+				&:last-child {
+					margin-bottom: 8rem;
+				}
 			}
 		}
 	}
