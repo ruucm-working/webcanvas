@@ -66,7 +66,7 @@ my-app:empty + .loading-screen-1 {
 	}
 	&.loading {
 		opacity: 1;
-		z-index: 2;
+		z-index: 3;
 		&.loading_end {
 			transition: opacity 500ms ease-in-out;
 			opacity: 0;
@@ -215,11 +215,6 @@ ul {
 		display: none;
 	}
 	background: $charcoal;
-	my-admin {
-		h3 {
-			font-size: 2.5rem;
-		}
-	}
 }
 login-form, my-admin {
 	color: white;
@@ -247,7 +242,7 @@ dialog-show-file-list {
 }
 .admin-bar {
 	position: absolute;
-	z-index: 99;
+	z-index: 3;
 	color: white;
 	margin: 10px;
 }
@@ -277,6 +272,9 @@ dialog-show-file-list {
 			margin: 35px;
 		}
 	}
+}
+div.fr-toolbar.fr-desktop.fr-top.fr-basic.fr-sticky {
+	top: 50px;
 }
 
 /**
@@ -511,6 +509,30 @@ my-words {
 				-webkit-border-radius: 32px;
 				border-radius: 32px
 			}
+		}
+	}
+}
+/* Blog Default Syntax */
+body {
+	my-admin, my-words {
+		h1 {
+			font-size: 5rem;
+			font-weight: bold;
+		}
+		h2 {
+			font-size: 3.5rem;
+			font-weight: bold;
+		}
+		h3 {
+			font-size: 2.5rem;
+			font-weight: bold;
+		}
+		h4 {
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		p {
+			font-size: 1rem;
 		}
 	}
 }

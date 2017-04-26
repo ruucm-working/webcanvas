@@ -8,7 +8,7 @@
 		<div *ngIf="this._service.hideToPublic()" class="user">
 			<span>Hello Ruucm</span>
 			<a routerLink="/admin">go to admin</a>
-			<button (click)="logout()">Click Here to logout</button>
+			<a (click)="logout()">Click Here to logout</a>
 		</div>
 	</div>
 	<div class="home_buttons">
@@ -22,4 +22,5 @@
 		</div>
 	</div>
 </div>
+<section [innerHTML]="sampleContent" highlight-js-content=".highlight"></section>
 <div class="spacer"></div>

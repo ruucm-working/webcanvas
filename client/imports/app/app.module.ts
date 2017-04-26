@@ -22,6 +22,7 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { SafeHtmlPipe } from './safe.html.pipe';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NotFoundComponent } from './notfound.component';
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
 
 export function HttpLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, "i18n/", ".json");
@@ -51,6 +52,7 @@ export function HttpLoaderFactory(http: Http) {
 		AppRoutingModule,
 		MaterialModule,
 		ClipboardModule,
+		HighlightJsModule,
 		FlexLayoutModule.forRoot(),
 		FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
 		TranslateModule.forRoot({
@@ -62,7 +64,8 @@ export function HttpLoaderFactory(http: Http) {
 		})
 	],
 	providers: [
-		MnFullpageService
+		MnFullpageService,
+		HighlightJsService
 		],
 	bootstrap: [ MyCanvas ]
 })

@@ -5,6 +5,7 @@ import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { SafeHtmlPipe } from '../safe.html.pipe';
+import { HighlightJsService } from 'angular2-highlight-js';
 import template from './words.component.html';
 import template_dialog from './dialog-show-word-list.html';
 
@@ -29,7 +30,8 @@ export class WordsComponent {
 		private sectionService: SectionService,
 		private router: Router,
 		public dialog: MdDialog,
-		private location: Location ) {
+		private location: Location,
+		private highlightJsService: HighlightJsService ) {
 		router.events.forEach((event) => {
 			if ((event.url).slice(-9) == "#WordPage") {
 				this.isTitleScene = true;
