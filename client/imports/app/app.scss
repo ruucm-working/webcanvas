@@ -391,6 +391,12 @@ my-slider-dashboard .mat-button {
 	font-size: 1.86rem;
 	line-height: 3.6rem;
 }
+h3.canvas_intro {
+	font-size: 4.66rem;
+}
+h2.canvas_intro {
+	font-size: 6rem;
+}
 
 /**
  *	Canvases
@@ -494,7 +500,6 @@ my-words {
 	.fp-slide:not(:first-child) {
 		text-align: center;
 		.fp-tableCell {
-			// max-width: 720px;
 			display: inline-block;
 			position: relative;
 			box-sizing: content-box !important
