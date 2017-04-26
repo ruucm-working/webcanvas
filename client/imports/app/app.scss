@@ -391,10 +391,10 @@ my-slider-dashboard .mat-button {
 	font-size: 1.86rem;
 	line-height: 3.6rem;
 }
-h3.canvas_intro {
+h3.component_intro {
 	font-size: 4.66rem;
 }
-h2.canvas_intro {
+h2.component_intro {
 	font-size: 6rem;
 }
 
@@ -515,6 +515,9 @@ my-words {
 				border-radius: 32px
 			}
 		}
+	}
+	code {
+		text-align: initial;
 	}
 }
 /* Blog Default Syntax */

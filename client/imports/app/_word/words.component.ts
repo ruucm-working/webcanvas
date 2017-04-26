@@ -45,6 +45,15 @@ export class WordsComponent {
 			}
 		});
 	}
+	HighlightUsingService() {
+		var x = document.querySelectorAll('.typescript');
+		x.forEach((item, index) => {
+			this.highlightJsService.highlight(item);
+		});
+	}
+	highlightByService(target: ElementRef) {
+		this.highlightJsService.highlight(target);
+	}
 	trackByFn(index, item) {
 		return index;
 	}
@@ -201,7 +210,7 @@ export class WordsComponent {
 	hide_loading_cover() {
 		setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
 		$(".loading-screen-2").addClass("loading_end");
-		setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, this.sectionService.loading_screen_2_duration);
+		setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); }, this.sectionService.loading_screen_2_duration );
 	}
 	myproject_lazy_load() {
 		$(".myprojects").removeClass("loading_inner_data");
