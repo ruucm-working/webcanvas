@@ -524,7 +524,7 @@ my-words {
 					}
 				}
 			}
-			h1, h2, h3, h4, p, pre {
+			> h1, > h2, > h3, > h4, > p, > pre {
 				padding: 0 8.5rem 0rem 8.5rem;
 				&:first-child {
 					margin-top: 8rem;

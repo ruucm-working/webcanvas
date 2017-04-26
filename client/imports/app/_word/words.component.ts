@@ -161,6 +161,7 @@ export class WordsComponent {
 				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,
 				scrollOverflow: true,
+				scrollingSpeed: 550
 			});
 		}
 		//Promise 선언
