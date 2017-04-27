@@ -374,16 +374,31 @@ div.fr-toolbar.fr-desktop.fr-top.fr-basic.fr-sticky {
 			}
 		}
 		.post-title {
-			background: #FD7D75;
-			padding: 1.5rem 0 0.5rem 3rem;
-			color: rgba(250, 250, 250, 0.5);
-			margin-right: -100px;
-			border-radius: 0 5rem 5rem 0;
-			letter-spacing: 0.1rem;
+			display: block;
+			text-align: right;
+			background: none;
 			font-family: SouvenirStd-Bold;
-			-webkit-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
-			-moz-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
-			box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
+			color: $hot-pink;
+			box-shadow: none;
+			font-size: 4.1rem;
+			margin-right: 1.5rem;
+			&:before {
+				height: 100px;
+				width: 100%;
+				display: block;
+				content: '';
+				background: $hot-pink;
+				padding: 1.5rem 0 0.5rem 4.5rem;
+				color: rgba(250, 250, 250, 0.5);
+				margin-right: -100px;
+				margin-bottom: 1.7rem;
+				margin-top: 2rem;
+				border-radius: 0 5rem 5rem 0;
+				letter-spacing: 0.1rem;
+				-webkit-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
+				-moz-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
+				box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
+			}
 		}
 	}
 }
