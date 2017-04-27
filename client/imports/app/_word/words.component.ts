@@ -28,10 +28,10 @@ export class WordsComponent {
 
 	constructor(
 		private sectionService: SectionService,
+		private highlightJsService: HighlightJsService,
 		private router: Router,
 		public dialog: MdDialog,
-		private location: Location,
-		private highlightJsService: HighlightJsService ) {
+		private location: Location ) {
 		router.events.forEach((event) => {
 			if ((event.url).slice(-9) == "#WordPage") {
 				this.isTitleScene = true;
@@ -50,9 +50,6 @@ export class WordsComponent {
 		x.forEach((item, index) => {
 			this.highlightJsService.highlight(item);
 		});
-	}
-	highlightByService(target: ElementRef) {
-		this.highlightJsService.highlight(target);
 	}
 	trackByFn(index, item) {
 		return index;

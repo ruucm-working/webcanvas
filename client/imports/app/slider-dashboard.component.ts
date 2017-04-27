@@ -5,6 +5,8 @@ import { CanvasContents } from '../../../imports/api/canvas-contents.js';
 import { WordContents } from '../../../imports/api/word-contents.js';
 import { MeteorObservable } from 'meteor-rxjs';
 import { Observable } from 'rxjs';
+import { SectionService } from './section.service';
+import { HighlightJsService } from 'angular2-highlight-js';
 import template from './slider-dashboard.component.html';
 import fullpagecss from 'fullpage.js/dist/jquery.fullpage.css';
 
@@ -29,10 +31,14 @@ export class SliderDashboardComponent {
 	canvas_list;
 	canvas_list_length = 0;
 	constructor(
+		private sectionService: SectionService,
+		private highlightJsService: HighlightJsService,
 		private _service:AuthenticationService,
 		private route: ActivatedRoute ) {
 		$(".loading-screen-2").addClass("loading");
-		setTimeout(function(){ $(".loading-screen-1").addClass("loading_end"); }, 2100);
+		setTimeout(() => {
+			$(".loading-screen-1").addClass("loading_end");
+		}, this.sectionService.loading_screen_1_duration );
 	}
 	ngOnInit() {
 		this.route.params
@@ -52,12 +58,18 @@ export class SliderDashboardComponent {
 		});
 		return 'W';
 	}
+	HighlightUsingService() {
+		var x = document.querySelectorAll('.typescript');
+		x.forEach((item, index) => {
+			this.highlightJsService.highlight(item);
+		});
+	}
 	load_words(cat, plink): void {
 		MeteorObservable.subscribe('wordcontents').subscribe(() => {
 			MeteorObservable.autorun().subscribe(() => {
 				this.updateDatas(cat, plink);
 				$(".loading-screen-2").addClass("loading_end");
-				setTimeout(function(){ $(".loading-screen-2").addClass("loading-screen-2-hide"); }, 500);
+				setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); }, this.sectionService.loading_screen_2_duration );
 				setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
 			});
 		});
