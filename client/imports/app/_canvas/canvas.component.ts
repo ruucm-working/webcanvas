@@ -16,12 +16,13 @@ export class CanvasComponent {
 	newText = '';
 	@Input('current_canvas') current_canvas;
 	@Input('current_canvas_length') current_canvas_length;
-	@Input('current_canvas_id') current_canvas_id;
+	@Input('current_canvas_order') current_canvas_order;
 	@Input('current_canvas_url') current_canvas_url;
 	@Input('canvas_list') canvas_list;
 	@Input('canvas_list_length') canvas_list_length;
 	isLastScene;
 	isTitleScene;
+	current_canvas_id;
 	share_button_text = 'Share It!';
 	isCopied: boolean = false;
 	isCopied1: boolean = false;
@@ -55,33 +56,33 @@ export class CanvasComponent {
 		}
 	}
 	get_canvase(which_canvas): Canvas[] {
-		console.log('which_canvas : ' + which_canvas);
+		console.log('get_canvase, which_canvas : ' + which_canvas);
 		if (!isNaN(which_canvas)) {
-			this.current_canvas_id = which_canvas;
-			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_canvas_length = res.length;
-			this.current_canvas_length = res.length;
-			return res;
+			this.current_canvas_order = which_canvas;
+			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0];
+			this.current_canvas_id = res._id;
+			this.current_canvas_length = res.content.length;
+			return res.content;
 		} else if(which_canvas == 'older') {
-			this.current_canvas_id -= 1;
-			if (this.current_canvas_id - 1 < 1) {
+			this.current_canvas_order -= 1;
+			if (this.current_canvas_order - 1 < 1) {
 				alert('It is the First Canvas!');
-				this.current_canvas_id += 1;
+				this.current_canvas_order += 1;
 				return false;
 			} else {
-				this.current_canvas = this.get_canvase(this.current_canvas_id);
+				this.current_canvas = this.get_canvase(this.current_canvas_order);
 				$.fn.fullpage.moveTo('CanvasPage', 0);
 				this.isTitleScene = true;
 				this.isLastScene = false;
 			}
 		} else if(which_canvas == 'younger') {
-			this.current_canvas_id += 1;
-			if (this.current_canvas_id - 1 >= this.canvas_list_length) {
+			this.current_canvas_order += 1;
+			if (this.current_canvas_order - 1 >= this.canvas_list_length) {
 				alert('It is the Last Canvas!');
-				this.current_canvas_id -= 1;
+				this.current_canvas_order -= 1;
 				return false;
 			} else {
-				this.current_canvas = this.get_canvase(this.current_canvas_id);
+				this.current_canvas = this.get_canvase(this.current_canvas_order);
 				$.fn.fullpage.moveTo('CanvasPage', 0);
 				this.isTitleScene = true;
 				this.isLastScene = false;

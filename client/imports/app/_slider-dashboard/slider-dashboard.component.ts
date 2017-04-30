@@ -26,7 +26,7 @@ export class SliderDashboardComponent {
 	word_list_length = 0;
 	current_canvas;
 	current_canvas_length = 0;
-	current_canvas_id: number;
+	current_canvas_order: number;
 	current_canvas_url;
 	canvas_list;
 	canvas_list_length = 0;
@@ -102,16 +102,19 @@ export class SliderDashboardComponent {
 	get_canvas(which_canvas): void {
 		this.canvas_list = CanvasContents.find({}, { fields: {'content':0}, sort: { createdAt: -1 } }).map((messages: Canvas[]) => { return messages; });
 		this.canvas_list_length = this.canvas_list.length;
+
 		if (!isNaN(which_canvas)) {
-			this.current_canvas_id = which_canvas;
-			this.make_permalink('canvas', this.current_canvas_id);
-			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_canvas_length = res.length;
-			this.current_canvas = res;
+			this.current_canvas_order = which_canvas;
+			var res = CanvasContents.find({ contentid: +which_canvas }).map((messages: Canvas[]) => { return messages; })[0];
+			this.current_canvas = res.content;
+			this.current_canvas_length = this.current_canvas.length;
+			this.make_permalink('canvas' , res._id);
 		} else {
-			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_canvas_length = res.length;
-			this.current_canvas = res;
+			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0];
+			this.current_canvas = res.content;
+			this.current_canvas_order = res.contentid;
+			this.current_canvas_length = this.current_canvas.length;
+			this.make_permalink('canvas' , which_canvas);
 		}
 	}
 	get_word(which_word): void {

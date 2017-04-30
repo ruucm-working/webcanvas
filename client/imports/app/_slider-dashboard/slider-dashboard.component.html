@@ -8,7 +8,7 @@
 	</div>
 	<div id="fullpage" [ngClass]="{'is_admin': this._service.hideToPublic() }">
 		<div class="section">
-			<my-canvases [current_canvas]="current_canvas" [current_canvas_length]="current_canvas_length" [canvas_list]="canvas_list" [current_canvas_id]="current_canvas_id" [canvas_list_length]="canvas_list_length" [current_canvas_url]="current_canvas_url"></my-canvases>
+			<my-canvases [current_canvas]="current_canvas" [current_canvas_length]="current_canvas_length" [canvas_list]="canvas_list" [current_canvas_order]="current_canvas_order" [canvas_list_length]="canvas_list_length" [current_canvas_url]="current_canvas_url"></my-canvases>
 		</div>
 		<div class="section">
 			<my-projects></my-projects>
