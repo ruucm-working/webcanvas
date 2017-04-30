@@ -78,7 +78,6 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				// $.fn.fullpage.moveTo('WordPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
@@ -90,7 +89,6 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_id);
-				// $.fn.fullpage.moveTo('WordPage', 0);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
@@ -206,7 +204,11 @@ export class WordsComponent {
 		$(".loading-screen-2").removeClass("loading-screen-2-hide");
 	}
 	hide_loading_cover() {
-		setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
+		setTimeout(() => { 
+			$("#slider-dashboard-container").removeClass("loading_inner_data");
+			$("#slider-dashboard-container").addClass("loading_inner_data_end");
+			this.myproject_lazy_load();
+		}, 100);
 		$(".loading-screen-2").addClass("loading_end");
 		setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); }, this.sectionService.loading_screen_2_duration );
 	}

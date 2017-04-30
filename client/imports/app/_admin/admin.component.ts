@@ -75,7 +75,7 @@ export class AdminComponent {
 			content: inital_value,
 			createdAt: new Date,
 		});
-		this.canvas_title = '';
+		this.canvas_title = '<h3 class="post-title"></h3>';
 		this.my_canvases = this.get_canvases();
 	}
 	addCanvasContents(canvas, editorContent) {
@@ -115,7 +115,7 @@ export class AdminComponent {
 			content: inital_value,
 			createdAt: new Date,
 		});
-		this.word_title = '';
+		this.word_title = '<h3 class="post-title"></h3>';
 		this.my_words = this.get_words();
 	}
 	addWordContents(word, editorContent3) {

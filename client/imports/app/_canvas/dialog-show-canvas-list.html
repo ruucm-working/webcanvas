@@ -1,8 +1,8 @@
 <h1 md-dialog-title>Canvas List</h1>
 <div md-dialog-actions>
 	<ul>
-		<md-chip-list *ngFor="let canvas of canvas_list; let i=index let first=first">
-			<md-chip md-button *ngIf="!first" (click)="dialogRef.close(canvas.contentid)">#{{i}} : {{ canvas.canvastitle }}</md-chip>
+		<md-chip-list *ngFor="let canvas of canvas_list; let i=index let last = last">
+			<md-chip md-button *ngIf="!last" (click)="dialogRef.close(canvas.contentid)">#{{i}} : {{ canvas.canvastitle }}</md-chip>
 		</md-chip-list>
 	</ul>
 </div>

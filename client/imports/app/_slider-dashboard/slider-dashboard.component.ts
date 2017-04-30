@@ -99,7 +99,7 @@ export class SliderDashboardComponent {
 		this.updatefullpage(cat, isfromPermalink);
 	}
 	get_canvas(which_canvas): void {
-		this.canvas_list = CanvasContents.find({}, {fields: {'content':0}}).map((messages: Canvas[]) => { return messages; });
+		this.canvas_list = CanvasContents.find({}, { fields: {'content':0}, sort: { createdAt: -1 } }).map((messages: Canvas[]) => { return messages; });
 		this.canvas_list_length = this.canvas_list.length;
 		if (!isNaN(which_canvas)) {
 			this.current_canvas_id = which_canvas;
@@ -114,7 +114,7 @@ export class SliderDashboardComponent {
 		}
 	}
 	get_word(which_word): void {
-		this.word_list = WordContents.find({}, {fields: {'content':0}}).map((messages: Canvas[]) => { return messages; });
+		this.word_list = WordContents.find({}, { fields: {'content':0}, sort: { createdAt: -1 } }).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 
 		if (!isNaN(which_word)) {
