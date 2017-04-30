@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { SectionService } from '../_slider-dashboard/section.service';
 import { Location } from '@angular/common';
 import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
-import { Canvas0218Service } from '../_mojs_services/canvas0218.service';
-import { Canvas0303Service } from '../_mojs_services/canvas0303.service';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { SafeHtmlPipe } from '../_slider-dashboard/safe.html.pipe';
@@ -12,8 +10,7 @@ import template_dialog from './dialog-show-canvas-list.html';
 
 @Component({
 	selector: 'my-canvases',
-	template: template,
-	providers: [ Canvas0218Service, Canvas0303Service ]
+	template: template
 })
 export class CanvasComponent {
 	newText = '';
@@ -58,6 +55,7 @@ export class CanvasComponent {
 		}
 	}
 	get_canvase(which_canvas): Canvas[] {
+		console.log('which_canvas : ' + which_canvas);
 		if (!isNaN(which_canvas)) {
 			this.current_canvas_id = which_canvas;
 			var res = CanvasContents.find({ contentid: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;
@@ -103,6 +101,7 @@ export class CanvasComponent {
 		this.share_button_text = "Share It!";
 	}
 	get_recent_canvas() {
+		console.log('get_recent_canvas');
 		this.show_loading_cover();
 		this.current_canvas = this.get_canvase(this.canvas_list_length);
 		this.updatefullpage();
