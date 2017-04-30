@@ -42,14 +42,16 @@ export class SliderDashboardComponent {
 	}
 	ngOnInit() {
 		this.route.params
-			.switchMap((params: Params) => this.ready_contents(params['cat'], +params['plink']))
+			.switchMap((params: Params) => this.ready_contents(params['cat'], params['plink']))
 			.subscribe(result => this.hero = result);
 	}
 	ready_contents(cat, plink) {
 		console.log('cat : ' + cat);
+		console.log('plink : ' + plink);
 		if (cat != undefined)
 			$(".loading-screen-1").addClass("loading_end");
-		if (isNaN(plink))
+		// if (isNaN(plink))
+		if (plink == undefined)
 			plink = 'init';
 		MeteorObservable.subscribe('canvascontents').subscribe(() => {
 			MeteorObservable.autorun().subscribe(() => {
@@ -114,6 +116,8 @@ export class SliderDashboardComponent {
 		}
 	}
 	get_word(which_word): void {
+		console.log('get_word');
+		console.log('which_word : ' + which_word);
 		this.word_list = WordContents.find({}, { fields: {'content':0}, sort: { createdAt: -1 } }).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 
@@ -124,9 +128,9 @@ export class SliderDashboardComponent {
 			this.current_word_length = res.length;
 			this.current_word = res;
 		} else {
+			console.log('else');
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
 			this.current_word_length = res.length;
-			return res;
 			this.current_word = res;
 		}
 	}

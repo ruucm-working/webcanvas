@@ -93,6 +93,7 @@ export class AdminComponent {
 	}
 	removeCanvas(canvas) {
 		CanvasContents.remove(canvas._id);
+		this.re_order_contents('canvas');
 		this.my_canvases = this.get_canvases();
 	}
 	addProject(project_title) {
@@ -135,7 +136,33 @@ export class AdminComponent {
 	}
 	removeWord(word) {
 		WordContents.remove(word._id);
+		this.re_order_contents('word');
 		this.my_words = this.get_words();
+	}
+	re_order_contents(content_type) {
+		console.log('re_order_contents : ' + content_type);
+		if (content_type == 'canvas') {
+			var canvas_content_list = CanvasContents.find({}, { fields: {'content':0} }).map((messages: Canvas[]) => { return messages; });
+
+			canvas_content_list.forEach((item, index) => {
+				CanvasContents.update(item._id, {
+					$set: {
+						contentid: (index + 1)
+					},
+				});
+			});
+		} else if (content_type == 'word') {
+			var word_content_list = WordContents.find({}, { fields: {'content':0} }).map((messages: Canvas[]) => { return messages; });
+
+			word_content_list.forEach((item, index) => {
+				WordContents.update(item._id, {
+					$set: {
+						contentid: (index + 1)
+					},
+				});
+			});
+		}
+
 	}
 }
 
