@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CanvasComponent } from './_canvas/canvas.component';
 import { ProjectsComponent } from './_project/projects.component';
 import { WordsComponent } from './_word/words.component';
-import { HomeComponent } from './home.component';
-import { SliderDashboardComponent } from './slider-dashboard.component';
+import { HomeComponent } from './_home/home.component';
+import { SliderDashboardComponent } from './_slider-dashboard/slider-dashboard.component';
 
 import { LoginComponent } from './_simple_login/login.component';
 import { PrivateComponent } from './_simple_login/private.component';

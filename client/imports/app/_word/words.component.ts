@@ -1,10 +1,10 @@
 import { Component, Pipe, PipeTransform, Input } from '@angular/core';
-import { SectionService } from '../section.service';
+import { SectionService } from '../_slider-dashboard/section.service';
 import { Location } from '@angular/common';
 import { WordContents } from '../../../../imports/api/word-contents.js';
 import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
-import { SafeHtmlPipe } from '../safe.html.pipe';
+import { SafeHtmlPipe } from '../_slider-dashboard/safe.html.pipe';
 import { HighlightJsService } from 'angular2-highlight-js';
 import template from './words.component.html';
 import template_dialog from './dialog-show-word-list.html';

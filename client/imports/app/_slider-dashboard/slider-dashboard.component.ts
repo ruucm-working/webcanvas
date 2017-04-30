@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './_simple_login/authentication.service'
+import { AuthenticationService } from '../_simple_login/authentication.service'
 import { ActivatedRoute, Params } from '@angular/router';
-import { CanvasContents } from '../../../imports/api/canvas-contents.js';
-import { WordContents } from '../../../imports/api/word-contents.js';
+import { CanvasContents } from '../../../../imports/api/canvas-contents.js';
+import { WordContents } from '../../../../imports/api/word-contents.js';
 import { MeteorObservable } from 'meteor-rxjs';
 import { Observable } from 'rxjs';
 import { SectionService } from './section.service';

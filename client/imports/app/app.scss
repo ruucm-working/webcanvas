@@ -245,13 +245,16 @@ dialog-show-file-list {
 	z-index: 3;
 	color: white;
 	margin: 10px;
+	bottom: 15px;
+	right: 15px;
 }
 .admin_page_holder {
 	.admin_page_top_bar {
 		position: fixed;
 		z-index: 5;
 		margin: 10px;
-		top: 0px;
+		bottom: 33px;
+		right: 100px;
 	}
 	.page {
 		margin-top: 100px;
@@ -282,8 +285,8 @@ div.fr-toolbar.fr-desktop.fr-top.fr-basic.fr-sticky {
  */
 .is_admin {
 	.canvases_navigate .permalink_copy_button button {
-		margin-left: 360px;
-		margin-top: 12px;
+		// margin-left: 360px;
+		// margin-top: 12px;
 	}
 }
 .canvases_navigate {

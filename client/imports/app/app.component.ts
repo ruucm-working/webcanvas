@@ -5,7 +5,7 @@ import material_indigo_theme from '@angular/material/core/theming/prebuilt/indig
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { WordsComponent } from './_word/words.component';
-import { SectionService } from './section.service';
+import { SectionService } from './_slider-dashboard/section.service';
 import {
 	Router,
 	Event as RouterEvent,
