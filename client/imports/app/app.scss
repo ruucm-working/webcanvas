@@ -385,6 +385,7 @@ div.fr-toolbar.fr-desktop.fr-top.fr-basic.fr-sticky {
 			box-shadow: none;
 			font-size: 4.1rem;
 			margin-right: 1.5rem;
+			cursor: pointer;
 			&:before {
 				height: 100px;
 				width: 100%;
@@ -401,6 +402,20 @@ div.fr-toolbar.fr-desktop.fr-top.fr-basic.fr-sticky {
 				-webkit-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
 				-moz-box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
 				box-shadow: 0px 0px 58px 5px rgba(253,125,117,0.3);
+			}
+
+			/* Forward Hover Effect */
+			-webkit-transform: perspective(1px) translateZ(0);
+			transform: perspective(1px) translateZ(0);
+			-webkit-transition-duration: 0.3s;
+			transition-duration: 0.3s;
+			-webkit-transition-property: transform;
+			transition-property: transform;
+			&:hover,
+			&:focus,
+			&:active {
+				-webkit-transform: translateX(1rem);
+				transform: translateX(1rem);
 			}
 		}
 	}

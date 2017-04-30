@@ -15,5 +15,4 @@
 		<button [class.copied-toggle]="!isCopied" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="current_canvas_url" (cbOnSuccess)="isCopied1 = true" (click)="share_text_change()">{{share_button_text}}</button>
 	</div>
 </div>
-<div *ngFor="let slide of current_canvas; let i=index;" class="slide" [innerHTML]="slide.text | safeHtml">
-</div>
+<div *ngFor="let slide of current_canvas; let i=index;" class="slide" [innerHTML]="slide.text | safeHtml"></div>

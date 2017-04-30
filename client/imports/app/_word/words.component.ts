@@ -212,7 +212,7 @@ export class WordsComponent {
 			this.myproject_lazy_load();
 		}, 100);
 		$(".loading-screen-2").addClass("loading_end");
-		setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); }, this.sectionService.loading_screen_2_duration );
+		setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); this.sectionService.addMoveToclickEvent(); }, this.sectionService.loading_screen_2_duration );
 	}
 	myproject_lazy_load() {
 		$(".myprojects").removeClass("loading_inner_data");

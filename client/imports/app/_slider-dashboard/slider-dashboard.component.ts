@@ -65,12 +65,18 @@ export class SliderDashboardComponent {
 			this.highlightJsService.highlight(item);
 		});
 	}
+	addMoveToclickEvent() {
+		var classname = document.getElementsByClassName("post-title");
+		for (var i = 0; i < classname.length; i++) {
+			classname[i].addEventListener('click', function(){ alert("hey man"); }, false);
+		}
+	}
 	load_words(cat, plink): void {
 		MeteorObservable.subscribe('wordcontents').subscribe(() => {
 			MeteorObservable.autorun().subscribe(() => {
 				this.updateDatas(cat, plink);
 				$(".loading-screen-2").addClass("loading_end");
-				setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); }, this.sectionService.loading_screen_2_duration );
+				setTimeout(() => { $(".loading-screen-2").addClass("loading-screen-2-hide"); this.HighlightUsingService(); this.addMoveToclickEvent(); }, this.sectionService.loading_screen_2_duration );
 				setTimeout(() => { $("#slider-dashboard-container").removeClass("loading_inner_data"); $("#slider-dashboard-container").addClass("loading_inner_data_end"); this.myproject_lazy_load(); }, 100);
 			});
 		});
