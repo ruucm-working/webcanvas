@@ -21,7 +21,7 @@ export class AdminComponent {
 	isCopied1: boolean = false;
 	my_words;
 	my_canvases;
-	public editorContent: string = 'My Canvas\'s Contents'
+	public editorContent: string = '<iframe width="100%" height="450" scrolling="no" frameborder="no" src=""></iframe>'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
  
@@ -86,7 +86,7 @@ export class AdminComponent {
 				content: value
 			},
 		});
-		this.editorContent = '';
+		this.editorContent = '<iframe width="100%" height="450" scrolling="no" frameborder="no" src=""></iframe>';
 	}
 	get_canvases(): Canvas[] {
 		return CanvasContents.find().map((messages: Canvas[]) => { return messages; });
