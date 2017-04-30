@@ -16,12 +16,13 @@ import template_dialog from './dialog-show-word-list.html';
 export class WordsComponent {
 	@Input('current_word') current_word;
 	@Input('current_word_length') current_word_length;
-	@Input('current_word_id') current_word_id;
+	@Input('current_word_order') current_word_order;
 	@Input('current_word_url') current_word_url;
 	@Input('word_list') word_list;
 	@Input('word_list_length') word_list_length;
 	isLastScene;
 	isTitleScene;
+	current_word_id;
 	share_button_text = 'Share It!';
 	isCopied: boolean = false;
 	isCopied1: boolean = false;
@@ -66,29 +67,30 @@ export class WordsComponent {
 	get_word(which_word): Canvas[] {
 		console.log('get_word, which_word : ' + which_word);
 		if (!isNaN(which_word)) {
-			this.current_word_id = which_word;
-			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_word_length = res.length;
-			return res;
+			this.current_word_order = which_word;
+			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0];
+			this.current_word_id = res._id;
+			this.current_word_length = res.content.length;
+			return res.content;
 		} else if(which_word == 'older') {
-			this.current_word_id -= 1;
-			if (this.current_word_id - 1 < 1) {
+			this.current_word_order -= 1;
+			if (this.current_word_order - 1 < 1) {
 				alert('It is the First Word!');
-				this.current_word_id += 1;
+				this.current_word_order += 1;
 				return false;
 			} else {
-				this.current_word = this.get_word(this.current_word_id);
+				this.current_word = this.get_word(this.current_word_order);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}
 		} else if(which_word == 'younger') {
-			this.current_word_id += 1;
-			if (this.current_word_id - 1 >= this.word_list_length) {
+			this.current_word_order += 1;
+			if (this.current_word_order - 1 >= this.word_list_length) {
 				alert('It is the Last Word!');
-				this.current_word_id -= 1;
+				this.current_word_order -= 1;
 				return false;
 			} else {
-				this.current_word = this.get_word(this.current_word_id);
+				this.current_word = this.get_word(this.current_word_order);
 				this.isTitleScene = true; 
 				this.isLastScene = false; 
 			}

@@ -20,7 +20,7 @@ export class SliderDashboardComponent {
 	hero;
 	current_word;
 	current_word_length = 0;
-	current_word_id: number;
+	current_word_order: number;
 	current_word_url;
 	word_list;
 	word_list_length = 0;
@@ -50,7 +50,6 @@ export class SliderDashboardComponent {
 		console.log('plink : ' + plink);
 		if (cat != undefined)
 			$(".loading-screen-1").addClass("loading_end");
-		// if (isNaN(plink))
 		if (plink == undefined)
 			plink = 'init';
 		MeteorObservable.subscribe('canvascontents').subscribe(() => {
@@ -116,31 +115,30 @@ export class SliderDashboardComponent {
 		}
 	}
 	get_word(which_word): void {
-		console.log('get_word');
-		console.log('which_word : ' + which_word);
 		this.word_list = WordContents.find({}, { fields: {'content':0}, sort: { createdAt: -1 } }).map((messages: Canvas[]) => { return messages; });
 		this.word_list_length = this.word_list.length;
 
 		if (!isNaN(which_word)) {
-			this.current_word_id = which_word;
-			this.make_permalink('word' , this.current_word_id);
-			var res = WordContents.find({ contentid: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_word_length = res.length;
-			this.current_word = res;
+			this.current_word_order = which_word;
+			var res = WordContents.find({ contentid: +which_word }).map((messages: Canvas[]) => { return messages; })[0];
+			this.current_word = res.content;
+			this.current_word_length = this.current_word.length;
+			this.make_permalink('word' , res._id);
 		} else {
-			console.log('else');
-			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
-			this.current_word_length = res.length;
-			this.current_word = res;
+			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0];
+			this.current_word = res.content;
+			this.current_word_order = res.contentid;
+			this.current_word_length = this.current_word.length;
+			this.make_permalink('word' , which_word);
 		}
 	}
-	make_permalink(cat, id) {
+	make_permalink(cat, _id) {
 		var getUrl = window.location;
 		var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
 		if (cat == 'canvas')
-			this.current_canvas_url = baseUrl + cat + '/'+ id;
+			this.current_canvas_url = baseUrl + cat + '/'+ _id;
 		else if (cat == 'word')
-			this.current_word_url = baseUrl + cat + '/'+ id;
+			this.current_word_url = baseUrl + cat + '/'+ _id;
 	}
 	updatefullpage(cat, isfromPermalink) {
 		var reloadfullpage = function() {
