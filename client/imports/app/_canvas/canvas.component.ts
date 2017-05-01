@@ -20,8 +20,6 @@ export class CanvasComponent {
 	@Input('current_canvas_url') current_canvas_url;
 	@Input('canvas_list') canvas_list;
 	@Input('canvas_list_length') canvas_list_length;
-	isLastScene;
-	isTitleScene;
 	current_canvas_id;
 	share_button_text = 'Share It!';
 	isCopied: boolean = false;
@@ -35,14 +33,14 @@ export class CanvasComponent {
 		router.events.forEach((event) => {
 			var splited_value = event.url.split('/');
 			if (event.url == "/slider-dashboard" || splited_value[splited_value.length - 2] == "canvas" || (event.url).slice(-11) == "#CanvasPage") {
-				this.isTitleScene = true;
-			} else
-				this.isTitleScene = false; 
+				this.sectionService.isCanvasTitleScene = true;
+			} else 
+				this.sectionService.isCanvasTitleScene = false; 
 			if (event instanceof NavigationStart) {
 				if ( (event.url).slice(-1) == this.current_canvas_length - 1)
-					this.isLastScene = true;
+					this.sectionService.isCanvasLastScene = true;
 				else
-					this.isLastScene = false; 
+					this.sectionService.isCanvasLastScene = false; 
 			}
 		});
 	}
@@ -72,8 +70,8 @@ export class CanvasComponent {
 			} else {
 				this.current_canvas = this.get_canvase(this.current_canvas_order);
 				$.fn.fullpage.moveTo('CanvasPage', 0);
-				this.isTitleScene = true;
-				this.isLastScene = false;
+				this.sectionService.isCanvasTitleScene = true;
+				this.sectionService.isCanvasLastScene = false;
 			}
 		} else if(which_canvas == 'younger') {
 			this.current_canvas_order += 1;
@@ -84,8 +82,8 @@ export class CanvasComponent {
 			} else {
 				this.current_canvas = this.get_canvase(this.current_canvas_order);
 				$.fn.fullpage.moveTo('CanvasPage', 0);
-				this.isTitleScene = true;
-				this.isLastScene = false;
+				this.sectionService.isCanvasTitleScene = true;
+				this.sectionService.isCanvasLastScene = false;
 			}
 		} else {
 			var res = CanvasContents.find({ _id: which_canvas }).map((messages: Canvas[]) => { return messages; })[0].content;

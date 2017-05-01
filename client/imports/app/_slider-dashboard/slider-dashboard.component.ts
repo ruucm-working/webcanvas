@@ -65,12 +65,6 @@ export class SliderDashboardComponent {
 			this.highlightJsService.highlight(item);
 		});
 	}
-	// addMoveToclickEvent() {
-	// 	var classname = document.getElementsByClassName("post-title");
-	// 	for (var i = 0; i < classname.length; i++) {
-	// 		classname[i].addEventListener('click', function(){ alert("hey man"); }, false);
-	// 	}
-	// }
 	load_words(cat, plink): void {
 		MeteorObservable.subscribe('wordcontents').subscribe(() => {
 			MeteorObservable.autorun().subscribe(() => {

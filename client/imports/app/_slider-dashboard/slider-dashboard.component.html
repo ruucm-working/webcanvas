@@ -1,5 +1,5 @@
 <div id="slider-dashboard-container" class="loading_inner_data">
-	<div class="admin-bar" *ngIf="this._service.hideToPublic()">
+	<div class="admin-bar" *ngIf="this._service.hideToPublic() && (this.sectionService.isWordTitleScene || this.sectionService.isCanvasTitleScene)">
 		<md-chip-list>
 			<a routerLink="/home"><md-chip>go back to home</md-chip></a>
 			<a routerLink="/admin"><md-chip>admin</md-chip></a>

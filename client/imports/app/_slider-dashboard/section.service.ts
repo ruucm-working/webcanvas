@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
 export class SectionService {
 	loading_screen_1_duration = 2100;
 	loading_screen_2_duration = 500;
+	isWordLastScene;
+	isWordTitleScene;
+	isCanvasLastScene;
+	isCanvasTitleScene;
 
 	addMoveToclickEvent(): void {
 		var classname = document.getElementsByClassName("post-title");

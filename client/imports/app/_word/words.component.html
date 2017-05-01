@@ -1,4 +1,4 @@
-<div *ngIf="isLastScene" class="canvases_navigate">
+<div *ngIf="this.sectionService.isWordLastScene" class="canvases_navigate">
 	<div class="navigate_fab_buttons">
 		<md-chip-list>
 			<md-chip color="primary" selected="true" (click)="younger_from_current_word()">Younger fish</md-chip>
@@ -6,7 +6,7 @@
 		</md-chip-list>
 	</div>
 </div>
-<div *ngIf="isTitleScene" class="canvases_navigate">
+<div *ngIf="this.sectionService.isWordTitleScene" class="canvases_navigate">
 	<div class="canvases_navigate_buttons">
 		<button md-button (click)="openWordListDialog()">Word List</button>
 		<button md-button (click)="get_recent_word()">Recent Word</button>

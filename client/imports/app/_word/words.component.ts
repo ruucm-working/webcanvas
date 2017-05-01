@@ -20,8 +20,6 @@ export class WordsComponent {
 	@Input('current_word_url') current_word_url;
 	@Input('word_list') word_list;
 	@Input('word_list_length') word_list_length;
-	isLastScene;
-	isTitleScene;
 	current_word_id;
 	share_button_text = 'Share It!';
 	isCopied: boolean = false;
@@ -35,14 +33,14 @@ export class WordsComponent {
 		private location: Location ) {
 		router.events.forEach((event) => {
 			if ((event.url).slice(-9) == "#WordPage") {
-				this.isTitleScene = true;
+				this.sectionService.isWordTitleScene = true;
 			} else
-				this.isTitleScene = false; 
+				this.sectionService.isWordTitleScene = false; 
 			if (event instanceof NavigationStart) {
 				if ( (event.url).slice(-1) == this.current_word_length - 1)
-					this.isLastScene = true;
+					this.sectionService.isWordLastScene = true;
 				else
-					this.isLastScene = false; 
+					this.sectionService.isWordLastScene = false; 
 			}
 		});
 	}
@@ -80,8 +78,8 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_order);
-				this.isTitleScene = true; 
-				this.isLastScene = false; 
+				this.sectionService.isWordTitleScene = true; 
+				this.sectionService.isWordLastScene = false; 
 			}
 		} else if(which_word == 'younger') {
 			this.current_word_order += 1;
@@ -91,8 +89,8 @@ export class WordsComponent {
 				return false;
 			} else {
 				this.current_word = this.get_word(this.current_word_order);
-				this.isTitleScene = true; 
-				this.isLastScene = false; 
+				this.sectionService.isWordTitleScene = true; 
+				this.sectionService.isWordLastScene = false; 
 			}
 		} else {
 			var res = WordContents.find({ _id: which_word }).map((messages: Canvas[]) => { return messages; })[0].content;
