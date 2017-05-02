@@ -6,5 +6,11 @@
 		"SELECT": "Change language",
 		"INSTRUCTIONA": "⬅️ ⬇️ ➡️ ⬆️ &nbsp;&nbsp;&nbsp;👆",
 		"GO": "Go!"
-	}
+	},
+	"CANVAS": {
+		"LIST_BUTTON": "Canvas List",
+		"RECENT_BUTTON": "Recent Canvas",
+		"YOUNGER_FISH_BUTTON": "Younger fish",
+		"OLDER_FISH_BUTTON": "Older fish"
+	} 
 }

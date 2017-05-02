@@ -1,8 +1,13 @@
 {
 	"HOME": {
-		"TITLE": "안녕하세요<br>루움<br>입니다<br><br>메이커이고<br>웹디자인을<br>합니다<br><br>새로운 교육을<br>만들고 있습니다",
+		"TITLE": "안녕하세요 루움<br>이라고 합니다<br><br>",
+		"TITLE02": "메이커이고 <br>웹디자인을 <br>합니다<br><br>",
+		"TITLE03": "새로운 <br>교육을<br>만들고<br>있습니다",
 		"SELECT": "언어를 선택해주세요",
 		"INSTRUCTIONA": "⬅️ ⬇️ ➡️ ⬆️ &nbsp;&nbsp;&nbsp;👆",
-		"GO": "시작"
-	}
+		"GO": "Go!"
+	},
+	"CANVAS": {
+		"LIST_BUTTON": "캔버스 목록"
+	} 
 }
