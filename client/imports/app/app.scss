@@ -538,18 +538,7 @@ my-words {
 		.fp-tableCell {
 			display: inline-block;
 			position: relative;
-			box-sizing: content-box !important
-			&:before {
-				content: '';
-				display: block;
-				width: calc(100% - 4px);
-				height: calc(100% - 4px);
-				position: absolute;
-				top: 2px;
-				left: 2px;
-				-webkit-border-radius: 32px;
-				border-radius: 32px
-			}
+			box-sizing: content-box !important;
 			>.fp-scrollable {
 				padding: 0 8.5rem 0rem 8.5rem;
 				h1, h2, h3, h4, p, pre, .fp-scrollable {
