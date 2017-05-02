@@ -618,5 +618,8 @@ body {
 			height: 25rem;
 			width: inherit;
 		}
+		iframe {
+			pointer-events: none;
+		}
 	}
 }
