@@ -37,7 +37,7 @@ export class AdminComponent {
 			H3: 'Heading 3',
 			H4: 'Heading 4',
 			CODE: 'CodeInner',
-			PRE: 'CodeOuter'
+			PRE: 'Inner Block Style'
 		}
 	}
  

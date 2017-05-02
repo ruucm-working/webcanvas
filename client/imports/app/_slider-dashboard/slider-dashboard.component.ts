@@ -153,7 +153,7 @@ export class SliderDashboardComponent {
 				navigation: true,
 				navigationPosition: 'right',
 				navigationTooltips: ['Canvas', 'Project', 'Word'],
-				showActiveTooltip: true,
+				showActiveTooltip: false,
 				slidesNavigation: false,
 				sectionsColor: ['#FCBCB0', '#CEA1AC', '#EDA89C', '#F5E0E0', '#000'],
 				controlArrows: false,

@@ -198,8 +198,6 @@ body .mat-option {
 }
 ul {
 	list-style-type: none;
-	height: 20rem;
-	overflow: auto;
 }
 .home_buttons {
 	position: absolute;
@@ -467,9 +465,6 @@ my-canvases .fp-slides {
 body #fp-nav ul li .fp-tooltip {
 	color: #07019A;
 }
-.fp-scrollable {
-	// padding: 0 35px;
-}
 body #fp-nav ul li .fp-tooltip {
 	font-family: Spoqa Han Sans Regular;
 	color: $charcoal;
@@ -499,6 +494,12 @@ body #fp-nav ul li .fp-tooltip {
 .mat-dialog-title {
 	font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
 	font-size: 2rem;
+}
+md-dialog-container {
+	ul {
+		height: 20rem;
+		overflow: auto;
+	}
 }
 
 /**
