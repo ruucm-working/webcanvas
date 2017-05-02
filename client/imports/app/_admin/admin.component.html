@@ -14,7 +14,7 @@
 				<input mdInput [(ngModel)]="canvas_title" style="width: 300px;" type="text" name="text" placeholder="Canvas Title - using h2, post-title class"/>
 			</md-input-container>
 		</form>
-		<div [froalaEditor] [(froalaModel)]="editorContent"></div>
+		<div [froalaEditor]='options' [(froalaModel)]="editorContent"></div>
 		<h3>Html :</h3><div>{{editorContent}}</div>
 		<h3>Output :</h3><div [froalaView]="editorContent"></div>
 		<br>
@@ -30,7 +30,7 @@
 				<input mdInput [(ngModel)]="project_title" type="text" name="text" placeholder="Make a new Project"/>
 			</md-input-container>
 		</form>
-		<div [froalaEditor] [(froalaModel)]="editorContent2"></div>
+		<div [froalaEditor]='options' [(froalaModel)]="editorContent2"></div>
 		<h3>Html :</h3><div>{{editorContent2}}</div>
 		<h3>Output :</h3><div [froalaView]="editorContent2"></div>
 		<br>
@@ -41,7 +41,7 @@
 				<input mdInput [(ngModel)]="word_title" style="width: 300px;" type="text" name="text" placeholder="Word Title - using h2, post-title class"/>
 			</md-input-container>
 		</form>
-		<div [froalaEditor] [(froalaModel)]="editorContent3"></div>
+		<div [froalaEditor]='options' [(froalaModel)]="editorContent3"></div>
 		<h3>Html :</h3><div>{{editorContent3}}</div>
 		<h3>Output :</h3><div [froalaView]="editorContent3"></div>
 		<br>

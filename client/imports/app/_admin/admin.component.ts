@@ -24,6 +24,22 @@ export class AdminComponent {
 	public editorContent: string = '<iframe width="100%" height="450" scrolling="no" frameborder="no" src=""></iframe>'
 	public editorContent2: string = 'My Project\'s Contents'
 	public editorContent3: string = 'My Word\'s Contents'
+	public options: Object = { 
+		placeholderText: 'Edit Your Content Here!',
+		charCounterCount: false,
+		paragraphStyles: {
+			inner_style: 'Inner'
+		},
+		paragraphFormat: {
+			N: 'Normal',
+			H1: 'Heading 1',
+			H2: 'Heading 2',
+			H3: 'Heading 3',
+			H4: 'Heading 4',
+			CODE: 'CodeInner',
+			PRE: 'CodeOuter'
+		}
+	}
  
 	constructor(
 		private _service:AuthenticationService,
@@ -44,6 +60,14 @@ export class AdminComponent {
 			onReady: function () {
 				setTimeout( () => {
 					clearInterval(refreshIntervalId);
+					 $('div#froala-editor').froalaEditor({
+				      // Define new paragraph styles.
+				      paragraphStyles: {
+				        class1: 'Class 1',
+				        class2: 'Class 2'
+				      },
+				      toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'fontFamily', 'fontSize', '|', 'paragraphStyle', 'paragraphFormat', 'align', 'undo', 'redo', 'html']
+				    });
 				},100)
 			},
 			onError: function () { console.log("onError", arguments); }

@@ -540,7 +540,9 @@ my-words {
 			position: relative;
 			box-sizing: content-box !important;
 			>.fp-scrollable {
-				padding: 0 8.5rem 0rem 8.5rem;
+				// padding: 0 1.5rem 0rem 1.5rem;
+				// max-width: 1000px;
+				margin: 0 auto;
 				h1, h2, h3, h4, p, pre, .fp-scrollable {
 					&:first-child {
 						margin-top: 8rem;
@@ -549,9 +551,17 @@ my-words {
 						margin-bottom: 8rem;
 					}
 				}
+				.fp-scroller {
+					padding: 0 1.5rem 0rem 1.5rem;
+					max-width: 1000px;
+					margin: 0 auto;
+				}
 			}
 			> h1, > h2, > h3, > h4, > p, > pre {
-				padding: 0 8.5rem 0rem 8.5rem;
+				// padding: 0 8.5rem 0rem 8.5rem;
+				padding: 0 1.5rem 0rem 1.5rem;
+				max-width: 1000px;
+				margin: 0 auto;
 				&:first-child {
 					margin-top: 8rem;
 				}
@@ -575,8 +585,10 @@ body {
 		h2 {
 			font-size: 3.5rem;
 			font-weight: bold;
-			border-left: 10px hsla(358, 90%, 71%, 1) solid;
-			padding-left: 2rem;
+			&:not(.component_intro) {
+				border-left: 10px hsla(358, 90%, 71%, 1) solid;
+				padding-left: 2rem;
+			}
 		}
 		h3 {
 			font-size: 2.5rem;
@@ -588,6 +600,16 @@ body {
 		}
 		p {
 			font-size: 1rem;
+		}
+		pre {
+			background: hsla(350, 90%, 77%, 0.4);
+			border-radius: 1rem;
+			padding: 2rem;
+			white-space: pre-wrap;       /* Since CSS 2.1 */
+			white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+			white-space: -pre-wrap;      /* Opera 4-6 */
+			white-space: -o-pre-wrap;    /* Opera 7 */
+			word-wrap: break-word; 
 		}
 	}
 }
