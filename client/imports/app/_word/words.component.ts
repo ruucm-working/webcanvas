@@ -32,6 +32,7 @@ export class WordsComponent {
 		public dialog: MdDialog,
 		private location: Location ) {
 		router.events.forEach((event) => {
+			console.log('event.url : ' + event.url);
 			if ((event.url).slice(-9) == "#WordPage") {
 				this.sectionService.isWordTitleScene = true;
 			} else
@@ -131,6 +132,7 @@ export class WordsComponent {
 	older_from_current_word() {
 		if ( this.get_word('older') ) {
 			this.show_loading_cover();
+			this.sectionService.fixurl_to_title_page();
 			this.updatefullpage();
 			this.hide_loading_cover();
 		}
@@ -138,6 +140,7 @@ export class WordsComponent {
 	younger_from_current_word() {
 		if ( this.get_word('younger') ) {
 			this.show_loading_cover();
+			this.sectionService.fixurl_to_title_page();
 			this.updatefullpage();
 			this.hide_loading_cover();
 		}

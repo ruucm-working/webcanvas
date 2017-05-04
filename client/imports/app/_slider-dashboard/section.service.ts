@@ -15,4 +15,7 @@ export class SectionService {
 			classname[i].addEventListener('click', function(){ $.fn.fullpage.moveSlideRight(); }, false);
 		}
 	}
+	fixurl_to_title_page() {
+		$.fn.fullpage.moveSlideRight();
+	}
 }

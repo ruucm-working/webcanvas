@@ -123,6 +123,7 @@ export class CanvasComponent {
 	older_from_current_canvase() {
 		if ( this.get_canvase('older') ) {
 			this.show_loading_cover();
+			this.sectionService.fixurl_to_title_page();
 			this.updatefullpage();
 			this.hide_loading_cover();
 		}
@@ -130,6 +131,7 @@ export class CanvasComponent {
 	younger_from_current_canvase() {
 		if ( this.get_canvase('younger') ) {
 			this.show_loading_cover();
+			this.sectionService.fixurl_to_title_page();
 			this.updatefullpage();
 			this.hide_loading_cover();
 		}
