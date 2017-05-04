@@ -32,7 +32,6 @@ export class WordsComponent {
 		public dialog: MdDialog,
 		private location: Location ) {
 		router.events.forEach((event) => {
-			console.log('event.url : ' + event.url);
 			if ((event.url).slice(-9) == "#WordPage") {
 				this.sectionService.isWordTitleScene = true;
 			} else

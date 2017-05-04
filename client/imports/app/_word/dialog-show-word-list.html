@@ -2,7 +2,7 @@
 <div md-dialog-actions>
 	<ul>
 		<md-chip-list *ngFor="let word of word_list; let i=index let last = last">
-			<md-chip md-button *ngIf="!last" (click)="dialogRef.close(word.contentid)">#{{i}} : {{ word.wordtitle }}</md-chip>
+			<md-chip md-button *ngIf="!last" (click)="dialogRef.close(word.contentid)">{{ word.wordtitle }}</md-chip>
 		</md-chip-list>
 	</ul>
 </div>

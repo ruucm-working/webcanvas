@@ -2,7 +2,7 @@
 <div md-dialog-actions>
 	<ul>
 		<md-chip-list *ngFor="let canvas of canvas_list; let i=index let last = last">
-			<md-chip md-button *ngIf="!last" (click)="dialogRef.close(canvas.contentid)">#{{i}} : {{ canvas.canvastitle }}</md-chip>
+			<md-chip md-button *ngIf="!last" (click)="dialogRef.close(canvas.contentid)">{{ canvas.canvastitle }}</md-chip>
 		</md-chip-list>
 	</ul>
 </div>
