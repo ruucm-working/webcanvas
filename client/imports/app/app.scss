@@ -490,6 +490,14 @@ body #fp-nav ul li .fp-tooltip {
 		border-radius: 2.4rem;
 		line-height: 1.6rem;
 		margin: 0 0.6rem;
+		&:focus {
+			outline: none;
+		}
+		&:hover,
+		&:visited {
+			background-color: blue;
+			color: white;
+		}
 	}
 }
 .mat-dialog-title {
