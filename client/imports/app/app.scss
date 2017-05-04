@@ -116,13 +116,30 @@ my-app:empty + .loading-screen-1 {
 }
 body {
 	#fp-nav {
-		top: 6.2%;
-		opacity: 0.75;
+		top: 8.2%;
+		opacity: 1;
 		&.right {
 			right: 0;
 		}
-		ul li a span {
-			background: $charcoal;
+		ul li {
+			margin: 20px 7px;
+		}
+		ul li a {
+			span {
+				background: aqua;
+				-webkit-box-shadow: 0px 3px 34px 4px rgba(52,60,81,0.15);
+				-moz-box-shadow: 0px 3px 34px 4px rgba(52,60,81,0.15);
+				box-shadow: 0px 3px 34px 4px rgba(52,60,81,0.15);
+			}
+			&.active span {
+				height: 42px;
+				width: 12px;
+				border-radius: 10px;
+				margin: -26px 0 0 -6px;
+			}
+			&.active {
+				margin: 30px 0 !important;
+			}
 		}
 	}
 	.fp-slidesNav ul li a span {
@@ -493,7 +510,7 @@ body #fp-nav ul li .fp-tooltip {
 		}
 		&:hover,
 		&:visited {
-			background-color: blue;
+			background-color: aqua;
 			color: white;
 		}
 	}
