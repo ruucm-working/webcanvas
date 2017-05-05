@@ -116,26 +116,26 @@ my-app:empty + .loading-screen-1 {
 }
 body {
 	#fp-nav {
-		top: 8.2%;
 		opacity: 1;
 		&.right {
-			right: 0;
+			right: 1.5%;
+			top: 8.2%;
 		}
 		ul li {
 			margin: 20px 7px;
 		}
 		ul li a {
 			span {
-				background: aqua;
+				background: $charcoal;
 				-webkit-box-shadow: 0px 3px 34px 4px rgba(52,60,81,0.15);
 				-moz-box-shadow: 0px 3px 34px 4px rgba(52,60,81,0.15);
 				box-shadow: 0px 3px 34px 4px rgba(52,60,81,0.15);
 			}
 			&.active span {
-				height: 42px;
-				width: 12px;
-				border-radius: 10px;
-				margin: -26px 0 0 -6px;
+				height: 22px;
+				width: 22px;
+				border-radius: 12px;
+				margin: -16px 0 0 -11px;
 			}
 			&.active {
 				margin: 30px 0 !important;
@@ -510,20 +510,26 @@ body #fp-nav ul li .fp-tooltip {
 		}
 		&:hover,
 		&:visited {
-			background-color: aqua;
+			background-color: $hot-pink;
 			color: white;
 		}
 	}
 }
-.mat-dialog-title {
-	font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
-	font-size: 2rem;
-}
-md-dialog-container {
+md-dialog-container.mat-dialog-container {
 	ul {
 		height: 20rem;
 		overflow: auto;
+		max-width: 30rem;
+		width: 30rem;
 	}
+	.mat-dialog-title {
+		font-family: SouvenirStd-Bold, Spoqa Han Sans Thin;
+		font-size: 2rem;
+	}
+	color: $melon;
+	border-radius: 2.77rem;
+	padding: 3rem;
+	text-align: center;
 }
 
 /**
