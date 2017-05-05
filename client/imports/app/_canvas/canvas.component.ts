@@ -64,7 +64,7 @@ export class CanvasComponent {
 		} else if(which_canvas == 'older') {
 			this.current_canvas_order -= 1;
 			if (this.current_canvas_order - 1 < 1) {
-				alert('It is the Oldest fish I\'ve ever Caught!');
+				this.sectionService.openSnackBar('It is the Oldest fish, I\'ve ever Caught!', '👌');
 				this.current_canvas_order += 1;
 				return false;
 			} else {
@@ -76,7 +76,7 @@ export class CanvasComponent {
 		} else if(which_canvas == 'younger') {
 			this.current_canvas_order += 1;
 			if (this.current_canvas_order - 1 >= this.canvas_list_length) {
-				alert('It is the Youngest fish I\'ve ever Caught!');
+				this.sectionService.openSnackBar('It is the Youngest fish, I\'ve ever Caught!', '👌');
 				this.current_canvas_order -= 1;
 				return false;
 			} else {
