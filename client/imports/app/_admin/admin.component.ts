@@ -144,8 +144,6 @@ export class AdminComponent {
 		this.my_words = this.get_words();
 	}
 	addWordContents(word, editorContent3) {
-		console.log('canvas._id : ');
-		console.log(word._id);
 		var value = word.content;
 		value.push({ id: value.length + 1, text: editorContent3, createdAt: new Date, });
 		WordContents.update(word._id, {

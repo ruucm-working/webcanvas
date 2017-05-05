@@ -73,7 +73,7 @@ export class WordsComponent {
 		} else if(which_word == 'older') {
 			this.current_word_order -= 1;
 			if (this.current_word_order - 1 < 1) {
-				alert('It is the First Word!');
+				alert('It is the Oldest fish I\'ve ever Caught!');
 				this.current_word_order += 1;
 				return false;
 			} else {
@@ -84,7 +84,7 @@ export class WordsComponent {
 		} else if(which_word == 'younger') {
 			this.current_word_order += 1;
 			if (this.current_word_order - 1 >= this.word_list_length) {
-				alert('It is the Last Word!');
+				alert('It is the Youngest fish I\'ve ever Caught!');
 				this.current_word_order -= 1;
 				return false;
 			} else {
