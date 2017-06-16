@@ -25,6 +25,7 @@
     "meteor-node-stubs": "~0.2.4",
     "meteor-rxjs": "^0.4.7",
     "ng2-fullpage": "^2.1.0",
+    "ng2-img-cropper": "^0.8.8",
     "ng2-tweet": "0.0.16",
     "ngx-clipboard": "^5.0.9",
     "reflect-metadata": "^0.1.10",

@@ -23,6 +23,8 @@ import { SafeHtmlPipe } from './_slider-dashboard/safe.html.pipe';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NotFoundComponent } from './notfound.component';
 import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { ImageCropperComponent } from 'ng2-img-cropper';
+import { ImageCropperAppComponent } from './_img_cropper/imgcropper.component';
 
 export function HttpLoaderFactory(http: Http) {
 	return new TranslateHttpLoader(http, "i18n/", ".json");
@@ -42,7 +44,9 @@ export function HttpLoaderFactory(http: Http) {
 		AdminComponent,
 		DialogShowCanvasList, DialogShowWordList, DialogShowFileList,
 		SafeHtmlPipe,
-		NotFoundComponent
+		NotFoundComponent,
+		ImageCropperAppComponent,
+		ImageCropperComponent
 	],
 	entryComponents: [ DialogShowCanvasList, DialogShowWordList, DialogShowFileList ],
 	imports: [

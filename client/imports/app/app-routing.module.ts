@@ -12,6 +12,7 @@ import { PrivateComponent } from './_simple_login/private.component';
 import { RegisterComponent } from './_simple_login/register.component';
 import { AdminComponent } from './_admin/admin.component';
 import { NotFoundComponent } from './notfound.component';
+import { ImageCropperAppComponent } from './_img_cropper/imgcropper.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent, useAsDefault:true },
@@ -25,9 +26,8 @@ const routes: Routes = [
 		pathMatch: 'full'
 	},
 	{ path: 'login', name: 'Login', component: LoginComponent },
-	// { path: 'register', component: RegisterComponent },
 	{ path: 'admin', component: AdminComponent },
-
+	{ path: 'img-crp', component: ImageCropperAppComponent },
 	{path: '404', component: NotFoundComponent},
 	{path: '**', redirectTo: '/404'}
 ];
